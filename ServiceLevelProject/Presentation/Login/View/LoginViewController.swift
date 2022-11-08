@@ -32,6 +32,7 @@ class LoginViewController: BaseViewController {
                 self.verifyID = varification
                 print("verify:",self.verifyID)
                 let vc = AuthViewController()
+                vc.verifyID = varification
                 self.transition(vc, transitionStyle: .push) 
             } else {
                 print("error",error)

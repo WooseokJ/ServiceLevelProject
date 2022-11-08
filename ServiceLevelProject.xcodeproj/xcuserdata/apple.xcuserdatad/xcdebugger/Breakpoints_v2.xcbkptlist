@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "40905CFC-FF97-4567-9442-A059DF30DD9F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF970F50-1FA9-4A9C-88CF-22CF1E192AC4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServiceLevelProject/Presentation/Auth/View/AuthViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "authVerifyCode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CF970F50-1FA9-4A9C-88CF-22CF1E192AC4 - 9fb1e5d6d3bb8568"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ServiceLevelProject.AuthViewController.authVerifyCode() -&gt; ()"
+                  moduleName = "ServiceLevelProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/GitHub/ServiceLevelProject/ServiceLevelProject/Presentation/Auth/View/AuthViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "664">
+               </Location>
+               <Location
+                  uuid = "CF970F50-1FA9-4A9C-88CF-22CF1E192AC4 - cb5cbc149cb7bac9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ServiceLevelProject.AuthViewController.authVerifyCode() -&gt; ()"
+                  moduleName = "ServiceLevelProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/GitHub/ServiceLevelProject/ServiceLevelProject/Presentation/Auth/View/AuthViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
