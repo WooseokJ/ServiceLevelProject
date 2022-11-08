@@ -32,7 +32,7 @@ class LoginViewController: BaseViewController {
                 self.verifyID = varification
                 print("verify:",self.verifyID)
                 let vc = AuthViewController()
-                self.transition(vc, transitionStyle: .push)
+                self.transition(vc, transitionStyle: .push) 
             } else {
                 print("error",error)
                 print("넌 오류야 ")
