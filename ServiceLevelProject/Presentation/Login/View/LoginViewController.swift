@@ -31,6 +31,8 @@ class LoginViewController: BaseViewController {
             if error == nil {
                 self.verifyID = varification
                 print("verify:",self.verifyID)
+                let vc = AuthViewController()
+                self.transition(vc, transitionStyle: .push)
             } else {
                 print("error",error)
                 print("넌 오류야 ")
