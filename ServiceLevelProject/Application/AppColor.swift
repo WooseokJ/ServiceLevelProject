@@ -9,13 +9,13 @@ import UIKit.UIColor
 
 enum BlackWhite {
     static var white = UIColor.white
-    static var black = UIColor.black
+    static var black = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
 }
 
 enum BrandColor {
-    static var green = UIColor.green
-    static var whitegreen = UIColor(red: 213/255, green: 243/255, blue: 226/255, alpha: 1.0)
-    static var yellowgreen = UIColor(red: 190/255, green: 234/255, blue: 116/255, alpha: 1.0)
+    static var green = UIColor(red: 73/255, green: 220/255, blue: 146/255, alpha: 1.0)
+    static var whitegreen = UIColor(red: 205/255, green: 244/255, blue: 225/255, alpha: 1.0)
+    static var yellowgreen = UIColor(red: 178/255, green: 235/255, blue: 97/255, alpha: 1.0)
 }
 
 enum Grayscale {
@@ -29,6 +29,6 @@ enum Grayscale {
 }
 
 enum SystemColor {
-    static var success = UIColor(red: 108/255, green: 142/255, blue: 223/255, alpha: 1.0)
-    static var error = UIColor(red: 217/255, green: 110/255, blue: 111/255, alpha: 1.0)
+    static var success = UIColor(red: 98/255, green: 143/255, blue: 229/255, alpha: 1.0)
+    static var error = UIColor(red: 233/255, green: 102/255, blue: 107/255, alpha: 1.0)
 }
