@@ -22,11 +22,10 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         authView.authButton.addTarget(self, action: #selector(authVerifyCode), for: .touchUpInside)
-        
+      
     }
     @objc func authVerifyCode() {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verifyID ?? "", verificationCode: authView.authTextField.text ?? "")
-        
         
         Auth.auth().signIn(with: credential) { success, error in
             if error == nil {
@@ -35,6 +34,18 @@ class AuthViewController: UIViewController {
                 print("error:",error)
             }
         }
+        
+        // idtoken
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            print("idToken",idToken)
+            print("error:",error)
+            if let error = error {
+            // Handle error
+            return;
+          }
+        }
+      
     }
     
     
