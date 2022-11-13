@@ -16,9 +16,11 @@ class BaseViewController: UIViewController {
     override func loadView() {
         self.view = baseView
     }
+
     
 //    let disposeBag = DisposeBag()
-//    let api = APIService()
+    let api = APIService()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

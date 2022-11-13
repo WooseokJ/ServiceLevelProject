@@ -8,13 +8,6 @@
 import SnapKit
 import UIKit
 
-enum AuthText: String {
-    case textLabel = "인증번호가 문자로 전송되었어요"
-    case textFieldPlaceholder = "인증번호 입력"
-    case textButton = "인증 문자 받기"
-    case textReDirectButton = "재전송"
-}
-
 class AuthView: BaseView {
     
     override init(frame: CGRect) {
@@ -46,7 +39,7 @@ class AuthView: BaseView {
     
     lazy var authTimerLabel: UILabel = {
         let label = UILabel()
-        label.text = "05:00"
+        label.text = "01:00"
         label.font = AppFont.Title3_M14
         return label
     }()
@@ -94,7 +87,7 @@ class AuthView: BaseView {
         authTimerLabel.snp.makeConstraints { make in
             make.leading.equalTo(authTextField.snp.trailing).offset(121)
             make.top.equalTo(authTextLabel.snp.bottom).offset(110)
-            make.width.equalTo(37)
+            make.width.equalTo(50)
             make.height.equalTo(22.4)
         }
         

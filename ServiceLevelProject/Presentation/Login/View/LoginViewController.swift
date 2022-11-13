@@ -23,14 +23,18 @@ class LoginViewController: BaseViewController {
         loginView.phoneButton.addTarget(self, action: #selector(requestVerifyCode), for: .touchUpInside)
         
         
+        
     }
     
     @objc func requestVerifyCode() {
 
-        PhoneAuthProvider.provider().verifyPhoneNumber(loginView.phoneNumberTextField.text ?? "", uiDelegate: nil) { (varification,error) in
+        PhoneAuthProvider.provider().verifyPhoneNumber(loginView.phoneNumberTextField.text ?? "", uiDelegate: nil) { [self] (varification,error) in
             if error == nil {
                 self.verifyID = varification
-                print("verify:",self.verifyID)
+                print("verify:",verifyID)
+                
+                UserInfo.shared.phoneNumber = loginView.phoneNumberTextField.text // 폰번호입력
+                
                 let vc = AuthViewController()
                 vc.verifyID = varification
                 self.transition(vc, transitionStyle: .push) 

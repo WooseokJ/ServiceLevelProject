@@ -9,11 +9,13 @@
 import UIKit
 import FirebaseAuth
 
-class AuthViewController: UIViewController {
+class AuthViewController: BaseViewController {
     
     let authView = AuthView()
     
     var verifyID: String?
+    
+    
     
     override func loadView() {
         super.view = authView
@@ -22,7 +24,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         authView.authButton.addTarget(self, action: #selector(authVerifyCode), for: .touchUpInside)
-      
+        
     }
     @objc func authVerifyCode() {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verifyID ?? "", verificationCode: authView.authTextField.text ?? "")
@@ -30,22 +32,29 @@ class AuthViewController: UIViewController {
         Auth.auth().signIn(with: credential) { success, error in
             if error == nil {
                 print("succeess:",success)
+                
+                // idtoken
+                let currentUser = Auth.auth().currentUser
+                currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                    
+                    
+                    if let error = error {
+                        // Handle error
+                        return;
+                    }
+                    print("idToken",idToken)
+                    UserInfo.shared.fcmtoken = idToken 
+                    UserDefaults.standard.set(idToken, forKey: "token")
+                }
+                
+                let vc = NickNameViewController()
+                self.transition(vc, transitionStyle: .push)
             } else {
                 print("error:",error)
             }
         }
         
-        // idtoken
-        let currentUser = Auth.auth().currentUser
-        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            print("idToken",idToken)
-            print("error:",error)
-            if let error = error {
-            // Handle error
-            return;
-          }
-        }
-      
+        
     }
     
     
