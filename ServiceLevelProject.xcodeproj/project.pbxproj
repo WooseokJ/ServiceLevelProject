@@ -13,7 +13,6 @@
 		184DDD7B291A89EF00F12D63 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 184DDD7A291A89EF00F12D63 /* Toast */; };
 		184DDD9C291AB2D000F12D63 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DDD9B291AB2D000F12D63 /* AuthView.swift */; };
 		184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DDD9D291AB2E600F12D63 /* AuthViewController.swift */; };
-		184DDDAA291ABD5D00F12D63 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 184DDDA9291ABD5D00F12D63 /* FirebaseAuth */; };
 		1861EC7A291C0709008E0575 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC79291C0709008E0575 /* FirstViewController.swift */; };
 		1861EC7C291C1C73008E0575 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7B291C1C73008E0575 /* SecondViewController.swift */; };
 		1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7D291C1C79008E0575 /* ThirdViewController.swift */; };
@@ -28,6 +27,8 @@
 		18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC0291CDB7400F78848 /* Enum.swift */; };
 		18C9FAC3291CDBD000F78848 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC2291CDBD000F78848 /* OnBoardingView.swift */; };
 		18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC4291CE13B00F78848 /* NickNameViewController.swift */; };
+		18CBBEB0292210F800CEC097 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 18CBBEAF292210F800CEC097 /* FirebaseAuth */; };
+		18CBBEB2292210F800CEC097 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 18CBBEB1292210F800CEC097 /* FirebaseMessaging */; };
 		18D65DEF291D535C00CBEAB4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DEE291D535C00CBEAB4 /* APIService.swift */; };
 		18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18D65DF1291D55CE00CBEAB4 /* Alamofire */; };
 		18D65DF4291D585D00CBEAB4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DF3291D585D00CBEAB4 /* API.swift */; };
@@ -114,7 +115,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				184DDD75291A899F00F12D63 /* RxSwift in Frameworks */,
-				184DDDAA291ABD5D00F12D63 /* FirebaseAuth in Frameworks */,
+				18CBBEB0292210F800CEC097 /* FirebaseAuth in Frameworks */,
+				18CBBEB2292210F800CEC097 /* FirebaseMessaging in Frameworks */,
 				184DDD78291A89D000F12D63 /* SnapKit in Frameworks */,
 				18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */,
 				184DDD73291A899F00F12D63 /* RxCocoa in Frameworks */,
@@ -477,8 +479,9 @@
 				184DDD74291A899F00F12D63 /* RxSwift */,
 				184DDD77291A89D000F12D63 /* SnapKit */,
 				184DDD7A291A89EF00F12D63 /* Toast */,
-				184DDDA9291ABD5D00F12D63 /* FirebaseAuth */,
 				18D65DF1291D55CE00CBEAB4 /* Alamofire */,
+				18CBBEAF292210F800CEC097 /* FirebaseAuth */,
+				18CBBEB1292210F800CEC097 /* FirebaseMessaging */,
 			);
 			productName = ServiceLevelProject;
 			productReference = 18DC246829189DDD00DD5D1C /* ServiceLevelProject.app */;
@@ -556,8 +559,8 @@
 				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				184DDDA8291ABD5D00F12D63 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -995,12 +998,12 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		184DDDA8291ABD5D00F12D63 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.1.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -1034,10 +1037,15 @@
 			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
-		184DDDA9291ABD5D00F12D63 /* FirebaseAuth */ = {
+		18CBBEAF292210F800CEC097 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDDA8291ABD5D00F12D63 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		18CBBEB1292210F800CEC097 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		18D65DF1291D55CE00CBEAB4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
