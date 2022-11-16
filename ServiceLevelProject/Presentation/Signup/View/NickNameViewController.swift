@@ -15,6 +15,11 @@ class NickNameViewController: BaseViewController {
         super.view = loginView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loginView.phoneNumberTextField.becomeFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         newText()
@@ -41,6 +46,14 @@ class NickNameViewController: BaseViewController {
         transition(vc, transitionStyle: .push)
     }
     
-    
+
   
+}
+
+extension NickNameViewController: UITextViewDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text!.count < 10 {
+            print(textField.text?.count)
+        }
+    }
 }
