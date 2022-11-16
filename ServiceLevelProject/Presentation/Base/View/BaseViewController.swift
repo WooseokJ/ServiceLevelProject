@@ -6,8 +6,9 @@
 //
 
 import UIKit
-//import RxSwift
-//import RxCocoa
+import RxSwift
+import RxCocoa
+import Toast
 
 class BaseViewController: UIViewController {
     
@@ -18,7 +19,7 @@ class BaseViewController: UIViewController {
     }
 
     
-//    let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     let api = APIService()
 
     
@@ -34,6 +35,19 @@ class BaseViewController: UIViewController {
         present(alert,animated: true)
     }
     
+    func checkMaxLength(textField: UITextField!, maxLength: Int) -> Bool {
+        if (textField.text!.count > maxLength) {
+            textField.deleteBackward()
+            return false
+        }
+        return true
+    }
     
     
+}
+extension BaseViewController: UITextFieldDelegate {
+    // 키보드 여백 누를떄
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
