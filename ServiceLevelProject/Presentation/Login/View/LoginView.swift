@@ -21,6 +21,7 @@ class LoginView: BaseView {
         let textField = UITextField()
         textField.placeholder = "\(login.textFieldPlaceholder.rawValue)"
         textField.font = .systemFont(ofSize: 14)
+//        textField.keyboardType = .numberPad
         return textField
     }()
     lazy var phoneTextLabel: UILabel = { // 휴대폰 소개 라벨
@@ -44,9 +45,14 @@ class LoginView: BaseView {
         return button
     }()
     
+    lazy var subTitle: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     
     override func configure() {
-        [phoneTextLabel,phoneNumberTextField,textFieldLine,phoneButton].forEach {
+        [phoneTextLabel,phoneNumberTextField,textFieldLine,phoneButton,subTitle].forEach {
             self.addSubview($0)
         }
     }
