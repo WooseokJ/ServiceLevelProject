@@ -14,6 +14,10 @@ class EmailViewController: BaseViewController {
     override func loadView() {
         super.view = loginView
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loginView.phoneNumberTextField.becomeFirstResponder()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +38,22 @@ class EmailViewController: BaseViewController {
     
     @objc func emailButtonClicked() {
         UserInfo.shared.email = loginView.phoneNumberTextField.text
+        guard loginView.phoneNumberTextField.text?.contains("@") == true else {
+            self.view.makeToast("@를 붙여주세요")
+            return
+        }
+        guard loginView.phoneNumberTextField.text?.contains(".com") == true else {
+            self.view.makeToast(".com을 붙여주세요")
+            return
+        }
         let vc =  GenderViewController()
         transition(vc, transitionStyle: .push)
+    }
+}
+
+extension EmailViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        loginView.phoneNumberTextField.resignFirstResponder()
+        return true
     }
 }
