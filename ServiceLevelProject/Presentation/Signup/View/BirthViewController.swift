@@ -8,53 +8,68 @@
 import UIKit
 
 class BirthViewController: BaseViewController {
+  
+    var list = ["1", "2", "3"]
+    var list2 = ["3", "4", "5"]
+    var list3 = ["아", "가", "야"]
     
-    var yearLabel: UILabel = {
+    lazy var pickerView: UIPickerView = {
+        let piker = UIPickerView()
+        piker.delegate = self
+        piker.dataSource = self
+        return piker
+    }()
+    
+    lazy var yearLabel: UILabel = {
         let label = UILabel()
         label.text = "년"
         return label
     }()
     
-    var monthTextField: UITextField = {
+    lazy var monthTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "  1"
         return textField
     }()
     
-    var monthLine: UIView = {
+    lazy var monthLine: UIView = {
         let view = UIView()
         view.backgroundColor = Grayscale.gray3
         return view
     }()
     
-    var monthLabel: UILabel = {
+    lazy var monthLabel: UILabel = {
         let label = UILabel()
         label.text = "월"
         return label
     }()
     
     
-    var dayTextFeild: UITextField = {
+    lazy var dayTextFeild: UITextField = {
         let textField = UITextField()
         textField.placeholder = "  1"
         return textField
     }()
-    var dayLine: UIView = {
+    lazy var dayLine: UIView = {
         let view = UIView()
         view.backgroundColor = Grayscale.gray3
         return view
     }()
     
-    var dayLabel: UILabel = {
+    lazy var dayLabel: UILabel = {
         let label = UILabel()
         label.text = "일"
         return label
     }()
     
-    let loginView = LoginView()
+    private let loginView = LoginView()
     
     override func loadView() {
         super.view = loginView
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loginView.phoneNumberTextField.becomeFirstResponder()
     }
     
     override func viewDidLoad() {
@@ -62,18 +77,26 @@ class BirthViewController: BaseViewController {
         newText()
         remake()
         addLabel()
-        loginView.phoneButton.addTarget(self, action: #selector(birthButtonClicked), for: .touchUpInside)
 
+            loginView.phoneButton.addTarget(self, action: #selector(birthButtonClicked), for: .touchUpInside)
+        
+
+        configToolbar()
+        loginView.phoneNumberTextField.inputView = pickerView
+        
+        
+        
     }
-    
-
+    @objc func pikerExit() {
+        // spicker와 같은 뷰 닫는함수
+        self.view.endEditing(true)
+    }
     
     func newText() {
         loginView.phoneNumberTextField.placeholder = "  1990"
         loginView.phoneNumberTextField.textAlignment = .left
         loginView.phoneTextLabel.text = "생년월일을 알려주세요"
         loginView.phoneButton.setTitle("다음", for: .normal)
-
     }
     
     func remake() {
@@ -148,8 +171,7 @@ class BirthViewController: BaseViewController {
             make.height.equalTo(monthTextField.snp.height)
             make.top.equalTo(monthTextField.snp.top)
         }
-        
-        
+
         
     }
     
@@ -158,5 +180,81 @@ class BirthViewController: BaseViewController {
         let vc = EmailViewController()
         transition(vc, transitionStyle: .push)
     }
-
+    
+    
+    
+    
+    
+    
+    
 }
+extension BirthViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    //피커 몇개고를거냐?
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+            case 0:     return birthDay.year.list.count
+            case 1: return birthDay.month.list.count
+            case 2: return birthDay.day.list.count
+        default:
+            return 0
+        }
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0: return birthDay.year.list[row]
+        case 1: return birthDay.month.list[row]
+        case 2: return birthDay.day.list[row]
+        default:
+            return ""
+        }
+    }
+    
+    /// 피커뷰에서 선택된 행을 처리할 수 있는 메서드
+       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+           
+           switch component {
+           case 0:
+               loginView.phoneNumberTextField.text = birthDay.year.list[row]
+           case 1:
+               monthTextField.text = birthDay.month.list[row]
+           case 2:
+               dayTextFeild.text = birthDay.day.list[row]
+           default:
+               break
+           }
+       }
+    
+   
+    //MARK: 피커뷰 위한 툴바
+    func configToolbar() { // 4
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.backgroundColor = .black
+        toolBar.sizeToFit()
+        
+//        let row = pickerView.selectedRow(inComponent: 0)
+//        pickerView.selectRow(row, inComponent: 0, animated: false)
+//        loginView.phoneNumberTextField.resignFirstResponder()
+
+
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        
+        toolBar.setItems([flexibleSpace], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        loginView.phoneNumberTextField.inputAccessoryView = toolBar
+    }
+    
+    
+    
+    
+}
+

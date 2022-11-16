@@ -21,9 +21,23 @@ enum AuthText: String {
     case textReDirectButton = "재전송"
 }
 
-
+enum birthDay: String, CaseIterable {
+    case year,month,day
+    var list: [String] {
+        switch self {
+        case .year:
+            return [Int](1970...Date().year).map{String($0)}
+        case .month:
+            return [Int](1...12).map{String($0)}
+        case .day:
+            return [Int](1...31).map{String($0)}
+        }
+    }
+}
 
 struct Login: Codable {
     
-    let token: String
+    let idtoken: String
 }
+
+
