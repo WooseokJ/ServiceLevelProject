@@ -19,9 +19,7 @@ enum API {
         let baseURL = "http://api.sesac.co.kr:1207/v1/user"
         
         switch self {
-        case .signup:
-            return URL(string: baseURL)!
-        case .login:
+        case .signup, .login:
             return URL(string: baseURL)!
 //        case .profile:
 //            return URL(string: baseURL+"me")!
@@ -39,7 +37,6 @@ enum API {
 //                "Authorization" : "Bearer \(UserDefaults.standard.string(forKey: "token")!)",
 //                "Content-Type" : "application/x-www-form-urlencoded"
 //            ]
-
         }
     }
     
