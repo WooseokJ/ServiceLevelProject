@@ -61,6 +61,7 @@ final class APIService {
             case 401: 
                 // idtoken
                 let currentUser = Auth.auth().currentUser
+                
                 currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                     if let error = error {
                         // Handle error

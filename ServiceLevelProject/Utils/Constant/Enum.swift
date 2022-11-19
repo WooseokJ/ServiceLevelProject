@@ -5,7 +5,7 @@
 //  Created by useok on 2022/11/10.
 //
 
-import Foundation
+import UIKit
 
 enum login: String {
     case textLabel = "새싹 서비스 이용을 위해 \n휴대폰 번호를 입력해 주세요."
@@ -34,6 +34,30 @@ enum birthDay: String, CaseIterable {
         }
     }
 }
+
+enum MyInfo: CaseIterable {
+    case content
+    var list: [String] {
+        switch self {
+        case .content:
+            return ["김새싹","공지사항","자주 묻는 질문","1:1문의","알림 설정","이용약관"]
+        }
+    }
+    
+}
+enum InfoManageMent: CaseIterable {
+    case content, title
+    var list: [String] {
+        switch self {
+        case .content:
+            return [" ","내 성별","자주 하는 스터디","내 번호 검색 허용","상대방 연령대","회원탈퇴"]
+        case .title:
+            return ["좋은 매너", "정확한 시간 약속", "빠른 응답", "친절한 성격","능숙한 실력","유익한 시간"]
+        }
+    }
+}
+
+
 
 struct Login: Codable {
     

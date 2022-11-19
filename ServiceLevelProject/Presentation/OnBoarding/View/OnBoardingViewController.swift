@@ -25,10 +25,14 @@ class OnBoardingViewController: BaseViewController {
     }
     
     @objc func startButtonClicked() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
         let vc = LoginViewController()
-        transition(vc, transitionStyle: .presentFullNavigation)
+        let nav = UINavigationController(rootViewController: vc)
+        sceneDelegate?.window?.rootViewController = nav
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
-    
+
     
   
     
@@ -49,8 +53,6 @@ extension OnBoardingViewController: UIPageViewControllerDataSource, UIPageViewCo
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        //        guard let index = viewControllersArray.firstIndex(of: viewController) else { return nil }
-        
         var index = viewController.view.tag
         //        pageControl.currentPage = index
         if index == onboardingView.viewControllersArray.count - 1 {
@@ -63,8 +65,6 @@ extension OnBoardingViewController: UIPageViewControllerDataSource, UIPageViewCo
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            // 애니메이션 or 버튼 강조효과 or 변경 후 적용할 부분들 적용
-            // 저는 pageControl 의 currentPage값 변경을 위해 넣어봤습니당
             if let currentViewController = pageViewController.viewControllers?[0] as? FirstViewController {
                 onboardingView.pageControl.currentPage = currentViewController.view.tag
             } else if let currentViewController = pageViewController.viewControllers?[0] as? SecondViewController {

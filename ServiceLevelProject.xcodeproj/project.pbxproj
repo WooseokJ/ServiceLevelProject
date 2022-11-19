@@ -32,9 +32,10 @@
 		18D65DEF291D535C00CBEAB4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DEE291D535C00CBEAB4 /* APIService.swift */; };
 		18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18D65DF1291D55CE00CBEAB4 /* Alamofire */; };
 		18D65DF4291D585D00CBEAB4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DF3291D585D00CBEAB4 /* API.swift */; };
+		18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFFE52928C371002B6B7C /* HeaderView.swift */; };
 		18DC246C29189DDD00DD5D1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC246B29189DDD00DD5D1C /* AppDelegate.swift */; };
 		18DC246E29189DDD00DD5D1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC246D29189DDD00DD5D1C /* SceneDelegate.swift */; };
-		18DC247029189DDD00DD5D1C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC246F29189DDD00DD5D1C /* MainViewController.swift */; };
+		18DC247029189DDD00DD5D1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC246F29189DDD00DD5D1C /* HomeViewController.swift */; };
 		18DC247529189DDE00DD5D1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18DC247429189DDE00DD5D1C /* Assets.xcassets */; };
 		18DC247829189DDE00DD5D1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DC247629189DDE00DD5D1C /* LaunchScreen.storyboard */; };
 		18DC248329189DDE00DD5D1C /* ServiceLevelProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC248229189DDE00DD5D1C /* ServiceLevelProjectTests.swift */; };
@@ -47,7 +48,17 @@
 		18DC24B62919290D00DD5D1C /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24B52919290D00DD5D1C /* Transition.swift */; };
 		18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24BB291929BD00DD5D1C /* BaseViewController.swift */; };
 		18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24BD291929C600DD5D1C /* BaseView.swift */; };
-		18DC24C129192A2200DD5D1C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24C029192A2200DD5D1C /* MainView.swift */; };
+		18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24C029192A2200DD5D1C /* HomeView.swift */; };
+		18EFC70429236AA400FB3DB2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70329236AA400FB3DB2 /* Date.swift */; };
+		18EFC706292477B900FB3DB2 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC705292477B900FB3DB2 /* TapViewController.swift */; };
+		18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */; };
+		18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC71429249E5700FB3DB2 /* SesacFriendViewController.swift */; };
+		18EFC71729249E5F00FB3DB2 /* SesacShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC71629249E5F00FB3DB2 /* SesacShopViewController.swift */; };
+		18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC7322924EDC300FB3DB2 /* MyInfoView.swift */; };
+		18EFC738292610B000FB3DB2 /* InfoManageMentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC737292610B000FB3DB2 /* InfoManageMentViewController.swift */; };
+		18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */; };
+		18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */; };
+		18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC741292618CE00FB3DB2 /* Identifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,10 +98,11 @@
 		18C9FAC4291CE13B00F78848 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		18D65DEE291D535C00CBEAB4 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		18D65DF3291D585D00CBEAB4 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		18DAFFE52928C371002B6B7C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		18DC246829189DDD00DD5D1C /* ServiceLevelProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLevelProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DC246B29189DDD00DD5D1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18DC246D29189DDD00DD5D1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		18DC246F29189DDD00DD5D1C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		18DC246F29189DDD00DD5D1C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		18DC247429189DDE00DD5D1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18DC247729189DDE00DD5D1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18DC247929189DDE00DD5D1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,7 +118,17 @@
 		18DC24B52919290D00DD5D1C /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		18DC24BB291929BD00DD5D1C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		18DC24BD291929C600DD5D1C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		18DC24C029192A2200DD5D1C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		18DC24C029192A2200DD5D1C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		18EFC70329236AA400FB3DB2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		18EFC705292477B900FB3DB2 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
+		18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		18EFC71429249E5700FB3DB2 /* SesacFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacFriendViewController.swift; sourceTree = "<group>"; };
+		18EFC71629249E5F00FB3DB2 /* SesacShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacShopViewController.swift; sourceTree = "<group>"; };
+		18EFC7322924EDC300FB3DB2 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
+		18EFC737292610B000FB3DB2 /* InfoManageMentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentViewController.swift; sourceTree = "<group>"; };
+		18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentView.swift; sourceTree = "<group>"; };
+		18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentTableViewCell.swift; sourceTree = "<group>"; };
+		18EFC741292618CE00FB3DB2 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,13 +335,18 @@
 		18DC249D29189E8300DD5D1C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				18EFC7342926106800FB3DB2 /* InfoManageMent */,
+				18EFC70B29249E2800FB3DB2 /* MyInfo */,
+				18EFC70A29249E2300FB3DB2 /* SesacFriend */,
+				18EFC70929249E1C00FB3DB2 /* SesacShop */,
+				18EFC707292477C000FB3DB2 /* Tap */,
 				18C9FABD291CDB5000F78848 /* Signup */,
 				184DDD98291AB2C500F12D63 /* Auth */,
 				18B0DA18291A3E24007044BA /* Login */,
 				18B0DA12291A295F007044BA /* OnBoarding */,
 				18DC24A62918A9FF00DD5D1C /* Common */,
 				18DC24BA291929AE00DD5D1C /* Base */,
-				18DC24A52918A9CF00DD5D1C /* Main */,
+				18DC24A52918A9CF00DD5D1C /* Home */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -384,13 +411,13 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		18DC24A52918A9CF00DD5D1C /* Main */ = {
+		18DC24A52918A9CF00DD5D1C /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				18DC24AA2918AA2200DD5D1C /* ViewModel */,
 				18DC24A92918AA1F00DD5D1C /* View */,
 			);
-			path = Main;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		18DC24A62918A9FF00DD5D1C /* Common */ = {
@@ -420,8 +447,8 @@
 		18DC24A92918AA1F00DD5D1C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18DC246F29189DDD00DD5D1C /* MainViewController.swift */,
-				18DC24C029192A2200DD5D1C /* MainView.swift */,
+				18DC246F29189DDD00DD5D1C /* HomeViewController.swift */,
+				18DC24C029192A2200DD5D1C /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -436,7 +463,9 @@
 		18DC24B92919292A00DD5D1C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				18EFC741292618CE00FB3DB2 /* Identifier.swift */,
 				18DC24B52919290D00DD5D1C /* Transition.swift */,
+				18EFC70329236AA400FB3DB2 /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -456,6 +485,122 @@
 				18DC24BD291929C600DD5D1C /* BaseView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		18EFC707292477C000FB3DB2 /* Tap */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC708292477C600FB3DB2 /* View */,
+			);
+			path = Tap;
+			sourceTree = "<group>";
+		};
+		18EFC708292477C600FB3DB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC705292477B900FB3DB2 /* TapViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EFC70929249E1C00FB3DB2 /* SesacShop */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC71329249E4800FB3DB2 /* ViewModel */,
+				18EFC71229249E4500FB3DB2 /* View */,
+			);
+			path = SesacShop;
+			sourceTree = "<group>";
+		};
+		18EFC70A29249E2300FB3DB2 /* SesacFriend */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC71129249E4300FB3DB2 /* View */,
+				18EFC71029249E3F00FB3DB2 /* ViewModel */,
+			);
+			path = SesacFriend;
+			sourceTree = "<group>";
+		};
+		18EFC70B29249E2800FB3DB2 /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC70D29249E3200FB3DB2 /* ViewModel */,
+				18EFC70C29249E3000FB3DB2 /* View */,
+			);
+			path = MyInfo;
+			sourceTree = "<group>";
+		};
+		18EFC70C29249E3000FB3DB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */,
+				18EFC7322924EDC300FB3DB2 /* MyInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EFC70D29249E3200FB3DB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18EFC71029249E3F00FB3DB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18EFC71129249E4300FB3DB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC71429249E5700FB3DB2 /* SesacFriendViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EFC71229249E4500FB3DB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC71629249E5F00FB3DB2 /* SesacShopViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EFC71329249E4800FB3DB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18EFC7342926106800FB3DB2 /* InfoManageMent */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC736292610A200FB3DB2 /* ViewModel */,
+				18EFC7352926109F00FB3DB2 /* View */,
+			);
+			path = InfoManageMent;
+			sourceTree = "<group>";
+		};
+		18EFC7352926109F00FB3DB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EFC737292610B000FB3DB2 /* InfoManageMentViewController.swift */,
+				18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */,
+				18DAFFE52928C371002B6B7C /* HeaderView.swift */,
+				18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EFC736292610A200FB3DB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,32 +751,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EFC71729249E5F00FB3DB2 /* SesacShopViewController.swift in Sources */,
 				184DDD9C291AB2D000F12D63 /* AuthView.swift in Sources */,
 				18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */,
 				18DC24B62919290D00DD5D1C /* Transition.swift in Sources */,
 				18AD8585292150E1004169C1 /* GenderViewController.swift in Sources */,
-				18DC247029189DDD00DD5D1C /* MainViewController.swift in Sources */,
+				18DC247029189DDD00DD5D1C /* HomeViewController.swift in Sources */,
 				18D65DEF291D535C00CBEAB4 /* APIService.swift in Sources */,
+				18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */,
+				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
+				18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */,
 				18DC24B02918EAA900DD5D1C /* AppFont.swift in Sources */,
+				18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */,
 				18B0DA17291A2995007044BA /* OnBoardingViewController.swift in Sources */,
-				18DC24C129192A2200DD5D1C /* MainView.swift in Sources */,
+				18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */,
 				184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */,
 				18DC24B4291928FC00DD5D1C /* ViewModelType.swift in Sources */,
 				1861EC7A291C0709008E0575 /* FirstViewController.swift in Sources */,
 				18DC24AC2918E23E00DD5D1C /* AppColor.swift in Sources */,
 				18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */,
+				18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */,
 				18C9FAC3291CDBD000F78848 /* OnBoardingView.swift in Sources */,
 				18D65DF4291D585D00CBEAB4 /* API.swift in Sources */,
 				1861EC7C291C1C73008E0575 /* SecondViewController.swift in Sources */,
 				18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */,
+				18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */,
 				18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */,
 				18AD85832921509C004169C1 /* EmailViewController.swift in Sources */,
 				18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */,
+				18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */,
 				18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */,
+				18EFC738292610B000FB3DB2 /* InfoManageMentViewController.swift in Sources */,
+				18EFC70429236AA400FB3DB2 /* Date.swift in Sources */,
 				18DC246C29189DDD00DD5D1C /* AppDelegate.swift in Sources */,
 				18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */,
 				18AD858729217131004169C1 /* UserInfo.swift in Sources */,
+				18EFC706292477B900FB3DB2 /* TapViewController.swift in Sources */,
 				18DC246E29189DDD00DD5D1C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -803,9 +959,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5MHUF29PV8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ServiceLevelProject/Surpport/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자 위치권한 허용";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -834,9 +992,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5MHUF29PV8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ServiceLevelProject/Surpport/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자 위치권한 허용";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

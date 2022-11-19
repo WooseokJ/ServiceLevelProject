@@ -105,8 +105,12 @@ class GenderViewController: BaseViewController {
     func signupRequest() {
         api.signup(phoneNumber: UserInfo.shared.phoneNumber!, FCMtoken: UserInfo.shared.fcmtoken!, nick: UserInfo.shared.nick!, birth: UserInfo.shared.birth!, email: UserInfo.shared.email!, gender: UserInfo.shared.gender!) { [self] val , statusCode in 
             if val && statusCode == 200 {
-                let vc = MainViewController()
-                transition(vc, transitionStyle: .push)
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                let vc = TapViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                sceneDelegate?.window?.rootViewController = nav
+                sceneDelegate?.window?.makeKeyAndVisible()
             } else {
                 switch statusCode {
                 case 201:

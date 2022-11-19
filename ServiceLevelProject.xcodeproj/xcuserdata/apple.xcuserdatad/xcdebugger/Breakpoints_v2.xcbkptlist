@@ -7,49 +7,66 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CF970F50-1FA9-4A9C-88CF-22CF1E192AC4"
+            uuid = "C5272A91-0006-470F-873B-A72E89A79658"
+            shouldBeEnabled = "Yes"
+            condition = "InfoManageMent.content.list[indexPath.row] == &quot;&#xd68c;&#xc6d0;&#xd0c8;&#xd1f4;&quot;"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServiceLevelProject/Presentation/InfoManageMent/View/InfoManageMentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "849AD5AC-8270-497A-9D34-333845717EF9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServiceLevelProject/Presentation/InfoManageMent/View/InfoManageMentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "moreButtonTap()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BBCE0DAA-2E63-43BE-A5C7-B8F7F2D1CFFF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ServiceLevelProject/Presentation/Auth/View/AuthViewController.swift"
+            filePath = "ServiceLevelProject/Presentation/InfoManageMent/View/InfoManageMentTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "authVerifyCode()"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "init(style:reuseIdentifier:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CF970F50-1FA9-4A9C-88CF-22CF1E192AC4 - 9fb1e5d6d3bb8568"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ServiceLevelProject.AuthViewController.authVerifyCode() -&gt; ()"
-                  moduleName = "ServiceLevelProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/GitHub/ServiceLevelProject/ServiceLevelProject/Presentation/Auth/View/AuthViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "664">
-               </Location>
-               <Location
-                  uuid = "CF970F50-1FA9-4A9C-88CF-22CF1E192AC4 - cb5cbc149cb7bac9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ServiceLevelProject.AuthViewController.authVerifyCode() -&gt; ()"
-                  moduleName = "ServiceLevelProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/GitHub/ServiceLevelProject/ServiceLevelProject/Presentation/Auth/View/AuthViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D629005-D99C-4485-9768-5496C2B66F41"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServiceLevelProject/Presentation/InfoManageMent/View/InfoManageMentTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "moreButtonDelegate()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

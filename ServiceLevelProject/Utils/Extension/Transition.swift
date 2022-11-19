@@ -9,7 +9,7 @@ extension UIViewController {
         case push
     }
     
-    func transition<T: UIViewController>(_ viewController: T, transitionStyle: TransitionStyle = .present) {
+    func transition<T: UIViewController>(_ viewController: T, transitionStyle: TransitionStyle = .push) {
         
         switch transitionStyle {
         case .present:

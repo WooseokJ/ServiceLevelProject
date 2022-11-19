@@ -77,12 +77,11 @@ class BirthViewController: BaseViewController {
         newText()
         remake()
         addLabel()
-
-            loginView.phoneButton.addTarget(self, action: #selector(birthButtonClicked), for: .touchUpInside)
-        
-
+        loginView.phoneButton.addTarget(self, action: #selector(birthButtonClicked), for: .touchUpInside)
         configToolbar()
         loginView.phoneNumberTextField.inputView = pickerView
+        monthTextField.inputView = pickerView
+        dayTextFeild.inputView = pickerView
         
         
         

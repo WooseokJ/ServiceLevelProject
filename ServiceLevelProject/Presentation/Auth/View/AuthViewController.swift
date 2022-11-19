@@ -42,6 +42,7 @@ class AuthViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        authView.authTextField.rx.text
         self.view.makeToast("인증번호를 보냈습니다.")
     }
     
@@ -64,9 +65,8 @@ class AuthViewController: BaseViewController {
                 if val && statusCode == 200 {
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let sceneDelegate = windowScene?.delegate as? SceneDelegate
-                    let vc = MainViewController()
-                    let nav = UINavigationController(rootViewController: vc)
-                    sceneDelegate?.window?.rootViewController = nav
+                    let vc = TapViewController()
+                    sceneDelegate?.window?.rootViewController = vc
                     sceneDelegate?.window?.makeKeyAndVisible()
                 } else {
                     switch statusCode {
