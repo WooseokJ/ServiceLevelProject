@@ -4,3 +4,7 @@ Pods
 Podfile
 Podfile.lock
 
+
+*.xcbkptlist
+
+ServiceLevelProject.xcodeproj/xcuserdata/apple.xcuserdatad/xcdebugger/

@@ -222,36 +222,36 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         switch tableView {
         case infoManageView.tableView : return UIScreen.main.bounds.height * 0.2
         case infoManageView.secondTableView : return 0
-        default:
-            print("오류",#function)
-            return 0
+        default: print("오류",#function); return 0
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         switch tableView {
         case infoManageView.tableView:
             if isSelect {
-                print("펼침")
                 tableView.snp.remakeConstraints { make in
                     make.leading.equalTo(16)
                     make.trailing.equalTo(-16)
                     make.top.equalTo(self.view.safeAreaLayoutGuide)
                     make.height.equalTo(UIScreen.main.bounds.height * 0.7) // 열려있을떄 테이블뷰 자체 높이
                 }
-                    
-                return UIScreen.main.bounds.height * 0.5 // 펼쳣을떄  셀 높이
-//                return UITableView.automaticDimension
+//                return UIScreen.main.bounds.height * 0.5 // 펼쳣을떄  셀 높이
+                return UITableView.automaticDimension
             } else {
-                print("닫힘")
-                tableView.snp.updateConstraints { make in
-                    make.height.equalTo(UIScreen.main.bounds.height * 0.25) // 닫혀있을떄 테이블뷰 자체 높이
+
+                tableView.snp.remakeConstraints { make in
+                    make.leading.equalTo(16)
+                    make.trailing.equalTo(-16)
+                    make.top.equalTo(self.view.safeAreaLayoutGuide)
+                    make.height.equalTo(UIScreen.main.bounds.height * 0.26) // 닫혀있을떄 테이블뷰 자체 높이
                 }
-                return UIScreen.main.bounds.height * 0.04 // 닫힐떄 셀 높이
+//                return UIScreen.main.bounds.height * 0.04 // 닫힐떄 셀 높이
+                return UITableView.automaticDimension // 닫힐떄 셀 높이
             }
         case infoManageView.secondTableView:
             if indexPath.row == 3 {return UIScreen.main.bounds.height * 0.12}
-            else {return UIScreen.main.bounds.height * 0.09}
+            else {return UIScreen.main.bounds.height * 0.1}
         default:
             print("오류",#function)
             return 0
@@ -298,6 +298,7 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
+        cell.itemButton.tag = indexPath.row
         switch indexPath.section {
         case 0:
             cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
@@ -312,13 +313,16 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
             cell.clipsToBounds = true
             cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
         case 2:
+            infoManageView.collectionview.backgroundColor = .cyan
             cell.reviewLabel.snp.remakeConstraints { make in
                 make.leading.equalTo(10)
-                make.top.trailing.bottom.equalTo(0)
+                make.top.equalTo(0)
+                make.trailing.equalTo(-10)
+                make.bottom.equalTo(cell.snp.bottom)
             }
-            cell.reviewLabel.text = "긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자"
+            cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
+            cell.reviewLabel.text = "긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴"
             cell.reviewLabel.backgroundColor = .yellow
-            
         default: break
         }
         return cell
@@ -345,12 +349,17 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else { return .zero}
+        cell.itemButton.sizeToFit()
+        let cellwidth = cell.itemButton.frame.width + 60
+
         let layoutwidth = UIScreen.main.bounds.width
         let layoutheight = UIScreen.main.bounds.height
         switch indexPath.section {
         case 0: return CGSize(width: layoutwidth / 2.5  , height: layoutheight / 29 )
-        case 1: return CGSize(width: layoutwidth / 4  , height: layoutheight / 29 )
-        case 2: return CGSize(width: layoutwidth   , height: layoutheight / 29 )
+        case 1:
+            return CGSize(width: layoutwidth / 4  , height: layoutheight / 29 )
+        case 2: return CGSize(width: layoutwidth  , height: layoutheight / 29 )
         default:
             print("오류",#function)
             return CGSize()
@@ -358,6 +367,5 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
         }
     }
 
-    
     
 }
