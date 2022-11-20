@@ -61,6 +61,9 @@
 		18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */; };
 		18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */; };
 		18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC741292618CE00FB3DB2 /* Identifier.swift */; };
+		5AB7032F98A220A4CC9E531D /* Pods_ServiceLevelProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94154D6026815EA183F0E10 /* Pods_ServiceLevelProjectTests.framework */; };
+		B89EFF481E364EF915C63849 /* Pods_ServiceLevelProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCC5F3CB0409BB00CC5C40F /* Pods_ServiceLevelProject.framework */; };
+		CCC6744B02829D5346FD4782 /* Pods_ServiceLevelProject_ServiceLevelProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B631C1E2BD8524A39AC0D1 /* Pods_ServiceLevelProject_ServiceLevelProjectUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07422F800B0D1672D5401924 /* Pods-ServiceLevelProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProjectTests/Pods-ServiceLevelProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		184DDD9B291AB2D000F12D63 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		184DDD9D291AB2E600F12D63 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		1861EC79291C0709008E0575 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,14 @@
 		18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentView.swift; sourceTree = "<group>"; };
 		18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentTableViewCell.swift; sourceTree = "<group>"; };
 		18EFC741292618CE00FB3DB2 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		19B631C1E2BD8524A39AC0D1 /* Pods_ServiceLevelProject_ServiceLevelProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServiceLevelProject_ServiceLevelProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BCC5F3CB0409BB00CC5C40F /* Pods_ServiceLevelProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServiceLevelProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4228E5E11E274C8A735EF5D0 /* Pods-ServiceLevelProject-ServiceLevelProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject-ServiceLevelProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject-ServiceLevelProjectUITests/Pods-ServiceLevelProject-ServiceLevelProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE73B9B062115843CECA97B8 /* Pods-ServiceLevelProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.debug.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.debug.xcconfig"; sourceTree = "<group>"; };
+		D724E2C2600897DF7303BAE0 /* Pods-ServiceLevelProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProjectTests/Pods-ServiceLevelProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE42D2B5A640C0C84D667487 /* Pods-ServiceLevelProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.release.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.release.xcconfig"; sourceTree = "<group>"; };
+		F8DA3E15B083640D65483579 /* Pods-ServiceLevelProject-ServiceLevelProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject-ServiceLevelProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject-ServiceLevelProjectUITests/Pods-ServiceLevelProject-ServiceLevelProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F94154D6026815EA183F0E10 /* Pods_ServiceLevelProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServiceLevelProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +159,7 @@
 				18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */,
 				184DDD73291A899F00F12D63 /* RxCocoa in Frameworks */,
 				184DDD7B291A89EF00F12D63 /* Toast in Frameworks */,
+				B89EFF481E364EF915C63849 /* Pods_ServiceLevelProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB7032F98A220A4CC9E531D /* Pods_ServiceLevelProjectTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCC6744B02829D5346FD4782 /* Pods_ServiceLevelProject_ServiceLevelProjectUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +287,8 @@
 				18DC248129189DDE00DD5D1C /* ServiceLevelProjectTests */,
 				18DC248B29189DDE00DD5D1C /* ServiceLevelProjectUITests */,
 				18DC246929189DDD00DD5D1C /* Products */,
+				E32C7E7542B3909E6F50F2D8 /* Pods */,
+				B69B6E6894D107DBBA0FC14C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -609,6 +626,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		B69B6E6894D107DBBA0FC14C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2BCC5F3CB0409BB00CC5C40F /* Pods_ServiceLevelProject.framework */,
+				19B631C1E2BD8524A39AC0D1 /* Pods_ServiceLevelProject_ServiceLevelProjectUITests.framework */,
+				F94154D6026815EA183F0E10 /* Pods_ServiceLevelProjectTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E32C7E7542B3909E6F50F2D8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE73B9B062115843CECA97B8 /* Pods-ServiceLevelProject.debug.xcconfig */,
+				DE42D2B5A640C0C84D667487 /* Pods-ServiceLevelProject.release.xcconfig */,
+				4228E5E11E274C8A735EF5D0 /* Pods-ServiceLevelProject-ServiceLevelProjectUITests.debug.xcconfig */,
+				F8DA3E15B083640D65483579 /* Pods-ServiceLevelProject-ServiceLevelProjectUITests.release.xcconfig */,
+				D724E2C2600897DF7303BAE0 /* Pods-ServiceLevelProjectTests.debug.xcconfig */,
+				07422F800B0D1672D5401924 /* Pods-ServiceLevelProjectTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -616,9 +657,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18DC249229189DDE00DD5D1C /* Build configuration list for PBXNativeTarget "ServiceLevelProject" */;
 			buildPhases = (
+				D1B8A1FE836A6F1953DE51D8 /* [CP] Check Pods Manifest.lock */,
 				18DC246429189DDD00DD5D1C /* Sources */,
 				18DC246529189DDD00DD5D1C /* Frameworks */,
 				18DC246629189DDD00DD5D1C /* Resources */,
+				E36B17DC104BB604878230B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -642,6 +685,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18DC249529189DDE00DD5D1C /* Build configuration list for PBXNativeTarget "ServiceLevelProjectTests" */;
 			buildPhases = (
+				36F0695421F04CBBBE9181F5 /* [CP] Check Pods Manifest.lock */,
 				18DC247A29189DDE00DD5D1C /* Sources */,
 				18DC247B29189DDE00DD5D1C /* Frameworks */,
 				18DC247C29189DDE00DD5D1C /* Resources */,
@@ -660,9 +704,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18DC249829189DDE00DD5D1C /* Build configuration list for PBXNativeTarget "ServiceLevelProjectUITests" */;
 			buildPhases = (
+				B290CAEB18776275C0DD9516 /* [CP] Check Pods Manifest.lock */,
 				18DC248429189DDE00DD5D1C /* Sources */,
 				18DC248529189DDE00DD5D1C /* Frameworks */,
 				18DC248629189DDE00DD5D1C /* Resources */,
+				44291A47268381EFBC4F13F8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -707,11 +753,11 @@
 			);
 			mainGroup = 18DC245F29189DDD00DD5D1C;
 			packageReferences = (
-				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
+				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
+				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -751,6 +797,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36F0695421F04CBBBE9181F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ServiceLevelProjectTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44291A47268381EFBC4F13F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject-ServiceLevelProjectUITests/Pods-ServiceLevelProject-ServiceLevelProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject-ServiceLevelProjectUITests/Pods-ServiceLevelProject-ServiceLevelProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject-ServiceLevelProjectUITests/Pods-ServiceLevelProject-ServiceLevelProjectUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B290CAEB18776275C0DD9516 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ServiceLevelProject-ServiceLevelProjectUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1B8A1FE836A6F1953DE51D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ServiceLevelProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E36B17DC104BB604878230B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18DC246429189DDD00DD5D1C /* Sources */ = {
@@ -960,6 +1109,7 @@
 		};
 		18DC249329189DDE00DD5D1C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE73B9B062115843CECA97B8 /* Pods-ServiceLevelProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -993,6 +1143,7 @@
 		};
 		18DC249429189DDE00DD5D1C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE42D2B5A640C0C84D667487 /* Pods-ServiceLevelProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1026,6 +1177,7 @@
 		};
 		18DC249629189DDE00DD5D1C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D724E2C2600897DF7303BAE0 /* Pods-ServiceLevelProjectTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1046,6 +1198,7 @@
 		};
 		18DC249729189DDE00DD5D1C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07422F800B0D1672D5401924 /* Pods-ServiceLevelProjectTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1066,6 +1219,7 @@
 		};
 		18DC249929189DDE00DD5D1C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4228E5E11E274C8A735EF5D0 /* Pods-ServiceLevelProject-ServiceLevelProjectUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1084,6 +1238,7 @@
 		};
 		18DC249A29189DDE00DD5D1C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8DA3E15B083640D65483579 /* Pods-ServiceLevelProject-ServiceLevelProjectUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1142,7 +1297,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1150,7 +1305,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1158,7 +1313,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -1166,7 +1321,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1174,7 +1329,7 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1187,37 +1342,37 @@
 /* Begin XCSwiftPackageProductDependency section */
 		184DDD72291A899F00F12D63 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxCocoa;
 		};
 		184DDD74291A899F00F12D63 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxSwift;
 		};
 		184DDD77291A89D000F12D63 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 		184DDD7A291A89EF00F12D63 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
 			productName = Toast;
 		};
 		18CBBEAF292210F800CEC097 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAuth;
 		};
 		18CBBEB1292210F800CEC097 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseMessaging;
 		};
 		18D65DF1291D55CE00CBEAB4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
