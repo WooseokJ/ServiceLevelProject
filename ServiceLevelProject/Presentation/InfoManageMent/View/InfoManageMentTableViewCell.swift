@@ -80,12 +80,17 @@ class InfoManageMentTableViewCell: UITableViewCell {
     
     lazy var ageRangeLabel: UILabel = {
         let label = UILabel()
-        label.text = "agetest"
+        label.text = "18 - 65"
         label.textColor = BrandColor.green
         return label
     }()
     
 
+//    lazy var reviewLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = .yellow
+//        return label
+//    }()
 
     
     func configure() {
@@ -100,9 +105,8 @@ class InfoManageMentTableViewCell: UITableViewCell {
             make.leading.equalTo(16)
             make.width.equalTo(self.bounds.width * 0.4)
         }
-        
-        
-        
+
+                
 
     }
     

@@ -10,12 +10,6 @@ import UIKit
 class HeaderView: UITableViewHeaderFooterView {
     static let headerViewID = "HeaderView"
     
-//    let vc: UIView = {
-//        let vc = UIView()
-//        vc.backgroundColor = .brown
-//        return vc
-//    }()
-    
     var detailView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
@@ -29,22 +23,17 @@ class HeaderView: UITableViewHeaderFooterView {
         return image
     }()
 
+
     override init(reuseIdentifier: String?) {
             super.init(reuseIdentifier: reuseIdentifier)
             setupHeaderView()
             configureLayout()
-//            self.backgroundView = vc
         }
-    
-
     
     required init?(coder: NSCoder) {
             super.init(coder: coder)
-        
-        }
-        
+    }
     private func setupHeaderView() {
-        
         [image].forEach {
             self.contentView.addSubview($0)
         }

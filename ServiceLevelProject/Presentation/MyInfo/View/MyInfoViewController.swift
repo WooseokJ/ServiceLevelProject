@@ -21,7 +21,7 @@ class MyInfoViewController: BaseViewController {
         super.viewDidLoad()
 //        navigationController?.navigationBar.backgroundColor = .red
         navigationItem.title = "내정보"
-
+        myinfoView.collectionview.alwaysBounceVertical = false
         myinfoView.collectionview.collectionViewLayout = createLayout()
         configureDataSource()
         myinfoView.collectionview.delegate = self

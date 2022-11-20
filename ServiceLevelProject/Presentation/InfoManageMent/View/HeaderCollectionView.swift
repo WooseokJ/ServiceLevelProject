@@ -20,19 +20,16 @@ class HeaderCollectionView: UICollectionReusableView {
     }
     
     
-    private let label: UILabel = {
-           let label = UILabel()
+    let label: UILabel = {
+        let label = UILabel()
         label.text = "새싹 타이틀"
         label.textColor = BlackWhite.black
-//            label.backgroundColor = .blue
-            label.font = AppFont.Title6_R12
-           return label
-       }()
-
+        label.font = AppFont.Title6_R12
+        return label
+    }()
+    
     func configure() {
-//        self.backgroundColor = .yellow
         self.addSubview(label)
-        
     }
     
     

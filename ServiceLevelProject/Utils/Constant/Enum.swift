@@ -54,7 +54,7 @@ enum InfoManageMent: CaseIterable {
         case .title:
             return ["좋은 매너", "정확한 시간 약속", "빠른 응답", "친절한 성격","능숙한 실력","유익한 시간"]
         case .sesacStudy:
-            return ["부동산투자","주식","Swift"]
+            return ["부동산투자","주식","Swift","a","b","c","d"]
         }
     
     }
