@@ -49,6 +49,8 @@
 		18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24BB291929BD00DD5D1C /* BaseViewController.swift */; };
 		18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24BD291929C600DD5D1C /* BaseView.swift */; };
 		18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24C029192A2200DD5D1C /* HomeView.swift */; };
+		18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */; };
+		18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E283342929FADF00878738 /* HeaderCollectionView.swift */; };
 		18EFC70429236AA400FB3DB2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70329236AA400FB3DB2 /* Date.swift */; };
 		18EFC706292477B900FB3DB2 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC705292477B900FB3DB2 /* TapViewController.swift */; };
 		18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */; };
@@ -119,6 +121,8 @@
 		18DC24BB291929BD00DD5D1C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		18DC24BD291929C600DD5D1C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		18DC24C029192A2200DD5D1C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentCollectionViewCell.swift; sourceTree = "<group>"; };
+		18E283342929FADF00878738 /* HeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionView.swift; sourceTree = "<group>"; };
 		18EFC70329236AA400FB3DB2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		18EFC705292477B900FB3DB2 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
 		18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
@@ -592,6 +596,8 @@
 				18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */,
 				18DAFFE52928C371002B6B7C /* HeaderView.swift */,
 				18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */,
+				18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */,
+				18E283342929FADF00878738 /* HeaderCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */,
 				18DC24B02918EAA900DD5D1C /* AppFont.swift in Sources */,
 				18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */,
+				18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */,
 				18B0DA17291A2995007044BA /* OnBoardingViewController.swift in Sources */,
 				18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */,
 				184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */,
@@ -779,6 +786,7 @@
 				18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */,
 				18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */,
 				18AD85832921509C004169C1 /* EmailViewController.swift in Sources */,
+				18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */,
 				18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */,
 				18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */,
 				18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */,

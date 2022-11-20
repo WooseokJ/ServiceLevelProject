@@ -46,16 +46,20 @@ enum MyInfo: CaseIterable {
     
 }
 enum InfoManageMent: CaseIterable {
-    case content, title
+    case content, title, sesacStudy
     var list: [String] {
         switch self {
         case .content:
-            return [" ","내 성별","자주 하는 스터디","내 번호 검색 허용","상대방 연령대","회원탈퇴"]
+            return ["내 성별","자주 하는 스터디","내 번호 검색 허용","상대방 연령대","회원탈퇴"]
         case .title:
             return ["좋은 매너", "정확한 시간 약속", "빠른 응답", "친절한 성격","능숙한 실력","유익한 시간"]
+        case .sesacStudy:
+            return ["부동산투자","주식","Swift"]
         }
+    
     }
 }
+
 
 
 
