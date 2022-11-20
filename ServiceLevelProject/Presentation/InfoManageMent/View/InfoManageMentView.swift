@@ -20,22 +20,19 @@ class InfoManageMentView: BaseView {
         tableView.register(InfoManageMentTableViewCell.self, forCellReuseIdentifier: InfoManageMentTableViewCell.reuseIdentifier)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         tableView.alwaysBounceVertical = false
         return tableView
     }()
-    
     lazy var secondTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(InfoManageMentTableViewCell.self, forCellReuseIdentifier: InfoManageMentTableViewCell.reuseIdentifier)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.alwaysBounceVertical = false
+        tableView.isScrollEnabled = false
         return tableView
     }()
-    
-    
-    
-    // 이미지 컬렉션뷰
     lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let spacing : CGFloat = 1
@@ -53,13 +50,11 @@ class InfoManageMentView: BaseView {
         return cv
     }()
     
-    
     override func configure() {
         [tableView,secondTableView,collectionview].forEach {
             self.addSubview($0)
         }
     }
-    
     override func setConstrains() {
         tableView.snp.makeConstraints { make in
             make.leading.equalTo(16)
@@ -88,7 +83,6 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         }
        
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
             case infoManageView.secondTableView: return InfoManageMent.content.list.count
@@ -99,10 +93,13 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         }
         
     }
+    
     //MARK: 셀
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoManageMentTableViewCell.reuseIdentifier, for: indexPath) as! InfoManageMentTableViewCell
         cell.cellDelegate = self
+        cell.slider.isHidden = true
+        cell.switchView.isHidden = true
         
         switch tableView {
             
@@ -135,12 +132,10 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                     make.leading.equalTo(cell.studyTextField.snp.leading)
                     make.trailing.equalTo(cell.snp.trailing)
                 }
-                cell.studyTextField.delegate = self
+
             case 2:
-                let switchView = UISwitch(frame: .zero)
-                switchView.setOn(false, animated: true)
-                switchView.addTarget(self, action: #selector(self.switchDidChange(_:)), for: .valueChanged)
-                cell.accessoryView = switchView
+                cell.switchView.isHidden = false
+                cell.accessoryView = cell.switchView
             case 3:
                 cell.ageRangeLabel.snp.remakeConstraints { make in
                     make.height.equalTo(cell.content.snp.height)
@@ -148,13 +143,9 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                     make.top.equalTo(cell.content.snp.top)
                     make.width.equalTo(cell.bounds.width * 0.2)
                 }
-                lazy var slider: UISlider = {
-                    let slider = UISlider(frame: CGRect(x: 0, y: 140, width: cell.bounds.width * 0.9, height: 30))
-                    slider.maximumValue = 65.0
-                    slider.minimumValue = 18.0
-                    return slider
-                }()
-                cell.accessoryView = slider
+                cell.slider.isHidden = false
+
+                cell.accessoryView = cell.slider
             case 4:
                 print("회원탈퇴 클릭 ")
             default:
@@ -200,7 +191,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    @objc func switchDidChange(_ sender: UISwitch) {print("sender is \(sender.isOn)")}
+    
     
     private func bind(cell: InfoManageMentTableViewCell, indexPath: IndexPath) {
         cell.moreButton.rx.tap
@@ -227,7 +218,6 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         }
         return headerView
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch tableView {
         case infoManageView.tableView : return UIScreen.main.bounds.height * 0.2
@@ -237,16 +227,12 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             return 0
         }
     }
-    
-
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch tableView {
         case infoManageView.tableView:
             if isSelect {
                 print("펼침")
-//                tableView.backgroundColor = .cyan
                 tableView.snp.remakeConstraints { make in
                     make.leading.equalTo(16)
                     make.trailing.equalTo(-16)
@@ -276,7 +262,23 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
 
 
 extension InfoManageMentViewController: InfoDelegate {
-    func womanButtonTap() {}
+    func switchDidChange(cell: InfoManageMentTableViewCell) {
+        print(cell.switchView.isOn)
+    }
+    func womanButtonTap(cell: InfoManageMentTableViewCell) {
+        cell.womanButton.backgroundColor = BrandColor.green
+        cell.manButton.backgroundColor = .clear
+    }
+    func manButtonTap(cell: InfoManageMentTableViewCell) {
+        cell.manButton.backgroundColor = BrandColor.green
+        cell.womanButton.backgroundColor = .clear
+    }
+    func sliderValueChagend(cell: InfoManageMentTableViewCell) {
+        cell.ageRangeLabel.text = "18 - \(Int(cell.slider.value))"
+    }
+    func textFieldChagned(cell: InfoManageMentTableViewCell) {
+        print(cell.studyTextField.text!)
+    }
     func moreButtonTap() {}
 }
 
@@ -295,33 +297,27 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else {
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
         switch indexPath.section {
         case 0:
-            cell.reviewTextView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
             cell.itemButton.titleLabel?.font = AppFont.Title4_R14
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
             cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
         case 1:
-            cell.reviewTextView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
             cell.itemButton.titleLabel?.font = AppFont.Title4_R14
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
             cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
         case 2:
-//            cell.itemButton.snp.remakeConstraints({ make in
-//                make.width.height.equalTo(0)
-//            })
-            cell.reviewTextView.snp.remakeConstraints { make in
+            cell.reviewLabel.snp.remakeConstraints { make in
                 make.leading.equalTo(10)
                 make.top.trailing.bottom.equalTo(0)
             }
-            
-            cell.reviewTextView.text = "긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자"
-            cell.reviewTextView.backgroundColor = .yellow
+            cell.reviewLabel.text = "긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자긴문자"
+            cell.reviewLabel.backgroundColor = .yellow
             
         default: break
         }

@@ -601,9 +601,9 @@
 			children = (
 				18EFC737292610B000FB3DB2 /* InfoManageMentViewController.swift */,
 				18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */,
-				18DAFFE52928C371002B6B7C /* HeaderView.swift */,
 				18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */,
 				18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */,
+				18DAFFE52928C371002B6B7C /* HeaderView.swift */,
 				18E283342929FADF00878738 /* HeaderCollectionView.swift */,
 			);
 			path = View;
@@ -630,7 +630,6 @@
 				5799B4F3F597C3DBA2F23FF7 /* Pods-ServiceLevelProject.debug.xcconfig */,
 				A23601F808B22019FD1B853F /* Pods-ServiceLevelProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -734,11 +733,11 @@
 			);
 			mainGroup = 18DC245F29189DDD00DD5D1C;
 			packageReferences = (
-				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
-				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
-				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
-				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -1213,7 +1212,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
+		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1221,7 +1220,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1229,7 +1228,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
+		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -1237,7 +1236,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1245,7 +1244,7 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1258,37 +1257,37 @@
 /* Begin XCSwiftPackageProductDependency section */
 		184DDD72291A899F00F12D63 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
 		184DDD74291A899F00F12D63 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
 		184DDD77291A89D000F12D63 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 		184DDD7A291A89EF00F12D63 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
+			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
 		18CBBEAF292210F800CEC097 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		18CBBEB1292210F800CEC097 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 		18D65DF1291D55CE00CBEAB4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
