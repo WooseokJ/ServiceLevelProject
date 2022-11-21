@@ -144,7 +144,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                     make.width.equalTo(cell.bounds.width * 0.2)
                 }
                 cell.slider.isHidden = false
-
+                cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
                 cell.accessoryView = cell.slider
             case 4:
                 print("회원탈퇴 클릭 ")
@@ -274,7 +274,7 @@ extension InfoManageMentViewController: InfoDelegate {
         cell.womanButton.backgroundColor = .clear
     }
     func sliderValueChagend(cell: InfoManageMentTableViewCell) {
-        cell.ageRangeLabel.text = "18 - \(Int(cell.slider.value))"
+        cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
     }
     func textFieldChagned(cell: InfoManageMentTableViewCell) {
         print(cell.studyTextField.text!)
@@ -313,7 +313,7 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
             cell.clipsToBounds = true
             cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
         case 2:
-            infoManageView.collectionview.backgroundColor = .cyan
+//            infoManageView.collectionview.backgroundColor = .cyan
             cell.reviewLabel.snp.remakeConstraints { make in
                 make.leading.equalTo(10)
                 make.top.equalTo(0)
@@ -356,16 +356,19 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
         let layoutwidth = UIScreen.main.bounds.width
         let layoutheight = UIScreen.main.bounds.height
         switch indexPath.section {
-        case 0: return CGSize(width: layoutwidth / 2.5  , height: layoutheight / 29 )
+        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
         case 1:
-            return CGSize(width: layoutwidth / 4  , height: layoutheight / 29 )
-        case 2: return CGSize(width: layoutwidth  , height: layoutheight / 29 )
+            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+        case 2:
+            return CGSize(width: layoutwidth / 2  , height: layoutheight / 29 )
         default:
             print("오류",#function)
             return CGSize()
 
         }
     }
+    
+    
 
     
 }

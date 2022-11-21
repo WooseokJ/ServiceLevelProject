@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MultiSlider
+
 protocol InfoDelegate {
     func switchDidChange(cell: InfoManageMentTableViewCell)
     func textFieldChagned(cell: InfoManageMentTableViewCell)
@@ -13,8 +15,8 @@ protocol InfoDelegate {
     func manButtonTap(cell: InfoManageMentTableViewCell)
     func womanButtonTap(cell: InfoManageMentTableViewCell)
     func moreButtonTap()
-    
 }
+
 class InfoManageMentTableViewCell: UITableViewCell {
     var cellDelegate: InfoDelegate?
     
@@ -23,18 +25,20 @@ class InfoManageMentTableViewCell: UITableViewCell {
         moreButton.addTarget(self, action: #selector(moreTap), for: .touchUpInside)
         womanButton.addTarget(self, action: #selector(womanTap(_:)), for: .touchUpInside)
         manButton.addTarget(self, action: #selector(manTap(_:)), for: .touchUpInside)
-        slider.addTarget(self, action: #selector(sliderChaged(_:)), for: .touchUpInside)
         studyTextField.addTarget(self, action: #selector(textFieldEditing(_:)), for: .editingChanged)
         switchView.addTarget(self, action: #selector(switchChagend(_:)), for: .valueChanged)
+        slider.addTarget(self, action: #selector(sliderChaged(_:)), for: .touchUpInside)
         configure()
         setConstrains()
     }
+    
     @objc func moreTap() {cellDelegate?.moreButtonTap()}
     @objc func womanTap(_ sender: UIButton) {cellDelegate?.womanButtonTap(cell: self)}
     @objc func manTap(_ sender: UIButton) {cellDelegate?.manButtonTap(cell: self)}
     @objc func sliderChaged(_ sender: UISlider) {cellDelegate?.sliderValueChagend(cell: self)}
     @objc func textFieldEditing(_ sender: UITextField) {cellDelegate?.textFieldChagned(cell: self)}
     @objc func switchChagend(_ sender: UISwitch) {cellDelegate?.switchDidChange(cell: self)}
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -83,16 +87,21 @@ class InfoManageMentTableViewCell: UITableViewCell {
     }()
     lazy var ageRangeLabel: UILabel = {
         let label = UILabel()
-        label.text = "18 - 18"
         label.textColor = BrandColor.green
         return label
     }()
-    lazy var slider: UISlider = {
-        let slider = UISlider(frame: CGRect(x: 0, y: 140, width: self.bounds.width * 0.9, height: 30))
-        slider.maximumValue = 65.0
-        slider.minimumValue = 18.0
+    
+    lazy var slider: MultiSlider = {
+        let slider = MultiSlider(frame: CGRect(x: 0, y: 140, width: self.bounds.width , height: 30))
+        slider.minimumValue = 18.0    // default is 0.0
+        slider.maximumValue = 65.0    // default is 1.0
+        slider.value = [slider.minimumValue, slider.maximumValue]
+        slider.orientation = .horizontal // default is .vertical
+        slider.snapStepSize = 1
+        slider.outerTrackColor = .lightGray
         return slider
     }()
+
     
     func configure() {
         [content,moreButton,womanButton,manButton,studyTextField,lineView,ageRangeLabel,slider,switchView].forEach {
