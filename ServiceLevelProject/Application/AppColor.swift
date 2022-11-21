@@ -13,7 +13,7 @@ enum BlackWhite {
 }
 
 enum BrandColor {
-    static var green = UIColor(red: 73/255, green: 220/255, blue: 146/255, alpha: 1.0)
+    static var green = UIColor(red: 0.29, green: 0.86, blue: 0.57, alpha: 1.0)
     static var whitegreen = UIColor(red: 205/255, green: 244/255, blue: 225/255, alpha: 1.0)
     static var yellowgreen = UIColor(red: 178/255, green: 235/255, blue: 97/255, alpha: 1.0)
 }

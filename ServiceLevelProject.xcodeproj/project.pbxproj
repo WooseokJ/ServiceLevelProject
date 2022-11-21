@@ -61,6 +61,8 @@
 		18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */; };
 		18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */; };
 		18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC741292618CE00FB3DB2 /* Identifier.swift */; };
+		18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F10CD5292B3DCB0038BEEE /* SearchView.swift */; };
+		18F10CD8292B3DE00038BEEE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F10CD7292B3DE00038BEEE /* SearchViewController.swift */; };
 		44FD709E45762593CBDB16BA /* libPods-ServiceLevelProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6DA24A15F3855CBC453DAF /* libPods-ServiceLevelProject.a */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +136,8 @@
 		18EFC739292614CD00FB3DB2 /* InfoManageMentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentView.swift; sourceTree = "<group>"; };
 		18EFC73D292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentTableViewCell.swift; sourceTree = "<group>"; };
 		18EFC741292618CE00FB3DB2 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		18F10CD5292B3DCB0038BEEE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		18F10CD7292B3DE00038BEEE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3E6DA24A15F3855CBC453DAF /* libPods-ServiceLevelProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ServiceLevelProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5799B4F3F597C3DBA2F23FF7 /* Pods-ServiceLevelProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.debug.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.debug.xcconfig"; sourceTree = "<group>"; };
 		A23601F808B22019FD1B853F /* Pods-ServiceLevelProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.release.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -346,6 +350,7 @@
 		18DC249D29189E8300DD5D1C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				18F10CD2292B3DBE0038BEEE /* Search */,
 				18EFC7342926106800FB3DB2 /* InfoManageMent */,
 				18EFC70B29249E2800FB3DB2 /* MyInfo */,
 				18EFC70A29249E2300FB3DB2 /* SesacFriend */,
@@ -616,6 +621,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		18F10CD2292B3DBE0038BEEE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				18F10CD4292B3DC40038BEEE /* View */,
+				18F10CD3292B3DC10038BEEE /* ViewModel */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		18F10CD3292B3DC10038BEEE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18F10CD4292B3DC40038BEEE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18F10CD5292B3DCB0038BEEE /* SearchView.swift */,
+				18F10CD7292B3DE00038BEEE /* SearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6E12BD26076B70B64AA61BAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +865,7 @@
 				18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */,
 				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
+				18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */,
 				18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */,
 				18DC24B02918EAA900DD5D1C /* AppFont.swift in Sources */,
 				18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */,
@@ -860,6 +891,7 @@
 				18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */,
 				18EFC738292610B000FB3DB2 /* InfoManageMentViewController.swift in Sources */,
 				18EFC70429236AA400FB3DB2 /* Date.swift in Sources */,
+				18F10CD8292B3DE00038BEEE /* SearchViewController.swift in Sources */,
 				18DC246C29189DDD00DD5D1C /* AppDelegate.swift in Sources */,
 				18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */,
 				18AD858729217131004169C1 /* UserInfo.swift in Sources */,
