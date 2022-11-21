@@ -25,8 +25,7 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
+        self.view.backgroundColor = BlackWhite.white
         
     }
     func showAlertMessage(title: String) {
