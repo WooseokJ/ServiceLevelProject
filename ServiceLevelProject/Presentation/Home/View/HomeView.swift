@@ -32,13 +32,19 @@ class HomeView: BaseView {
     }()
     lazy var allBtn: UIButton = {
         let bt = UIButton()
-        bt.backgroundColor = BlackWhite.white
+        bt.backgroundColor = BrandColor.green
         bt.translatesAutoresizingMaskIntoConstraints = false
         bt.setTitle("전체", for: .normal)
-        bt.setTitleColor(BlackWhite.black, for: .normal)
+        bt.setTitleColor(BlackWhite.white, for: .normal)
         bt.clipsToBounds = true
         bt.layer.cornerRadius = 10
         bt.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+        
+        bt.layer.shadowColor = UIColor.gray.cgColor
+        bt.layer.shadowOpacity = 1.0
+        bt.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        bt.layer.shadowOffset = CGSize(width: 3, height: 3)
+        
         
         return bt
     }()
@@ -60,6 +66,14 @@ class HomeView: BaseView {
         bt.clipsToBounds = true
         bt.layer.cornerRadius = 10
         bt.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
+        
+        //MARK: 그림자
+        bt.layer.shadowColor = UIColor.gray.cgColor
+        bt.layer.shadowOpacity = 0.5
+        bt.layer.shadowRadius = 10
+        bt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        bt.layer.shadowOffset = CGSize(width: 20, height: 15)
+        
         return bt
     }()
     

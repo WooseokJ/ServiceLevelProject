@@ -26,14 +26,11 @@ final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetLocationBtn()
-        
+        navigationItem.backButtonTitle = ""
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         bind()
-
-        
-        
         DispatchQueue.global().async {
             if CLLocationManager.locationServicesEnabled() {
                 print("위치 서비스 On 상태")
@@ -42,10 +39,7 @@ final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
                 print("위치 서비스 Off 상태")
             }
         }
-  
     }
-    
-    
 }
 
 extension HomeViewController {
@@ -54,7 +48,9 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { (vc,val) in
                 let searchVC = SearchViewController()
-                vc.transition(searchVC, transitionStyle: .push)
+                self.navigationController?.pushViewController(searchVC, animated: true)
+
+//                vc.transition(searchVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         
