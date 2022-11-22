@@ -24,12 +24,14 @@ class HomeView: BaseView {
         naverMapview.showZoomControls = false
         return naverMapview
     }()
+    
     lazy var locationBtn: UIButton = {
         let bt = UIButton()
         let image = UIImage(named: "bt_gps.png", variableValue: 1)
         bt.setImage(image, for: .normal)
         return bt
     }()
+    
     lazy var allBtn: UIButton = {
         let bt = UIButton()
         bt.backgroundColor = BrandColor.green
@@ -44,8 +46,6 @@ class HomeView: BaseView {
         bt.layer.shadowOpacity = 1.0
         bt.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         bt.layer.shadowOffset = CGSize(width: 3, height: 3)
-        
-        
         return bt
     }()
     
@@ -57,6 +57,7 @@ class HomeView: BaseView {
         bt.setTitle("남자", for: .normal)
         return bt
     }()
+    
     lazy var womanFilterBtn: UIButton = {
         let bt = UIButton()
         bt.backgroundColor = BlackWhite.white
@@ -73,7 +74,6 @@ class HomeView: BaseView {
         bt.layer.shadowRadius = 10
         bt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         bt.layer.shadowOffset = CGSize(width: 20, height: 15)
-        
         return bt
     }()
     
@@ -84,7 +84,6 @@ class HomeView: BaseView {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 0
-//        stackView.backgroundColor = .blue
         return stackView
     }()
     
@@ -98,9 +97,6 @@ class HomeView: BaseView {
         return bt
     }()
     
-    
-    
-    
     override func configure() {
         [naverMapView,locationBtn,stackView,searchBtn].forEach {
             self.addSubview($0)
@@ -109,9 +105,8 @@ class HomeView: BaseView {
             self.stackView.addArrangedSubview($0)
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor, multiplier: 1.0).isActive = true
         }
-        
-
     }
+    
     override func setConstrains() {
         naverMapView.snp.makeConstraints { $0.edges.equalTo(0)}
         

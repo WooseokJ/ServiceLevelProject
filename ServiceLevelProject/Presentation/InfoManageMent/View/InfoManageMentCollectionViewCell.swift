@@ -38,7 +38,7 @@ class InfoManageMentCollectionViewCell: UICollectionViewCell {
     }()
 
     func configure() {
-        self.contentView.addSubview(itemButton)
+        self.addSubview(itemButton)
         self.contentView.addSubview(reviewLabel)
     }
     

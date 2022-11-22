@@ -23,14 +23,24 @@ final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
     private var locationManager = CLLocationManager() // 위치
     private let circle = NMFCircleOverlay() // 원
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationRequest()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetLocationBtn()
+        
         navigationItem.backButtonTitle = ""
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         bind()
+    
+    }
+    
+    func locationRequest() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
         DispatchQueue.global().async {
             if CLLocationManager.locationServicesEnabled() {
                 print("위치 서비스 On 상태")
@@ -40,6 +50,9 @@ final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
             }
         }
     }
+    
+    
+    
 }
 
 extension HomeViewController {
@@ -47,10 +60,13 @@ extension HomeViewController {
         homeView.searchBtn.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
+                print(vc.lat, vc.lng)
+                self.api.searchRequest(lat: vc.lat!, long: vc.lng!) { search in
+                    print("test", search)
+                }
+                
                 let searchVC = SearchViewController()
-                self.navigationController?.pushViewController(searchVC, animated: true)
-
-//                vc.transition(searchVC, transitionStyle: .push)
+                vc.transition(searchVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         
@@ -89,7 +105,6 @@ extension HomeViewController {
                 vc.homeView.manFilterBtn.setTitleColor(BlackWhite.black, for: .normal)
                 vc.homeView.allBtn.backgroundColor = BlackWhite.white
                 vc.homeView.allBtn.setTitleColor(BlackWhite.black, for: .normal)
-
             }
             .disposed(by: disposeBag)
         

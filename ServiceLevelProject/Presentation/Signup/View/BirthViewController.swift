@@ -9,10 +9,6 @@ import UIKit
 
 class BirthViewController: BaseViewController {
   
-    var list = ["1", "2", "3"]
-    var list2 = ["3", "4", "5"]
-    var list3 = ["아", "가", "야"]
-    
     lazy var pickerView: UIPickerView = {
         let piker = UIPickerView()
         piker.delegate = self

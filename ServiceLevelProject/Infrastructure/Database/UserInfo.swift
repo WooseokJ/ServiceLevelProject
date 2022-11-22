@@ -18,3 +18,5 @@ class UserInfo {
     var gender: Int?
     
 }
+
+

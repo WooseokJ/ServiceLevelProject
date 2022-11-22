@@ -28,6 +28,7 @@ class AuthView: BaseView {
         let textField = UITextField()
         textField.placeholder = "\(AuthText.textFieldPlaceholder.rawValue)"
         textField.font = .systemFont(ofSize: 14)
+        textField.keyboardType = .numberPad
         return textField
     }()
     

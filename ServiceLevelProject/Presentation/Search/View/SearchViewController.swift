@@ -19,31 +19,40 @@ class SearchViewController: BaseViewController {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
         
-        self.hideKeyboardWhenTappedAround()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         self.navigationItem.titleView = searchView.searchBar
+        searchView.searchBar.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
         
     }
-    
-//    @objc func keyboardWillShow(_ sender: Notification) {
-//        searchView.searchButton.frame.origin.y = -0.01
-//        }
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        self.view.endEditing(true)
-//    }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-//        self.view.endEditing(true)
-//    }
-
+    @objc func keyboardShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            searchView.searchButton.snp.remakeConstraints { make in
+                make.bottom.equalToSuperview().inset(keyboardSize.height * 0.77)
+                make.leading.equalTo(-10)
+                make.trailing.equalTo(10)
+                make.height.equalTo(UIScreen.main.bounds.height * 0.06)
+            }
+        }
+    }
+    @objc func keyboardHide(notification: NSNotification) {
+        searchView.searchButton.snp.remakeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.06)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+        }
+    }
 }
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+
+extension SearchViewController : UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print(searchBar.text!)
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }

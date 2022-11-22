@@ -350,8 +350,8 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else { return .zero}
-        cell.itemButton.sizeToFit()
-        let cellwidth = cell.itemButton.frame.width + 60
+//        cell.itemButton.sizeToFit()
+//        let cellwidth = cell.itemButton.frame.width + 60
 
         let layoutwidth = UIScreen.main.bounds.width
         let layoutheight = UIScreen.main.bounds.height

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast
+import FirebaseAuth
 
 class BaseViewController: UIViewController {
     
@@ -17,17 +18,15 @@ class BaseViewController: UIViewController {
     override func loadView() {
         self.view = baseView
     }
-
     
     let disposeBag = DisposeBag()
     let api = APIService()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = BlackWhite.white
-        
     }
+    
     func showAlertMessage(title: String) {
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .default)
@@ -42,6 +41,8 @@ class BaseViewController: UIViewController {
         }
         return true
     }
+    
+
     
     
 }

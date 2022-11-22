@@ -12,34 +12,41 @@ enum API {
     case signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String,
                 email: String, gender: Int)
     case login(idtoken: String)
-//    case profile
-     
+    case search(lat: Double, long: Double)
+}
+
+enum UDkey {
+    case token
+}
+
+
+extension API {
+    
     var url: URL {
-        
-        let baseURL = "http://api.sesac.co.kr:1207/v1/user"
-        
+        let baseURL = "http://api.sesac.co.kr:1210/v1/"
         switch self {
         case .signup, .login:
-            return URL(string: baseURL)!
-//        case .profile:
-//            return URL(string: baseURL+"me")!
+            return URL(string: baseURL+"user")!
+        case .search:
+            return URL(string: baseURL+"queue/search")!
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .signup, .login:
+        case .signup, .login, .search:
             return ["Content-Type" : "application/x-www-form-urlencoded",
                     "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
-//        case .profile:
-//            return [
-//                "Authorization" : "Bearer \(UserDefaults.standard.string(forKey: "token")!)",
-//                "Content-Type" : "application/x-www-form-urlencoded"
-//            ]
         }
     }
     
+//    var path: String {
+//           switch self {
+//           case .get: return "get"
+//           case .post: return "post"
+//           }
+//       },
     var parameters: [String:Any]? {
         switch self {
         case .signup(let phoneNumber, let FCMtoken, let nick, let birth,
@@ -56,9 +63,15 @@ enum API {
             return [
                 "idtoken" : idtoken,
             ]
+        case .search(let lat, let long):
+            return [
+                "lat": Double(lat),
+                "long": Double(long)
+            ]
+            
         default: return nil
         }
     }
+
+    
 }
-
-

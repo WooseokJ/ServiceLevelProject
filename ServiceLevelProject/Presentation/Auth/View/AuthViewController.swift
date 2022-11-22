@@ -14,10 +14,7 @@ import RxCocoa
 class AuthViewController: BaseViewController {
     
     let authView = AuthView()
-    
     var verifyID: String?
-    
-
     
     override func loadView() {
         super.view = authView
@@ -42,7 +39,6 @@ class AuthViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
-        authView.authTextField.rx.text
         self.view.makeToast("인증번호를 보냈습니다.")
     }
     
@@ -53,7 +49,6 @@ class AuthViewController: BaseViewController {
         currentUser?.getIDToken(completion: { idToken, error in
             if let error = error {
                 // Handle error
-                
                 return
             }
             print("idToken",idToken)
@@ -66,7 +61,8 @@ class AuthViewController: BaseViewController {
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let sceneDelegate = windowScene?.delegate as? SceneDelegate
                     let vc = TapViewController()
-                    sceneDelegate?.window?.rootViewController = vc
+                    let nav = UINavigationController(rootViewController: vc)
+                    sceneDelegate?.window?.rootViewController = nav
                     sceneDelegate?.window?.makeKeyAndVisible()
                 } else {
                     switch statusCode {
@@ -81,7 +77,6 @@ class AuthViewController: BaseViewController {
                     default:
                         self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
                     }
-         
                 }
             }
         })

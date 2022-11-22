@@ -18,6 +18,7 @@ class InfoManageMentViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         infoManageView.tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
         infoManageView.tableView.delegate = self
         infoManageView.tableView.dataSource = self

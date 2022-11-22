@@ -45,7 +45,7 @@ class SearchView: BaseView {
         cv.register(InfoManageMentCollectionViewCell.self, forCellWithReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier)
         cv.layer.cornerRadius = 10
         cv.clipsToBounds = true
-        cv.backgroundColor = .clear
+        cv.backgroundColor = .lightGray
         cv.register(HeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier)
         return cv
     }()
@@ -122,9 +122,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else { return .zero}
-        cell.itemButton.sizeToFit()
-        let layoutwidth = UIScreen.main.bounds.width
-        let layoutheight = UIScreen.main.bounds.height
         switch indexPath.section {
         case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
         case 1:
@@ -136,13 +133,22 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
-    
+    //MARK: header와 셀 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
            return UIEdgeInsets(top: 10, left: 0, bottom: 30, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let selectItem = InfoManageMent.title.list[indexPath.row]
+            print(InfoManageMent.sesacStudy.list)
+//            InfoManageMent.title.list.map {}
+            print(indexPath.row)
+        case 1:
+            print("색션1:",indexPath.row)
+        default: break
         }
-    
-    
-    
-    
+    }
     
 }
