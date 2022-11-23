@@ -13,12 +13,8 @@ enum API {
                 email: String, gender: Int)
     case login(idtoken: String)
     case search(lat: Double, long: Double)
+    case myQueueState(idtoken: String)
 }
-
-enum UDkey {
-    case token
-}
-
 
 extension API {
     
@@ -29,12 +25,15 @@ extension API {
             return URL(string: baseURL+"user")!
         case .search:
             return URL(string: baseURL+"queue/search")!
+        case .myQueueState:
+            return URL(string: baseURL+"queue/myQueueState")!
         }
+        
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .signup, .login, .search:
+        case .signup, .login, .search, .myQueueState:
             return ["Content-Type" : "application/x-www-form-urlencoded",
                     "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
@@ -59,9 +58,9 @@ extension API {
                 "email" : email,
                 "gender" : gender
             ]
-        case .login(let idtoken):
+        case .login(let idtoken), .myQueueState(let idtoken):
             return [
-                "idtoken" : idtoken,
+                "idtoken" : idtoken
             ]
         case .search(let lat, let long):
             return [

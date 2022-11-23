@@ -26,6 +26,10 @@ class AuthViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+        self.view.makeToast("인증번호를 보냈습니다.")
+    }
+    private func bind() {
         authView.authButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
@@ -39,7 +43,18 @@ class AuthViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
-        self.view.makeToast("인증번호를 보냈습니다.")
+        
+        authView.authTextField.rx.text
+            .withUnretained(self)
+            .bind { (vc,val) in
+                if val?.count ?? 0 >= 6 {
+                    vc.authView.authButton.backgroundColor = BrandColor.green
+                } else {
+                    vc.authView.authButton.backgroundColor = Grayscale.gray6
+                }
+        
+            }
+            .disposed(by: disposeBag)
     }
     
     
@@ -61,8 +76,7 @@ class AuthViewController: BaseViewController {
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let sceneDelegate = windowScene?.delegate as? SceneDelegate
                     let vc = TapViewController()
-                    let nav = UINavigationController(rootViewController: vc)
-                    sceneDelegate?.window?.rootViewController = nav
+                    sceneDelegate?.window?.rootViewController = vc
                     sceneDelegate?.window?.makeKeyAndVisible()
                 } else {
                     switch statusCode {

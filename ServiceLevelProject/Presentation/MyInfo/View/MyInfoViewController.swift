@@ -19,7 +19,6 @@ class MyInfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.navigationBar.backgroundColor = .red
         navigationItem.title = "내정보"
         myinfoView.collectionview.alwaysBounceVertical = false
         myinfoView.collectionview.collectionViewLayout = createLayout()

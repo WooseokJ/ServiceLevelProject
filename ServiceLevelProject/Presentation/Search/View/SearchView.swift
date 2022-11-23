@@ -32,7 +32,6 @@ class SearchView: BaseView {
         bt.clipsToBounds = true
         return bt
     }()
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let spacing : CGFloat = 1
@@ -45,7 +44,7 @@ class SearchView: BaseView {
         cv.register(InfoManageMentCollectionViewCell.self, forCellWithReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier)
         cv.layer.cornerRadius = 10
         cv.clipsToBounds = true
-        cv.backgroundColor = .lightGray
+        cv.backgroundColor = .clear
         cv.register(HeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier)
         return cv
     }()
@@ -69,21 +68,25 @@ class SearchView: BaseView {
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
             make.top.equalTo(self.safeAreaLayoutGuide)
-            
         }
     }
     
 }
 
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+    func collectionviewConfigure() {
+        searchView.collectionView.delegate = self
+        searchView.collectionView.dataSource = self
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0 : return InfoManageMent.title.list.count
-        case 1: return InfoManageMent.sesacStudy.list.count
+        case 0 : return aroundList.count ?? 5
+        case 1: return myfavoriteList.count ?? 4
         default: return 1
         }
     }
@@ -91,11 +94,21 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
         switch indexPath.section {
-            
         case 0:
-            cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
+            cell.itemButton.setTitle(aroundList[indexPath.row], for: .normal)
+            cell.layer.borderColor = SystemColor.error.cgColor
+            cell.itemButton.setTitleColor(SystemColor.error, for: .normal)
+            cell.layer.cornerRadius = 10
+            cell.layer.borderWidth = 1
         case 1:
-            cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
+            guard myfavoriteList.count != 0 else {
+                return cell
+            }
+            cell.layer.borderColor = BrandColor.green.cgColor
+            cell.itemButton.setTitleColor(BrandColor.green, for: .normal)
+            cell.layer.cornerRadius = 10
+            cell.layer.borderWidth = 1
+            cell.itemButton.setTitle("\(myfavoriteList[indexPath.row]) X", for: .normal)
         default:
             break
         }
@@ -121,11 +134,10 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else { return .zero}
         switch indexPath.section {
-        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+        case 0: return CGSize(width: aroundList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 60, height: 32)
         case 1:
-            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+            return CGSize(width: myfavoriteList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 60, height: 32)
         default:
             print("오류",#function)
             return CGSize()
@@ -141,14 +153,18 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            let selectItem = InfoManageMent.title.list[indexPath.row]
-            print(InfoManageMent.sesacStudy.list)
-//            InfoManageMent.title.list.map {}
-            print(indexPath.row)
+            myfavoriteList.append(aroundList[indexPath.row])
+            aroundList.remove(at: indexPath.row)
+            print("myfavoriteList",myfavoriteList)
+            print("aroundList",aroundList)
         case 1:
-            print("색션1:",indexPath.row)
+            aroundList.append(myfavoriteList[indexPath.row])
+            myfavoriteList.remove(at: indexPath.row)
+            print("myfavoriteList",myfavoriteList)
+            print("aroundList",aroundList)
         default: break
         }
+        collectionView.reloadData()
     }
     
 }

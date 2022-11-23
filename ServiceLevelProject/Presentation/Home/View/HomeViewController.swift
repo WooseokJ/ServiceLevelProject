@@ -35,7 +35,8 @@ final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
         navigationItem.backButtonTitle = ""
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         bind()
-    
+        
+        
     }
     
     func locationRequest() {
@@ -60,13 +61,16 @@ extension HomeViewController {
         homeView.searchBtn.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                print(vc.lat, vc.lng)
-                self.api.searchRequest(lat: vc.lat!, long: vc.lng!) { search in
-                    print("test", search)
-                }
+                let imageConfig = UIImage.SymbolConfiguration(pointSize: 100, weight: .light)
+                let image = UIImage(systemName: "antenna.radiowaves.left.and.right.circle.fill", withConfiguration: imageConfig)
+                vc.homeView.searchBtn.setImage(image, for: .normal)
                 
-                let searchVC = SearchViewController()
-                vc.transition(searchVC, transitionStyle: .push)
+                self.api.searchRequest(lat: vc.lat!, long: vc.lng!) { search in
+                    
+                    let searchVC = SearchViewController()
+                    searchVC.searchList = search
+                    vc.transition(searchVC, transitionStyle: .push)
+                }
             }
             .disposed(by: disposeBag)
         
@@ -79,7 +83,7 @@ extension HomeViewController {
                 vc.homeView.womanFilterBtn.setTitleColor(BlackWhite.black, for: .normal)
                 vc.homeView.manFilterBtn.backgroundColor = BlackWhite.white
                 vc.homeView.manFilterBtn.setTitleColor(BlackWhite.black, for: .normal)
-
+                
             }
             .disposed(by: disposeBag)
         
@@ -92,7 +96,7 @@ extension HomeViewController {
                 vc.homeView.womanFilterBtn.setTitleColor(BlackWhite.black, for: .normal)
                 vc.homeView.allBtn.backgroundColor = BlackWhite.white
                 vc.homeView.allBtn.setTitleColor(BlackWhite.black, for: .normal)
-
+                
             }
             .disposed(by: disposeBag)
         
@@ -142,7 +146,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             circle.outlineWidth = 1
             circle.outlineColor = UIColor.systemBlue
             circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
-
+            
         }
         // 위치 업데이트 멈춰 (실시간성이 중요한거는 매번쓰고, 중요하지않은건 원하는 시점에 써라)
         locationManager.stopUpdatingLocation() // stopUpdatingHeading 이랑 주의

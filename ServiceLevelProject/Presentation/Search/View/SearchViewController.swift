@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SearchViewController: BaseViewController {
 
@@ -13,11 +15,17 @@ class SearchViewController: BaseViewController {
     override func loadView() {
         super.view = searchView
     }
+    
+    var searchList: Search?
+    var aroundList: [String] = []
+    var myfavoriteList: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchView.collectionView.delegate = self
-        searchView.collectionView.dataSource = self
+        collectionviewConfigure()
+        bind()
+        
+        searchList?.fromRecommend.forEach { aroundList.append($0) }
         
         self.navigationItem.titleView = searchView.searchBar
         searchView.searchBar.delegate = self
@@ -28,9 +36,8 @@ class SearchViewController: BaseViewController {
     }
     @objc func keyboardShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
             searchView.searchButton.snp.remakeConstraints { make in
-                make.bottom.equalToSuperview().inset(keyboardSize.height * 0.77)
+                make.bottom.equalToSuperview().inset(keyboardSize.height * 0.75)
                 make.leading.equalTo(-10)
                 make.trailing.equalTo(10)
                 make.height.equalTo(UIScreen.main.bounds.height * 0.06)
@@ -45,14 +52,25 @@ class SearchViewController: BaseViewController {
             make.trailing.equalTo(-16)
         }
     }
+    func bind() {
+        searchView.searchButton.rx.tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                let searchListVC = SearchListViewController()
+                vc.transition(searchListVC, transitionStyle: .push)
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 extension SearchViewController : UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text!)
-        searchBar.text = ""
+       
+        myfavoriteList.append(searchBar.text!)
+        searchView.collectionView.reloadData()
         searchBar.resignFirstResponder()
+        searchBar.text = ""
     }
     
 }
