@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1832BAB92931265D005D99D6 /* QueuInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832BAB82931265D005D99D6 /* QueuInfo.swift */; };
+		1832BABB29315AE4005D99D6 /* ButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832BABA29315AE4005D99D6 /* ButtonProtocol.swift */; };
 		183834A2292DD311006C0675 /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834A1292DD311006C0675 /* SearchListViewController.swift */; };
 		183834A4292DD318006C0675 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834A3292DD318006C0675 /* SearchListView.swift */; };
 		183834B1292E795B006C0675 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 183834B0292E795B006C0675 /* Tabman */; };
@@ -96,6 +98,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1832BAB82931265D005D99D6 /* QueuInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuInfo.swift; sourceTree = "<group>"; };
+		1832BABA29315AE4005D99D6 /* ButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonProtocol.swift; sourceTree = "<group>"; };
 		183834A1292DD311006C0675 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		183834A3292DD318006C0675 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		183834B2292E7A4D006C0675 /* AroundSeSacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSeSacViewController.swift; sourceTree = "<group>"; };
@@ -503,6 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				18AD858629217131004169C1 /* UserInfo.swift */,
+				1832BAB82931265D005D99D6 /* QueuInfo.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				18DC24B3291928FC00DD5D1C /* ViewModelType.swift */,
+				1832BABA29315AE4005D99D6 /* ButtonProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -964,6 +970,7 @@
 				18AD8585292150E1004169C1 /* GenderViewController.swift in Sources */,
 				18F10CE1292BCA8C0038BEEE /* Error+Extension.swift in Sources */,
 				18DC247029189DDD00DD5D1C /* HomeViewController.swift in Sources */,
+				1832BAB92931265D005D99D6 /* QueuInfo.swift in Sources */,
 				18D65DEF291D535C00CBEAB4 /* APIUser.swift in Sources */,
 				18F10CE3292BD10F0038BEEE /* ErrorCase.swift in Sources */,
 				18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */,
@@ -991,6 +998,7 @@
 				18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */,
 				1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */,
 				18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */,
+				1832BABB29315AE4005D99D6 /* ButtonProtocol.swift in Sources */,
 				18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */,
 				18AD85832921509C004169C1 /* EmailViewController.swift in Sources */,
 				18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */,

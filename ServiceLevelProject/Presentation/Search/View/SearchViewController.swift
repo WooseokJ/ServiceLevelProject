@@ -16,7 +16,6 @@ class SearchViewController: BaseViewController {
         super.view = searchView
     }
 
-    
     var searchList: Search?
     var aroundList: [String] = []
     var myfavoriteList: [String] = []
@@ -26,12 +25,18 @@ class SearchViewController: BaseViewController {
         collectionviewConfigure()
         bind()
         searchList?.fromRecommend.forEach { aroundList.append($0) }
+        print(searchList?.fromRecommend)
+        print(searchList?.fromQueueDB)
+        print(searchList?.fromQueueDBRequested)
+
+        
         
         self.navigationItem.titleView = searchView.searchBar
         searchView.searchBar.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
+        
         
     }
     @objc func keyboardShow(notification: NSNotification) {
@@ -58,15 +63,13 @@ class SearchViewController: BaseViewController {
         searchView.searchButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-//                var test33 = queuePara(lat: HomeViewController.lat!
-//                                       , long: HomeViewController.lng!, studylist: vc.myfavoriteList)
                 vc.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: ["swift"]) { val, statusCode in
                     print(val,statusCode)
+                    if statusCode == 200 {
+                        let searchListVC = SearchListViewController()
+                        vc.transition(searchListVC, transitionStyle: .push)
+                    }
                 }
-                    
-                
-//                let searchListVC = SearchListViewController()
-//                vc.transition(searchListVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag) 
     }

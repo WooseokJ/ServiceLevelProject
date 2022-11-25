@@ -14,7 +14,7 @@ import FirebaseAuth
 }
 
 extension APIProtocol {
-    func refreshIdToken() {
+    func refreshIdToken() { //그렇게되면 로그인,회원가입,탈퇴,서치 등 다 만들어야하나?
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             if let error = error {

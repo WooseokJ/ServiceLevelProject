@@ -8,6 +8,7 @@
 import Foundation
 
 //MARK: Common
+
 enum CommonError: Int, Error {
     case success = 200
     case tokenErorr = 401
@@ -34,7 +35,6 @@ enum queuePostErorr: Int,Error {
     case panaltyTwoUeer = 204
     case panaltyThirdUser = 205
 }
-
 
 enum searchError: Int, Error {
     case reportUserError = 201

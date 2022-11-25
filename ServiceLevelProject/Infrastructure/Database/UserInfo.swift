@@ -17,24 +17,6 @@ class UserInfo {
     var gender: Int?
 }
 
-struct Profile: Codable {
-    let user: User
-}
-
-// MARK: - Search
-struct Search: Codable {
-    let fromQueueDB: [FromQueueDB]
-    let fromQueueDBRequested: [FromQueueDB]
-    let fromRecommend: [String]
-}
-
-struct FromQueueDB: Codable {
-    let studylist, reviews: [String]
-    let reputation: [Int]
-    let uid, nick: String
-    let gender, type, sesac, background: Int
-    let long, lat: Double
-}
 //MARK: - Signup
 struct User: Codable {
     let phoneNumber: String

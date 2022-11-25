@@ -9,10 +9,11 @@ import UIKit
 import NMapsMap
 import CoreLocation
 import SnapKit
+import Toast
 
 final class HomeViewController: BaseViewController {
     
-    let homeView = HomeView()
+    private let homeView = HomeView()
     override func loadView() {
         super.view = homeView
     }
@@ -21,41 +22,59 @@ final class HomeViewController: BaseViewController {
     static var lat: Double?
     
     private let marker = NMFMarker()
+    var markers = [NMFMarker]() // 마커 모음.
     private var locationManager = CLLocationManager() // 위치
     private let circle = NMFCircleOverlay() // 원
-    
+    private var transferSearchInfo: Search?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        locationRequest()
         navigationItem.backButtonTitle = ""
-        bind()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
+        locationRequest()
+        bind() //이게 viewWillAppear에 있으면 여러번호출
     }
-    
-   
 }
 
-extension HomeViewController: APIProtocol {
+extension HomeViewController: APIProtocol, ButtonProtocol {
     private func bind() {
         homeView.searchBtn.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                let imageConfig = UIImage.SymbolConfiguration(pointSize: 100, weight: .light)
-                let image = UIImage(systemName: "antenna.radiowaves.left.and.right.circle.fill", withConfiguration: imageConfig)
-                vc.homeView.searchBtn.setImage(image, for: .normal)
-                self.refreshIdToken()
-                self.apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { bool, statusCode in
-                    print(bool,statusCode)
+                vc.chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: vc.homeView.searchBtn)
+                
+                
+                vc.apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { bool, statusCode in
+                    print(statusCode)
+                    vc.refreshIdToken()
+                    switch statusCode {
+                    case CommonError.success.rawValue: //200
+                        print("매칭성공")
+                        
+                    case myQueueStateErorr.notRequest.rawValue: //201 요청x
+                        vc.chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: vc.homeView.searchBtn)
+                        let searchVC = SearchViewController()
+                        searchVC.searchList = vc.transferSearchInfo
+                        vc.transition(searchVC, transitionStyle: .push)
+                    case CommonError.tokenErorr.rawValue: //401 토큰만료
+                        vc.refreshIdToken()
+                    case CommonError.notUserError.rawValue:
+                        print("미가입회원")
+                    case CommonError.serverError.rawValue:
+                        print("서버에러")
+                    case CommonError.clientError.rawValue:
+                        print("클라이언트에러")
+                    default:
+                        print("모르는 에러")
+                    }
+                    print("123t")
                 }
-//                self.apiQueue.searchRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!) { search in
-                    let searchVC = SearchViewController()
-                    vc.transition(searchVC, transitionStyle: .push)
-            }
-            .disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
+        
         
         homeView.allBtn.rx.tap
             .withUnretained(self)
@@ -79,7 +98,6 @@ extension HomeViewController: APIProtocol {
                 vc.homeView.womanFilterBtn.setTitleColor(BlackWhite.black, for: .normal)
                 vc.homeView.allBtn.backgroundColor = BlackWhite.white
                 vc.homeView.allBtn.setTitleColor(BlackWhite.black, for: .normal)
-                
             }
             .disposed(by: disposeBag)
         
@@ -94,6 +112,7 @@ extension HomeViewController: APIProtocol {
                 vc.homeView.allBtn.setTitleColor(BlackWhite.black, for: .normal)
             }
             .disposed(by: disposeBag)
+        
         homeView.locationBtn.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
@@ -101,9 +120,16 @@ extension HomeViewController: APIProtocol {
                 let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: HomeViewController.lat ?? 0 , lng: HomeViewController.lng ?? 0 ))
                 cameraUpdate.animation = .easeIn
                 vc.homeView.naverMapView.mapView.moveCamera(cameraUpdate)
+                
+                vc.callSearch()
             }
             .disposed(by: disposeBag)
     }
+//    private func chagedPlotingButton(imageName: String) {
+//        let imageConfig = UIImage.SymbolConfiguration(pointSize: 100, weight: .light)
+//        let image = UIImage(systemName: imageName , withConfiguration: imageConfig)
+//        self.homeView.searchBtn.setImage(image, for: .normal)
+//    }
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -124,27 +150,27 @@ extension HomeViewController: CLLocationManagerDelegate {
         if let location = locations.first {
             HomeViewController.lat = location.coordinate.latitude
             HomeViewController.lng = location.coordinate.longitude
-            setpin()
+            locationManager.stopUpdatingLocation()
         }
-        locationManager.stopUpdatingLocation() // stopUpdatingHeading 이랑 주의
     }
-    
-
-
 }
 
 
 extension HomeViewController: NMFMapViewCameraDelegate {
-    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
+    // 카메라가 처음 움직일떄 메소드 -> 핀을계속 갱신하고 !!
+    func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
         setpin()
+    }
+    // 카메라가 딱 내가 지정할떄 놓을떄 호출되는 메소드 -> 네트워크 하면되지
+    func mapViewCameraIdle(_ mapView: NMFMapView) {
+        callSearch()
     }
     
     private func setpin() {
-        marker.position = homeView.naverMapView.mapView.cameraPosition.target
+        marker.position = homeView.naverMapView.mapView.cameraPosition.target //카메라상 중앙의 좌표
         marker.position = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
         marker.iconImage = NMFOverlayImage(image: UIImage(named: "map_marker.png")!)
         marker.mapView = homeView.naverMapView.mapView
-        
         // 거리 원
         circle.center = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
         circle.radius = 700
@@ -153,4 +179,23 @@ extension HomeViewController: NMFMapViewCameraDelegate {
         circle.outlineColor = UIColor.systemBlue
         circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
     }
+    private func callSearch() {
+        self.apiQueue.searchRequest(lat: marker.position.lat, long: marker.position.lng) { [self] search  in
+            print(search?.fromRecommend)
+            print(search?.fromQueueDB.count)
+            print(search?.fromQueueDBRequested)
+            
+            self.transferSearchInfo = search
+            guard search!.fromQueueDB.isEmpty else {
+                search!.fromQueueDB.forEach {
+                    let marker = NMFMarker(position: NMGLatLng(lat: $0.lat, lng: $0.long))
+                    marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_3.png")!)
+                    marker.mapView = homeView.naverMapView.mapView
+                    markers.append(marker)
+                }
+                return
+            }
+        }
+    }
 }
+

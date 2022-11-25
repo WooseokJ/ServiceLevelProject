@@ -11,13 +11,13 @@ import Alamofire
 
 
 enum APIHeader {
+    case login(idtoken: String)
     case signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String,
                 email: String, gender: Int)
-    case login(idtoken: String)
     case queue(lat: Double, long: Double, studylist: [String])
-//    case queue(queuePara: queuePara)
     case search(lat: Double, long: Double)
     case myQueueState(idtoken: String)
+    
 }
 
 
@@ -86,11 +86,11 @@ extension APIHeader {
                 "lat": lat,
                 "long": long
             ]
-        case .queue(let queuePara):
+        case .queue(let lat, let lng, let studylist):
             return [
-                "lat": 37.48511640269022,
-                "long": 126.92947109241517,
-                "studylist": ["swift"]
+                "lat": lat,
+                "long": lng,
+                "studylist": studylist
             ]
         default: return ["":""]
         }

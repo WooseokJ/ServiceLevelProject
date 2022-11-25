@@ -15,7 +15,6 @@ final class APIUser: APIProtocol {
     
     //MARK: - 싱글턴 변수
     typealias completionHandler = ( (Bool, Int) -> Void )
-    typealias ProfileInfo = ((Profile?) -> Void )
     
     init() {}
     
