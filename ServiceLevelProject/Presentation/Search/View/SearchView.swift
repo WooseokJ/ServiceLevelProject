@@ -85,8 +85,8 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0 : return aroundList.count ?? 5
-        case 1: return myfavoriteList.count ?? 4
+        case 0 : return aroundList.count
+        case 1: return myfavoriteList.count
         default: return 1
         }
     }
@@ -141,7 +141,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         default:
             print("오류",#function)
             return CGSize()
-
         }
     }
     

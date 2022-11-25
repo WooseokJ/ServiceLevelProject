@@ -8,15 +8,20 @@
 import Foundation
 import Alamofire
 
-enum API {
+
+
+enum APIHeader {
     case signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String,
                 email: String, gender: Int)
     case login(idtoken: String)
+    case queue(lat: Double, long: Double, studylist: [String])
+//    case queue(queuePara: queuePara)
     case search(lat: Double, long: Double)
     case myQueueState(idtoken: String)
 }
 
-extension API {
+
+extension APIHeader {
     
     var url: URL {
         let baseURL = "http://api.sesac.co.kr:1210/v1/"
@@ -27,26 +32,40 @@ extension API {
             return URL(string: baseURL+"queue/search")!
         case .myQueueState:
             return URL(string: baseURL+"queue/myQueueState")!
+        case .queue:
+            return URL(string: baseURL+"queue")!
         }
-        
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .signup:
+            return .post
+        case .login:
+            return .get
+        case .queue:
+            return .post
+        case .search:
+            return .post
+        case .myQueueState:
+            return .get
+        }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .signup, .login, .search, .myQueueState:
+        case .signup, .search, .queue:
             return ["Content-Type" : "application/x-www-form-urlencoded",
                     "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
+        case .login, .myQueueState:
+            return [
+                "idtoken": UserDefaults.standard.string(forKey: "token")!
+            ]
         }
     }
-    
-//    var path: String {
-//           switch self {
-//           case .get: return "get"
-//           case .post: return "post"
-//           }
-//       },
-    var parameters: [String:Any]? {
+
+    var parameters: Parameters {
         switch self {
         case .signup(let phoneNumber, let FCMtoken, let nick, let birth,
                      let email, let gender):
@@ -64,13 +83,18 @@ extension API {
             ]
         case .search(let lat, let long):
             return [
-                "lat": Double(lat),
-                "long": Double(long)
+                "lat": lat,
+                "long": long
             ]
-            
-        default: return nil
+        case .queue(let queuePara):
+            return [
+                "lat": 37.48511640269022,
+                "long": 126.92947109241517,
+                "studylist": ["swift"]
+            ]
+        default: return ["":""]
         }
     }
-
     
 }
+

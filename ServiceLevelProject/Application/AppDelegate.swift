@@ -10,6 +10,8 @@ import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
 
+import CoreLocation
+import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           }
             Messaging.messaging().delegate = self
           application.registerForRemoteNotifications()
-
+        
         return true
     }
 
@@ -53,3 +55,14 @@ extension AppDelegate: MessagingDelegate {
     
     
 }
+extension UIViewController {
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+

@@ -202,9 +202,11 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             }
             .disposed(by: disposeBag)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4 {print("회원탈퇴")}
     }
+    
     //MARK: 해더
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
@@ -236,8 +238,8 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                     make.top.equalTo(self.view.safeAreaLayoutGuide)
                     make.height.equalTo(UIScreen.main.bounds.height * 0.7) // 열려있을떄 테이블뷰 자체 높이
                 }
-//                return UIScreen.main.bounds.height * 0.5 // 펼쳣을떄  셀 높이
-                return UITableView.automaticDimension
+                return UIScreen.main.bounds.height * 0.5 // 펼쳣을떄  셀 높이
+//                return UITableView.automaticDimension
             } else {
 
                 tableView.snp.remakeConstraints { make in
@@ -298,7 +300,7 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
-        cell.itemButton.tag = indexPath.row
+//        cell.itemButton.tag = indexPath.row
         switch indexPath.section {
         case 0:
             cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
@@ -320,9 +322,11 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
                 make.trailing.equalTo(-10)
                 make.bottom.equalTo(cell.snp.bottom)
             }
+            cell.itemButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
             cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
-            cell.reviewLabel.text = "긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴긴문자긴"
-            cell.reviewLabel.backgroundColor = .yellow
+            cell.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
+            cell.reviewLabel.textColor = Grayscale.gray6
+            cell.reviewLabel.layer.borderWidth = 0
         default: break
         }
         return cell
@@ -349,26 +353,18 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else { return .zero}
-//        cell.itemButton.sizeToFit()
-//        let cellwidth = cell.itemButton.frame.width + 60
-
-        let layoutwidth = UIScreen.main.bounds.width
-        let layoutheight = UIScreen.main.bounds.height
+        
         switch indexPath.section {
         case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
         case 1:
             return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
         case 2:
-            return CGSize(width: layoutwidth / 2  , height: layoutheight / 29 )
+            return CGSize(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height / 29 )
         default:
             print("오류",#function)
             return CGSize()
 
         }
     }
-    
-    
-
     
 }

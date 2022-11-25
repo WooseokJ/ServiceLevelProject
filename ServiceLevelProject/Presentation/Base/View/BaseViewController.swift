@@ -20,7 +20,8 @@ class BaseViewController: UIViewController {
     }
     
     let disposeBag = DisposeBag()
-    let api = APIService()
+    let apiUser = APIUser()
+    let apiQueue = APIQueue()
 
     override func viewDidLoad() {
         super.viewDidLoad()

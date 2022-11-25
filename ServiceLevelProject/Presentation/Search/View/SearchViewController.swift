@@ -15,6 +15,7 @@ class SearchViewController: BaseViewController {
     override func loadView() {
         super.view = searchView
     }
+
     
     var searchList: Search?
     var aroundList: [String] = []
@@ -24,7 +25,6 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         collectionviewConfigure()
         bind()
-        
         searchList?.fromRecommend.forEach { aroundList.append($0) }
         
         self.navigationItem.titleView = searchView.searchBar
@@ -52,25 +52,36 @@ class SearchViewController: BaseViewController {
             make.trailing.equalTo(-16)
         }
     }
+    
+    
     func bind() {
         searchView.searchButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                let searchListVC = SearchListViewController()
-                vc.transition(searchListVC, transitionStyle: .push)
+//                var test33 = queuePara(lat: HomeViewController.lat!
+//                                       , long: HomeViewController.lng!, studylist: vc.myfavoriteList)
+                vc.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: ["swift"]) { val, statusCode in
+                    print(val,statusCode)
+                }
+                    
+                
+//                let searchListVC = SearchListViewController()
+//                vc.transition(searchListVC, transitionStyle: .push)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag) 
     }
 }
 
 extension SearchViewController : UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       
+
         myfavoriteList.append(searchBar.text!)
         searchView.collectionView.reloadData()
         searchBar.resignFirstResponder()
         searchBar.text = ""
     }
-    
+
 }
+
+

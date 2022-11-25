@@ -10,14 +10,15 @@ import NMapsMap
 import CoreLocation
 import SnapKit
 
-final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
+final class HomeViewController: BaseViewController {
     
     let homeView = HomeView()
     override func loadView() {
         super.view = homeView
     }
-    private var lng: Double?
-    private var lat: Double?
+    
+    static var lng: Double?
+    static var lat: Double?
     
     private let marker = NMFMarker()
     private var locationManager = CLLocationManager() // 위치
@@ -26,37 +27,19 @@ final class HomeViewController: BaseViewController, NMFMapViewCameraDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         locationRequest()
+        navigationItem.backButtonTitle = ""
+        bind()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetLocationBtn()
-        
-        navigationItem.backButtonTitle = ""
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
-        bind()
-        
-        
     }
     
-    func locationRequest() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        DispatchQueue.global().async {
-            if CLLocationManager.locationServicesEnabled() {
-                print("위치 서비스 On 상태")
-                self.locationManager.startUpdatingLocation()
-            } else {
-                print("위치 서비스 Off 상태")
-            }
-        }
-    }
-    
-    
-    
+   
 }
 
-extension HomeViewController {
+extension HomeViewController: APIProtocol {
     private func bind() {
         homeView.searchBtn.rx.tap
             .withUnretained(self)
@@ -64,13 +47,13 @@ extension HomeViewController {
                 let imageConfig = UIImage.SymbolConfiguration(pointSize: 100, weight: .light)
                 let image = UIImage(systemName: "antenna.radiowaves.left.and.right.circle.fill", withConfiguration: imageConfig)
                 vc.homeView.searchBtn.setImage(image, for: .normal)
-                
-                self.api.searchRequest(lat: vc.lat!, long: vc.lng!) { search in
-                    
-                    let searchVC = SearchViewController()
-                    searchVC.searchList = search
-                    vc.transition(searchVC, transitionStyle: .push)
+                self.refreshIdToken()
+                self.apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { bool, statusCode in
+                    print(bool,statusCode)
                 }
+//                self.apiQueue.searchRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!) { search in
+                    let searchVC = SearchViewController()
+                    vc.transition(searchVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         
@@ -111,44 +94,63 @@ extension HomeViewController {
                 vc.homeView.allBtn.setTitleColor(BlackWhite.black, for: .normal)
             }
             .disposed(by: disposeBag)
-        
-    }
-    
-    func SetLocationBtn() {
-        homeView.locationBtn.setTitle("complass", for: UIControl.State.selected)
-        homeView.locationBtn.addTarget(self, action: #selector(locationTapped), for: .touchUpInside)
-    }
-    @objc func locationTapped(_ sender: UIButton) {
-        // 카메라 이동
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat ?? 0 , lng: lng ?? 0 ))
-        cameraUpdate.animation = .easeIn
-        homeView.naverMapView.mapView.moveCamera(cameraUpdate)
+        homeView.locationBtn.rx.tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.homeView.locationBtn.setTitle("complass", for: UIControl.State.selected)
+                let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: HomeViewController.lat ?? 0 , lng: HomeViewController.lng ?? 0 ))
+                cameraUpdate.animation = .easeIn
+                vc.homeView.naverMapView.mapView.moveCamera(cameraUpdate)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
-
 extension HomeViewController: CLLocationManagerDelegate {
+    private func locationRequest() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                print("위치 서비스 On 상태")
+                self.locationManager.startUpdatingLocation()
+            } else {
+                print("위치 서비스 Off 상태")
+            }
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            lat = location.coordinate.latitude
-            lng = location.coordinate.longitude
-            
-            marker.position = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
-            marker.mapView = homeView.naverMapView.mapView
-            marker.iconImage = NMFOverlayImage(image: UIImage(named: "map_marker.png")!)
-            
-            
-            // 거리 원
-            circle.center = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
-            circle.radius = 700
-            circle.mapView = homeView.naverMapView.mapView
-            circle.outlineWidth = 1
-            circle.outlineColor = UIColor.systemBlue
-            circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
-            
+            HomeViewController.lat = location.coordinate.latitude
+            HomeViewController.lng = location.coordinate.longitude
+            setpin()
         }
-        // 위치 업데이트 멈춰 (실시간성이 중요한거는 매번쓰고, 중요하지않은건 원하는 시점에 써라)
         locationManager.stopUpdatingLocation() // stopUpdatingHeading 이랑 주의
+    }
+    
+
+
+}
+
+
+extension HomeViewController: NMFMapViewCameraDelegate {
+    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
+        setpin()
+    }
+    
+    private func setpin() {
+        marker.position = homeView.naverMapView.mapView.cameraPosition.target
+        marker.position = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
+        marker.iconImage = NMFOverlayImage(image: UIImage(named: "map_marker.png")!)
+        marker.mapView = homeView.naverMapView.mapView
+        
+        // 거리 원
+        circle.center = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
+        circle.radius = 700
+        circle.mapView = homeView.naverMapView.mapView
+        circle.outlineWidth = 1
+        circle.outlineColor = UIColor.systemBlue
+        circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
     }
 }

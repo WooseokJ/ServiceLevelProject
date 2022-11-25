@@ -70,7 +70,7 @@ class AuthViewController: BaseViewController {
             UserInfo.shared.fcmtoken = UserDefaults.standard.string(forKey: "fcmtoken")
             UserDefaults.standard.set(idToken!, forKey: "token")
             
-            self.api.login(idtoken: idToken!) { val, statusCode in
+            self.apiUser.login(idtoken: idToken!) { val, statusCode in
                 print(statusCode,val)
                 if val && statusCode == 200 {
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
