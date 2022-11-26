@@ -8,11 +8,14 @@
 import UIKit
 import Tabman
 import Pageboy
+import Toast
 
-class SearchListViewController: TabmanViewController {
+class SearchListViewController: TabmanViewController, APIProtocol, ButtonProtocol{
 
     var VCS: Array<UIViewController> = [AroundSeSacViewController(), ResponseViewController()]
-
+    
+    let apiQueue = APIQueue()
+    
     
     var searchListView = SearchListView()
     override func loadView() {
@@ -31,7 +34,25 @@ class SearchListViewController: TabmanViewController {
     }
     
     @objc func searchCancelClicked() {
-        self.navigationController?.popToRootViewController(animated: true)
+        apiQueue.searchStopRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { [self] bool, statusCode in
+            switch statusCode{
+            case CommonError.success.rawValue :
+                view.makeToast("찾기 중단 성공")
+                self.navigationController?.popToRootViewController(animated: true)
+            case CommonError.tokenErorr.rawValue: //401
+                DispatchQueue.main.async {
+                    self.refreshIdToken()
+                }
+            case CommonError.notUserError.rawValue:
+                view.makeToast("미가입 회원")
+            case CommonError.serverError.rawValue:
+                view.makeToast("서버에러")
+            case CommonError.clientError.rawValue:
+                view.makeToast("클라이언트 에러")
+            default:
+                print("알수없는오류")
+            }
+        }
     }
 
 }

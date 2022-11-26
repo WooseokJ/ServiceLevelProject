@@ -36,18 +36,23 @@ enum queuePostErorr: Int,Error {
     case panaltyThirdUser = 205
 }
 
-enum searchError: Int, Error {
-    case reportUserError = 201
-    case cancel1Error = 203
-    case cancel2Error = 204
-    case cancel3Error = 205
+enum queueStopError: Int, Error {
+    case alreadyStopError = 201
 }
+
+///// -  스터디함꼐할 새싹검색
+
 
 enum myQueueStateErorr: Int, Error {
     case notRequest = 201
 }
 
-enum studyError: Int, Error {
+enum studyRequestError: Int,Error {
+    case alreadyTomeRequest = 201
+    case oppnentStopRequest = 202
+}
+
+enum studyAcceptError: Int, Error {
     case opponentToOtherMettingError = 201
     case stopSesacSearchError = 202
     case myToOtherMatchedError = 203

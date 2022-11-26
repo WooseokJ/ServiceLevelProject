@@ -36,6 +36,7 @@ final class APIUser: APIProtocol {
                         refreshIdToken()
                     }
                     completionHandler(false,response.response!.statusCode)
+
                 case CommonError.serverError.rawValue: completionHandler(false,response.response!.statusCode)
                 case CommonError.clientError.rawValue: completionHandler(false,response.response!.statusCode)
                 default: completionHandler(false,response.response!.statusCode)

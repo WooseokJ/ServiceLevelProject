@@ -17,6 +17,7 @@ enum APIHeader {
     case queue(lat: Double, long: Double, studylist: [String])
     case search(lat: Double, long: Double)
     case myQueueState(idtoken: String)
+    case searchStop(idtoken: String)
     
 }
 
@@ -32,8 +33,9 @@ extension APIHeader {
             return URL(string: baseURL+"queue/search")!
         case .myQueueState:
             return URL(string: baseURL+"queue/myQueueState")!
-        case .queue:
+        case .queue, .searchStop:
             return URL(string: baseURL+"queue")!
+        
         }
     }
     
@@ -49,6 +51,8 @@ extension APIHeader {
             return .post
         case .myQueueState:
             return .get
+        case .searchStop:
+            return .delete
         }
     }
     
@@ -58,7 +62,7 @@ extension APIHeader {
             return ["Content-Type" : "application/x-www-form-urlencoded",
                     "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
-        case .login, .myQueueState:
+        case .login, .myQueueState, .searchStop:
             return [
                 "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
@@ -77,7 +81,7 @@ extension APIHeader {
                 "email" : email,
                 "gender" : gender
             ]
-        case .login(let idtoken), .myQueueState(let idtoken):
+        case .login(let idtoken), .myQueueState(let idtoken), .searchStop(let idtoken):
             return [
                 "idtoken" : idtoken
             ]

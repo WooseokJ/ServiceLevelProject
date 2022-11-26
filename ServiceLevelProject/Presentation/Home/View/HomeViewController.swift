@@ -29,7 +29,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backButtonTitle = ""
-        
+        callSearch()
     }
     
     override func viewDidLoad() {
@@ -37,42 +37,19 @@ final class HomeViewController: BaseViewController {
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind() //이게 viewWillAppear에 있으면 여러번호출
+        self.refreshIdToken()
     }
 }
 
+
 extension HomeViewController: APIProtocol, ButtonProtocol {
+    
+    
     private func bind() {
         homeView.searchBtn.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: vc.homeView.searchBtn)
-                
-                
-                vc.apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { bool, statusCode in
-                    print(statusCode)
-                    vc.refreshIdToken()
-                    switch statusCode {
-                    case CommonError.success.rawValue: //200
-                        print("매칭성공")
-                        
-                    case myQueueStateErorr.notRequest.rawValue: //201 요청x
-                        vc.chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: vc.homeView.searchBtn)
-                        let searchVC = SearchViewController()
-                        searchVC.searchList = vc.transferSearchInfo
-                        vc.transition(searchVC, transitionStyle: .push)
-                    case CommonError.tokenErorr.rawValue: //401 토큰만료
-                        vc.refreshIdToken()
-                    case CommonError.notUserError.rawValue:
-                        print("미가입회원")
-                    case CommonError.serverError.rawValue:
-                        print("서버에러")
-                    case CommonError.clientError.rawValue:
-                        print("클라이언트에러")
-                    default:
-                        print("모르는 에러")
-                    }
-                    print("123t")
-                }
+                vc.callmyqueueStateRequest()
             }.disposed(by: disposeBag)
         
         
@@ -125,13 +102,7 @@ extension HomeViewController: APIProtocol, ButtonProtocol {
             }
             .disposed(by: disposeBag)
     }
-//    private func chagedPlotingButton(imageName: String) {
-//        let imageConfig = UIImage.SymbolConfiguration(pointSize: 100, weight: .light)
-//        let image = UIImage(systemName: imageName , withConfiguration: imageConfig)
-//        self.homeView.searchBtn.setImage(image, for: .normal)
-//    }
 }
-
 extension HomeViewController: CLLocationManagerDelegate {
     private func locationRequest() {
         locationManager.delegate = self
@@ -195,6 +166,37 @@ extension HomeViewController: NMFMapViewCameraDelegate {
                 }
                 return
             }
+        }
+    }
+    private func callmyqueueStateRequest() {
+        apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { [self] statusCode, data in
+            switch statusCode {
+            case CommonError.success.rawValue: //200
+                chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: homeView.searchBtn)
+                guard data?.matched == 0 else {
+                    print("채팅화면으로 넘어가자!! 아직못함.")
+                    return
+                }
+                let nextVC = SearchListViewController()
+                transition(nextVC, transitionStyle: .push)
+                
+            case myQueueStateErorr.notRequest.rawValue: //201 요청x
+                chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: homeView.searchBtn)
+                let searchVC = SearchViewController()
+                searchVC.searchList = transferSearchInfo
+                transition(searchVC, transitionStyle: .push)
+            case CommonError.tokenErorr.rawValue: //401 토큰만료
+                refreshIdToken()
+            case CommonError.notUserError.rawValue:
+                print("미가입회원")
+            case CommonError.serverError.rawValue:
+                print("서버에러")
+            case CommonError.clientError.rawValue:
+                print("클라이언트에러")
+            default:
+                print("모르는 에러")
+            }
+            print("123t")
         }
     }
 }

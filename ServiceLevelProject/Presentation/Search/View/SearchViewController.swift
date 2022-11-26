@@ -19,7 +19,9 @@ class SearchViewController: BaseViewController {
     var searchList: Search?
     var aroundList: [String] = []
     var myfavoriteList: [String] = []
-
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.backButtonTitle = ""
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionviewConfigure()
@@ -29,8 +31,6 @@ class SearchViewController: BaseViewController {
         print(searchList?.fromQueueDB)
         print(searchList?.fromQueueDBRequested)
 
-        
-        
         self.navigationItem.titleView = searchView.searchBar
         searchView.searchBar.delegate = self
         
