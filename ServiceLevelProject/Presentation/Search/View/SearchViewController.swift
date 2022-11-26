@@ -17,7 +17,11 @@ class SearchViewController: BaseViewController {
     }
 
     var searchList: Search?
-    var aroundList: [String] = []
+    
+    var nomalList: [String] = []
+    var recommendList: [String] = []
+    var totalList: [String] = []
+    
     var myfavoriteList: [String] = []
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.backButtonTitle = ""
@@ -26,9 +30,24 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         collectionviewConfigure()
         bind()
-        searchList?.fromRecommend.forEach { aroundList.append($0) }
+        
+        searchList?.fromRecommend.forEach{ recommend in
+            recommendList.append(recommend)
+        }
+        
+        totalList+=recommendList
+        
+        searchList?.fromQueueDB.forEach {
+            $0.studylist.forEach { studyVal in
+                print(studyVal)
+                totalList.append(studyVal)
+            }
+        }
+        
+        
+        
         print(searchList?.fromRecommend)
-        print(searchList?.fromQueueDB)
+        dump(searchList?.fromQueueDB)
         print(searchList?.fromQueueDBRequested)
 
         self.navigationItem.titleView = searchView.searchBar
@@ -63,7 +82,7 @@ class SearchViewController: BaseViewController {
         searchView.searchButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: ["swift"]) { val, statusCode in
+                vc.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: vc.myfavoriteList) { val, statusCode in
                     print(val,statusCode)
                     if statusCode == 200 {
                         let searchListVC = SearchListViewController()

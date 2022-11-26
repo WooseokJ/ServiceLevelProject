@@ -7,8 +7,8 @@
 
 import UIKit
 
-@objc protocol ButtonProtocol {
-    @objc optional func chagedPlotingButton(imageName: String, button: UIButton)
+protocol ButtonProtocol: AnyObject {
+    func chagedPlotingButton(imageName: String, button: UIButton)
 }
 
 extension ButtonProtocol {

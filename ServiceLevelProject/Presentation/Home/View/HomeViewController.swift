@@ -11,14 +11,12 @@ import CoreLocation
 import SnapKit
 import Toast
 
-final class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController , APIProtocol, ButtonProtocol{
     
     private let homeView = HomeView()
     override func loadView() {
         super.view = homeView
     }
-    
-
     
     static var lng: Double?
     static var lat: Double?
@@ -39,7 +37,7 @@ final class HomeViewController: BaseViewController {
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind() //이게 viewWillAppear에 있으면 여러번호출
-        apiProtocol?.refreshIdToken()
+        refreshIdToken()
     }
 }
 
@@ -53,7 +51,6 @@ extension HomeViewController {
             .bind { (vc,val) in
                 vc.callmyqueueStateRequest()
             }.disposed(by: disposeBag)
-        
         
         homeView.allBtn.rx.tap
             .withUnretained(self)
@@ -152,13 +149,18 @@ extension HomeViewController: NMFMapViewCameraDelegate {
         circle.outlineColor = UIColor.systemBlue
         circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
     }
+    
     private func callSearch() {
-        self.apiQueue.searchRequest(lat: marker.position.lat, long: marker.position.lng) { [self] search  in
+        self.apiQueue.searchRequest(lat: marker.position.lat, long: marker.position.lng) { [self] statusCode, search  in
             transferSearchInfo = search
+            print(statusCode,search)
+            
+            
+            
             guard search!.fromQueueDB.isEmpty else {
                 search!.fromQueueDB.forEach {
                     let marker = NMFMarker(position: NMGLatLng(lat: $0.lat, lng: $0.long))
-                    marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_3.png")!)
+                    marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_\(Int.random(in: 1...5)).png")!)
                     marker.mapView = homeView.naverMapView.mapView
                     markers.append(marker)
                 }
@@ -166,11 +168,12 @@ extension HomeViewController: NMFMapViewCameraDelegate {
             }
         }
     }
+    
     private func callmyqueueStateRequest() {
         apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { [self] statusCode, data in
             switch statusCode {
             case CommonError.success.rawValue: //200
-                buttonProtocol?.chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: homeView.searchBtn)
+                chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: homeView.searchBtn)
                 guard data?.matched == 0 else {
                     print("채팅화면으로 넘어가자!! 아직못함.")
                     return
@@ -179,12 +182,12 @@ extension HomeViewController: NMFMapViewCameraDelegate {
                 transition(nextVC, transitionStyle: .push)
                 
             case myQueueStateErorr.notRequest.rawValue: //201 요청x
-                buttonProtocol?.chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: homeView.searchBtn)
+                chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: homeView.searchBtn)
                 let searchVC = SearchViewController()
                 searchVC.searchList = transferSearchInfo
                 transition(searchVC, transitionStyle: .push)
             case CommonError.tokenErorr.rawValue: //401 토큰만료
-                apiProtocol?.refreshIdToken()
+                refreshIdToken()
             case CommonError.notUserError.rawValue:
                 print("미가입회원")
             case CommonError.serverError.rawValue:

@@ -11,9 +11,7 @@ import UIKit
 import FirebaseAuth
 
 
-class APIUser {
-
-    var apiProtocol: APIProtocol?
+class APIUser: APIProtocol {
 
     //MARK: - 싱글턴 변수
     typealias completionHandler = ( (Bool, Int) -> Void )
@@ -32,10 +30,10 @@ class APIUser {
                 case SingupError.regUserError.rawValue: completionHandler(false,response.response!.statusCode)
                 case SingupError.notNickNameError.rawValue: //202
                     completionHandler(false,response.response!.statusCode)
-                    apiProtocol?.presentVC()
+                    presentVC()
                 case CommonError.tokenErorr.rawValue: //401
                     DispatchQueue.main.async {
-                        self.apiProtocol?.refreshIdToken()
+                        refreshIdToken()
                     }
                     completionHandler(false,response.response!.statusCode)
 

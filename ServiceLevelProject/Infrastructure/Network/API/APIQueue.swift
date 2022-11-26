@@ -22,7 +22,7 @@ final class APIQueue {
     var apiProtocol: APIProtocol?
     
     typealias completionHandler = ( (Bool, Int) -> Void )
-    typealias SearchInfo = ((Search?) -> Void)
+    typealias SearchInfo = ((Int, Search?) -> Void)
     typealias MyQueueStateInfo = ((Int, MyQueueState?) -> Void)
     
     init() {}
@@ -63,7 +63,7 @@ final class APIQueue {
         AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().responseDecodable(of: Search.self) { response in
             switch response.result {
             case .success(let data):
-                completionHandler(data)
+                completionHandler(response.response!.statusCode, data)
             case .failure(let error):
                 print("profile fail: \(error)")
                 //                completionHandler(error)

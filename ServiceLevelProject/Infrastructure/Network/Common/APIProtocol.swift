@@ -9,9 +9,9 @@ import UIKit
 import FirebaseAuth
 
 
-@objc protocol APIProtocol { //  선택적함수 사용가능   여기서 이거 쓰면 항상 노란색경고뜸.. 
-    @objc optional func presentVC() // 선택적 함수
-    @objc optional func refreshIdToken() // 선택적 함수
+protocol APIProtocol: AnyObject { //  선택적함수 사용가능   여기서 이거 쓰면 항상 노란색경고뜸..
+    func presentVC() // 선택적 함수
+    func refreshIdToken() // 선택적 함수
 }
 
 

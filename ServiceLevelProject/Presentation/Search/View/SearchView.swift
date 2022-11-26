@@ -85,7 +85,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0 : return aroundList.count
+        case 0 : return totalList.count
         case 1: return myfavoriteList.count
         default: return 1
         }
@@ -95,11 +95,20 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
         switch indexPath.section {
         case 0:
-            cell.itemButton.setTitle(aroundList[indexPath.row], for: .normal)
-            cell.layer.borderColor = SystemColor.error.cgColor
-            cell.itemButton.setTitleColor(SystemColor.error, for: .normal)
-            cell.layer.cornerRadius = 10
-            cell.layer.borderWidth = 1
+            cell.itemButton.setTitle(totalList[indexPath.row], for: .normal)
+            if recommendList.count <= indexPath.row {
+                cell.layer.borderColor = Grayscale.gray5.cgColor
+                cell.itemButton.setTitleColor(Grayscale.gray5, for: .normal)
+          
+                cell.layer.cornerRadius = 10
+                cell.layer.borderWidth = 1
+            } else {
+                cell.layer.borderColor = SystemColor.error.cgColor
+                cell.itemButton.setTitleColor(SystemColor.error, for: .normal)
+                cell.layer.cornerRadius = 10
+                cell.layer.borderWidth = 1
+            }
+
         case 1:
             guard myfavoriteList.count != 0 else {
                 return cell
@@ -135,9 +144,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
-        case 0: return CGSize(width: aroundList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 60, height: 32)
+        case 0: return CGSize(width: totalList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 60 , height: totalList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).height + 10)
         case 1:
-            return CGSize(width: myfavoriteList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 60, height: 32)
+            return CGSize(width: myfavoriteList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 60, height: myfavoriteList[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).height + 10)
         default:
             print("오류",#function)
             return CGSize()
@@ -152,15 +161,15 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            myfavoriteList.append(aroundList[indexPath.row])
-            aroundList.remove(at: indexPath.row)
+            myfavoriteList.append(totalList[indexPath.row])
+            totalList.remove(at: indexPath.row)
             print("myfavoriteList",myfavoriteList)
-            print("aroundList",aroundList)
+            print("aroundList",totalList)
         case 1:
-            aroundList.append(myfavoriteList[indexPath.row])
+            totalList.append(myfavoriteList[indexPath.row])
             myfavoriteList.remove(at: indexPath.row)
             print("myfavoriteList",myfavoriteList)
-            print("aroundList",aroundList)
+            print("aroundList",totalList)
         default: break
         }
         collectionView.reloadData()
