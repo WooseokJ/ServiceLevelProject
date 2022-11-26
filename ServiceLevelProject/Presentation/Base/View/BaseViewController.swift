@@ -19,6 +19,9 @@ class BaseViewController: UIViewController {
         self.view = baseView
     }
     
+    var apiProtocol: APIProtocol?
+    var buttonProtocol: ButtonProtocol?
+    
     let disposeBag = DisposeBag()
     let apiUser = APIUser()
     let apiQueue = APIQueue()

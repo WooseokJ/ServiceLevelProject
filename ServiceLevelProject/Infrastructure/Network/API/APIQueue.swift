@@ -18,7 +18,8 @@ struct CustomGetEncoding : ParameterEncoding {
 }
  
 
-final class APIQueue: APIProtocol {
+final class APIQueue {
+    var apiProtocol: APIProtocol?
     
     typealias completionHandler = ( (Bool, Int) -> Void )
     typealias SearchInfo = ((Search?) -> Void)

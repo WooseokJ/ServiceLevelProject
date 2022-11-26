@@ -18,6 +18,8 @@ final class HomeViewController: BaseViewController {
         super.view = homeView
     }
     
+
+    
     static var lng: Double?
     static var lat: Double?
     
@@ -37,12 +39,12 @@ final class HomeViewController: BaseViewController {
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind() //이게 viewWillAppear에 있으면 여러번호출
-        self.refreshIdToken()
+        apiProtocol?.refreshIdToken()
     }
 }
 
 
-extension HomeViewController: APIProtocol, ButtonProtocol {
+extension HomeViewController {
     
     
     private func bind() {
@@ -152,11 +154,7 @@ extension HomeViewController: NMFMapViewCameraDelegate {
     }
     private func callSearch() {
         self.apiQueue.searchRequest(lat: marker.position.lat, long: marker.position.lng) { [self] search  in
-            print(search?.fromRecommend)
-            print(search?.fromQueueDB.count)
-            print(search?.fromQueueDBRequested)
-            
-            self.transferSearchInfo = search
+            transferSearchInfo = search
             guard search!.fromQueueDB.isEmpty else {
                 search!.fromQueueDB.forEach {
                     let marker = NMFMarker(position: NMGLatLng(lat: $0.lat, lng: $0.long))
@@ -172,7 +170,7 @@ extension HomeViewController: NMFMapViewCameraDelegate {
         apiQueue.myqueueStateRequest(idtoken: UserDefaults.standard.string(forKey: "token")!) { [self] statusCode, data in
             switch statusCode {
             case CommonError.success.rawValue: //200
-                chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: homeView.searchBtn)
+                buttonProtocol?.chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: homeView.searchBtn)
                 guard data?.matched == 0 else {
                     print("채팅화면으로 넘어가자!! 아직못함.")
                     return
@@ -181,12 +179,12 @@ extension HomeViewController: NMFMapViewCameraDelegate {
                 transition(nextVC, transitionStyle: .push)
                 
             case myQueueStateErorr.notRequest.rawValue: //201 요청x
-                chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: homeView.searchBtn)
+                buttonProtocol?.chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: homeView.searchBtn)
                 let searchVC = SearchViewController()
                 searchVC.searchList = transferSearchInfo
                 transition(searchVC, transitionStyle: .push)
             case CommonError.tokenErorr.rawValue: //401 토큰만료
-                refreshIdToken()
+                apiProtocol?.refreshIdToken()
             case CommonError.notUserError.rawValue:
                 print("미가입회원")
             case CommonError.serverError.rawValue:
