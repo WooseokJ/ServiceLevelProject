@@ -46,9 +46,7 @@ class LoginViewController: BaseViewController {
                     if error == nil {
                         vc.verifyID = varification
                         print("verify:",vc.verifyID)
-                        
                         UserInfo.shared.phoneNumber = vc.loginView.phoneNumberTextField.text // 폰번호입력
-                        
                         let viewController = AuthViewController()
                         viewController.verifyID = varification
                         vc.transition(viewController, transitionStyle: .push)

@@ -8,9 +8,13 @@
 import UIKit
 
 class MyInfoView: BaseView {
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
     }
+    
     //MARK: 크기
     let collectionview : UICollectionView = {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),

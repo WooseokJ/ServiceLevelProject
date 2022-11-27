@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class SearchView: BaseView {
+class SearchView: BaseView, UICollectionViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +45,7 @@ class SearchView: BaseView {
         cv.layer.cornerRadius = 10
         cv.clipsToBounds = true
         cv.backgroundColor = .clear
+
         cv.register(HeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier)
         return cv
     }()
@@ -137,7 +138,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         return header
 
     }
-    
+    // 해더사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: 100, height: 30)
     }
@@ -161,15 +162,12 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
+            guard myfavoriteList.count < 8  else {return}
             myfavoriteList.append(totalList[indexPath.row])
             totalList.remove(at: indexPath.row)
-            print("myfavoriteList",myfavoriteList)
-            print("aroundList",totalList)
         case 1:
             totalList.append(myfavoriteList[indexPath.row])
             myfavoriteList.remove(at: indexPath.row)
-            print("myfavoriteList",myfavoriteList)
-            print("aroundList",totalList)
         default: break
         }
         collectionView.reloadData()

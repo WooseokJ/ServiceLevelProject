@@ -12,30 +12,17 @@ import Toast
 import FirebaseAuth
 
 class BaseViewController: UIViewController {
-    
     let baseView = BaseView()
     
     override func loadView() {
         self.view = baseView
     }
-    
-    var apiProtocol: APIProtocol?
-    var buttonProtocol: ButtonProtocol?
-    
+        
     let disposeBag = DisposeBag()
-    let apiUser = APIUser()
-    let apiQueue = APIQueue()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = BlackWhite.white
-    }
-    
-    func showAlertMessage(title: String) {
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(ok)
-        present(alert,animated: true)
     }
     
     func checkMaxLength(textField: UITextField!, maxLength: Int) -> Bool {
@@ -45,11 +32,8 @@ class BaseViewController: UIViewController {
         }
         return true
     }
-    
-
-    
-    
 }
+
 extension BaseViewController: UITextFieldDelegate {
     // 키보드 여백 누를떄
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

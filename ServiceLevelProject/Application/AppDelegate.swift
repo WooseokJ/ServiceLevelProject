@@ -10,8 +10,7 @@ import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
 
-import CoreLocation
-import UserNotifications
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

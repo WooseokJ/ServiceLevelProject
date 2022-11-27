@@ -11,11 +11,13 @@ final class TapViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tabBar.unselectedItemTintColor = Grayscale.gray6
         self.tabBar.backgroundColor = .white
         self.tabBar.isTranslucent = false
         self.tabBar.tintColor = BrandColor.green
         self.navigationController?.isNavigationBarHidden = true
+        
         let firstVC = UINavigationController(rootViewController: HomeViewController())
         firstVC.tabBarItem.title = "홈"
         firstVC.tabBarItem.image = UIImage(named: "home_black_icon.png")

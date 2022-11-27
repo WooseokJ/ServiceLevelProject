@@ -15,6 +15,7 @@ class AuthViewController: BaseViewController {
     
     let authView = AuthView()
     var verifyID: String?
+    var apiUser = APIUser()
     
     override func loadView() {
         super.view = authView
@@ -70,7 +71,7 @@ class AuthViewController: BaseViewController {
             UserInfo.shared.fcmtoken = UserDefaults.standard.string(forKey: "fcmtoken")
             UserDefaults.standard.set(idToken!, forKey: "token")
             
-            self.apiUser.login(idtoken: idToken!) { val, statusCode in
+            self.apiUser.login() { statusCode, val in
                 print(statusCode,val)
                 if val && statusCode == 200 {
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene

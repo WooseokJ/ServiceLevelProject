@@ -11,14 +11,14 @@ import Alamofire
 
 
 enum APIHeader {
-    case login(idtoken: String)
+    case login
     case signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String,
                 email: String, gender: Int)
     case queue(lat: Double, long: Double, studylist: [String])
     case search(lat: Double, long: Double)
-    case myQueueState(idtoken: String)
-    case searchStop(idtoken: String)
-    
+    case myQueueState
+    case searchStop
+    case withdraw
 }
 
 
@@ -35,24 +35,16 @@ extension APIHeader {
             return URL(string: baseURL+"queue/myQueueState")!
         case .queue, .searchStop:
             return URL(string: baseURL+"queue")!
-        
+        case .withdraw:
+            return URL(string: baseURL+"withdraw")!
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .signup:
-            return .post
-        case .login:
-            return .get
-        case .queue:
-            return .post
-        case .search:
-            return .post
-        case .myQueueState:
-            return .get
-        case .searchStop:
-            return .delete
+        case .signup, .queue, .search, .withdraw: return .post
+        case .login, .myQueueState : return .get
+        case .searchStop: return .delete
         }
     }
     
@@ -62,10 +54,11 @@ extension APIHeader {
             return ["Content-Type" : "application/x-www-form-urlencoded",
                     "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
-        case .login, .myQueueState, .searchStop:
+        case .login, .myQueueState, .searchStop, .withdraw:
             return [
                 "idtoken": UserDefaults.standard.string(forKey: "token")!
             ]
+    
         }
     }
 
@@ -80,10 +73,6 @@ extension APIHeader {
                 "birth" : birth,
                 "email" : email,
                 "gender" : gender
-            ]
-        case .login(let idtoken), .myQueueState(let idtoken), .searchStop(let idtoken):
-            return [
-                "idtoken" : idtoken
             ]
         case .search(let lat, let long):
             return [

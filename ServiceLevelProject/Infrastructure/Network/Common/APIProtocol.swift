@@ -7,20 +7,29 @@
 
 import UIKit
 import FirebaseAuth
+import Toast
 
+ 
 
-protocol APIProtocol: AnyObject { //  선택적함수 사용가능   여기서 이거 쓰면 항상 노란색경고뜸..
-    func presentVC() // 선택적 함수
-    func refreshIdToken() // 선택적 함수
+protocol APIProtocol {
+    func presentVC()
+    func refreshIdToken()
 }
 
-
-extension APIProtocol {
-    func refreshIdToken() { //그렇게되면 로그인,회원가입,탈퇴,서치 등 다 만들어야하나?
+extension APIProtocol where Self: UIViewController { // where Self로 VC받아서 VC에있는 view, 여러 버튼등등 쓸수있는데
+    // 이러면 여기서 예를들어
+    var apiQueue: APIQueue {
+        return APIQueue()
+    }
+    var homeView: HomeView {
+        return HomeView()
+    }
+    
+    func refreshIdToken()  {
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             if let error = error {
-                // Handle error
+                self.view.makeToast("토큰 갱신 에러")
                 return;
             }
             print("갱신한 idToken",idToken)
@@ -36,5 +45,9 @@ extension APIProtocol {
         sceneDelegate?.window?.rootViewController = nav
         sceneDelegate?.window?.makeKeyAndVisible()
     }
+    
+   
+  
 }
+
 

@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class InfoManageMentView: BaseView {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -87,9 +88,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         switch tableView {
             case infoManageView.secondTableView: return InfoManageMent.content.list.count
             case infoManageView.tableView: return 1
-            default:
-            print("오류",#function)
-            return 1
+            default: return 1
         }
         
     }
@@ -104,7 +103,6 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         switch tableView {
             
         case infoManageView.secondTableView:
-            print("scond")
             switch indexPath.row {
             case 0:
                 cell.womanButton.snp.remakeConstraints { make in

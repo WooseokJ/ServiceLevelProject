@@ -13,7 +13,7 @@ final class Network {
     
     private init() {}
     
-    func requestAPI<T: Decodable>(type: T.Type = T.self, url: URL, method: HTTPMethod , parameters: [String:String]? = nil , headers: HTTPHeaders, completion: @escaping (Result<T, Error>) -> ()) { // T: 어떤데이터가 올지모르므로
+    func requestAPI<T: Decodable>(type: T.Type = T.self, url: URL, method: HTTPMethod , parameters: [String:Any]? = nil , headers: HTTPHeaders, completion: @escaping (Result<T, Error>) -> ()) { // T: 어떤데이터가 올지모르므로
 
         AF.request(url, method: method, parameters: parameters ,headers: headers)
             .responseDecodable(of: T.self) { response in

@@ -10,19 +10,21 @@ import RxSwift
 import RxCocoa
 
 class SearchViewController: BaseViewController {
-
+    
     let searchView = SearchView()
     override func loadView() {
         super.view = searchView
     }
-
+    
     var searchList: Search?
+    var apiQueue = APIQueue()
     
     var nomalList: [String] = []
     var recommendList: [String] = []
     var totalList: [String] = []
-    
     var myfavoriteList: [String] = []
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.backButtonTitle = ""
     }
@@ -30,7 +32,6 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         collectionviewConfigure()
         bind()
-        
         searchList?.fromRecommend.forEach{ recommend in
             recommendList.append(recommend)
         }
@@ -45,11 +46,6 @@ class SearchViewController: BaseViewController {
         }
         
         
-        
-        print(searchList?.fromRecommend)
-        dump(searchList?.fromQueueDB)
-        print(searchList?.fromQueueDBRequested)
-
         self.navigationItem.titleView = searchView.searchBar
         searchView.searchBar.delegate = self
         
@@ -80,30 +76,62 @@ class SearchViewController: BaseViewController {
     
     func bind() {
         searchView.searchButton.rx.tap
-            .withUnretained(self)
-            .bind { (vc,val) in
-                vc.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: vc.myfavoriteList) { val, statusCode in
-                    print(val,statusCode)
-                    if statusCode == 200 {
-                        let searchListVC = SearchListViewController()
-                        vc.transition(searchListVC, transitionStyle: .push)
-                    }
-                }
-            }
-            .disposed(by: disposeBag) 
+            .bind { [weak self] (val) in
+                self?.queuePostRequest()
+            }.disposed(by: disposeBag)
     }
+    
+    func queuePostRequest() {
+        self.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: self.myfavoriteList) { [self] tt  in
+            print(tt)
+            switch tt {
+            case .success(_):
+                print()
+            case .failure(.success):
+                print()
+            case .failure(.tokenErorr):
+                print()
+            case .failure(.notUserError):
+                print()
+            case .failure(.serverError):
+                print()
+            case .failure(.clientError):
+                print()
+            }
+            
+//            switch statusCode {
+//            case CommonError.success.rawValue:
+//                self.apiQueue.searchRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!) { statusCode, search in
+//                    let searchListVC = SearchListViewController()
+//                    searchListVC.searchInfo = search
+//                    self.transition(searchListVC, transitionStyle: .push)
+//                }
+//            default:
+//                self.view.makeToast("선택해라!! ")
+//                break
+//            }
+            
+        }
+    }
+    
+    
+    
+    
 }
 
 extension SearchViewController : UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
+        searchBar.resignFirstResponder()
+        guard myfavoriteList.count < 8  else {
+            view.makeToast("8개 이상 추가할수없습니다.")
+            return
+        }
         myfavoriteList.append(searchBar.text!)
         searchView.collectionView.reloadData()
-        searchBar.resignFirstResponder()
         searchBar.text = ""
     }
-
+    
 }
 
 

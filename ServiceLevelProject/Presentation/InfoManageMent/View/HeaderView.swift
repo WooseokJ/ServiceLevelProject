@@ -33,6 +33,7 @@ class HeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
             super.init(coder: coder)
     }
+    
     private func setupHeaderView() {
         [image].forEach {
             self.contentView.addSubview($0)

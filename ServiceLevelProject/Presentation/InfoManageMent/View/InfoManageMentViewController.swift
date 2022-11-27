@@ -25,6 +25,7 @@ class InfoManageMentViewController: BaseViewController {
         infoManageView.tableView.dataSource = self
         infoManageView.secondTableView.delegate = self
         infoManageView.secondTableView.dataSource = self
+        
         let right = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
         navigationItem.rightBarButtonItem = right
         navigationItem.title = "정보 관리"

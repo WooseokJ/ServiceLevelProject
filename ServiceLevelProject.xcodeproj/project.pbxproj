@@ -58,8 +58,10 @@
 		18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24BB291929BD00DD5D1C /* BaseViewController.swift */; };
 		18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24BD291929C600DD5D1C /* BaseView.swift */; };
 		18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC24C029192A2200DD5D1C /* HomeView.swift */; };
+		18DEA04B2933DB410098920A /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEA04A2933DB410098920A /* HomeProtocol.swift */; };
 		18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */; };
 		18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E283342929FADF00878738 /* HeaderCollectionView.swift */; };
+		18EC2FCD2932786100071C94 /* ImageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC2FCC2932786100071C94 /* ImageEnum.swift */; };
 		18EFC70429236AA400FB3DB2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70329236AA400FB3DB2 /* Date.swift */; };
 		18EFC706292477B900FB3DB2 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC705292477B900FB3DB2 /* TapViewController.swift */; };
 		18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */; };
@@ -146,8 +148,10 @@
 		18DC24BB291929BD00DD5D1C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		18DC24BD291929C600DD5D1C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		18DC24C029192A2200DD5D1C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		18DEA04A2933DB410098920A /* HomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocol.swift; sourceTree = "<group>"; };
 		18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentCollectionViewCell.swift; sourceTree = "<group>"; };
 		18E283342929FADF00878738 /* HeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionView.swift; sourceTree = "<group>"; };
+		18EC2FCC2932786100071C94 /* ImageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEnum.swift; sourceTree = "<group>"; };
 		18EFC70329236AA400FB3DB2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		18EFC705292477B900FB3DB2 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
 		18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 				18F10CDE292BBC430038BEEE /* Network.swift */,
 				1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */,
 				18D65DF3291D585D00CBEAB4 /* APIHeader.swift */,
+				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -381,11 +386,11 @@
 			isa = PBXGroup;
 			children = (
 				18B0DA22291A63CF007044BA /* ServiceLevelProject.entitlements */,
+				18DC249C29189E4A00DD5D1C /* Resource */,
 				18DC24A22918A9A700DD5D1C /* Infrastructure */,
 				18DC249F2918A98200DD5D1C /* Utils */,
 				18DC249E29189EAD00DD5D1C /* Surpport */,
 				18DC249D29189E8300DD5D1C /* Presentation */,
-				18DC249C29189E4A00DD5D1C /* Resource */,
 				18DC249B29189DEE00DD5D1C /* Application */,
 			);
 			path = ServiceLevelProject;
@@ -526,16 +531,17 @@
 			children = (
 				1885ACF2292FDE9400DBFEE7 /* Custom */,
 				18DC24A82918AA0A00DD5D1C /* Protocol */,
-				18DC24A72918AA0100DD5D1C /* Extension */,
+				18DC24A72918AA0100DD5D1C /* Enum */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		18DC24A72918AA0100DD5D1C /* Extension */ = {
+		18DC24A72918AA0100DD5D1C /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				18EC2FCC2932786100071C94 /* ImageEnum.swift */,
 			);
-			path = Extension;
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		18DC24A82918AA0A00DD5D1C /* Protocol */ = {
@@ -963,6 +969,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18DEA04B2933DB410098920A /* HomeProtocol.swift in Sources */,
+				18EC2FCD2932786100071C94 /* ImageEnum.swift in Sources */,
 				18EFC71729249E5F00FB3DB2 /* SesacShopViewController.swift in Sources */,
 				184DDD9C291AB2D000F12D63 /* AuthView.swift in Sources */,
 				18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */,

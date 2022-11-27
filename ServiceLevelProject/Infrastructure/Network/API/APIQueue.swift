@@ -7,51 +7,47 @@
 
 import Foundation
 import Alamofire
-import FirebaseAuth
-
-struct CustomGetEncoding : ParameterEncoding {
-    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-        var request = try URLEncoding().encode(urlRequest, with: parameters)
-        request.url = URL(string: request.url!.absoluteString.replacingOccurrences(of: "%5B%5D=", with: "="))
-        return request
-    }
-}
- 
 
 final class APIQueue {
-    var apiProtocol: APIProtocol?
     
-    typealias completionHandler = ( (Bool, Int) -> Void )
+    typealias completionHandler = ( (Result<Data, CommonError>) -> Void )
     typealias SearchInfo = ((Int, Search?) -> Void)
     typealias MyQueueStateInfo = ((Int, MyQueueState?) -> Void)
     
     init() {}
-
+    
+    
     ///스터디 함께할 새싹 찾기 요청
     func queueRequest(lat: Double, long: Double, studylist: [String], completionHandler: @escaping completionHandler ) {
         let api = APIHeader.queue(lat: lat, long: long, studylist: studylist)
-        AF.request(api.url, method: api.method, parameters: api.parameters , encoding: URLEncoding(arrayEncoding: .noBrackets), headers: api.headers).responseData { response in
+        AF.request(api.url, method: api.method, parameters: api.parameters , encoding: URLEncoding(arrayEncoding: .noBrackets)).validate().responseData { response in //, headers: api.headers
             switch response.result {
-            case .success(let data):
-                print(data)
-                completionHandler(true, response.response!.statusCode)
-            case .failure(let error):
-                print("profile fail: \(error)")
-                //                completionHandler(error)
+            case .success(let data): // 이렇게하면되나
+                completionHandler(.success(data)) //
+            case .failure :
+                guard let customError = CommonError(rawValue: response.response!.statusCode) else{
+                    print("여깈타")
+                    return
+                }
+                completionHandler(.failure(CommonError(rawValue: customError.rawValue)!))
+//                print(customError)
+//                print("dddd",ttt.responseCode)
+//                print("dddddss")
             }
         }
     }
     
     /// 스터디를 함께할 새싹 찾기 중단
     func searchStopRequest(idtoken: String, completionHandler: @escaping completionHandler) {
-        let api = APIHeader.searchStop(idtoken: idtoken)
+        let api = APIHeader.searchStop
         AF.request(api.url, method: .delete, parameters: api.parameters, headers: api.headers).validate().response { response in
             switch response.result{
-            case .success :
-                completionHandler(true, response.response!.statusCode)
+            case .success(let data) :
+                completionHandler(.success(data!)) //
+
+//                completionHandler(response.response!.statusCode, true)
             case .failure(let error):
-                print("profile fail: \(error)")
-                //                completionHandler(error)
+                print("fail: \(error)")
             }
         }
     }
@@ -65,28 +61,22 @@ final class APIQueue {
             case .success(let data):
                 completionHandler(response.response!.statusCode, data)
             case .failure(let error):
-                print("profile fail: \(error)")
-                //                completionHandler(error)
-            }
-                
+                print("fail: \(error)")
             }
         }
+    }
     
     
     /// 서용자의 매칭상태 확인
-    func myqueueStateRequest(idtoken: String, completionHandler: @escaping MyQueueStateInfo) {
+    func myqueueStateRequest(completionHandler: @escaping MyQueueStateInfo) {
         
-        let api = APIHeader.myQueueState(idtoken: idtoken)
-        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().responseDecodable(of: MyQueueState.self) { response in
-            
+        let api = APIHeader.myQueueState
+        AF.request(api.url, method: api.method, headers: api.headers).validate().responseDecodable(of: MyQueueState.self) { response in
             switch response.result{
-            case .success(let data):
-                print(data)
-                print(data)
+            case .success(let data): //
                 completionHandler(response.response!.statusCode, data)
             case .failure(let error):
                 completionHandler(response.response!.statusCode, nil)
-                //                completionHandler(error)
             }
         }
     }
