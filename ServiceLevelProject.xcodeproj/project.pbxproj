@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1832BAB92931265D005D99D6 /* QueuInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832BAB82931265D005D99D6 /* QueuInfo.swift */; };
-		1832BABB29315AE4005D99D6 /* ButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832BABA29315AE4005D99D6 /* ButtonProtocol.swift */; };
+		1834D6FB2934BD210020B2CE /* callSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */; };
+		1834D6FD2934BD530020B2CE /* TransferDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */; };
 		183834A2292DD311006C0675 /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834A1292DD311006C0675 /* SearchListViewController.swift */; };
 		183834A4292DD318006C0675 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834A3292DD318006C0675 /* SearchListView.swift */; };
 		183834B1292E795B006C0675 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 183834B0292E795B006C0675 /* Tabman */; };
@@ -32,6 +33,7 @@
 		18B0DA17291A2995007044BA /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA16291A2995007044BA /* OnBoardingViewController.swift */; };
 		18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1B291A3FBF007044BA /* LoginViewController.swift */; };
 		18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1D291A3FC7007044BA /* LoginView.swift */; };
+		18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */; };
 		18C9FAB7291CB08C00F78848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C9FAB6291CB08C00F78848 /* GoogleService-Info.plist */; };
 		18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC0291CDB7400F78848 /* Enum.swift */; };
 		18C9FAC3291CDBD000F78848 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC2291CDBD000F78848 /* OnBoardingView.swift */; };
@@ -101,7 +103,8 @@
 
 /* Begin PBXFileReference section */
 		1832BAB82931265D005D99D6 /* QueuInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuInfo.swift; sourceTree = "<group>"; };
-		1832BABA29315AE4005D99D6 /* ButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonProtocol.swift; sourceTree = "<group>"; };
+		1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callSearchProtocol.swift; sourceTree = "<group>"; };
+		1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataProtocol.swift; sourceTree = "<group>"; };
 		183834A1292DD311006C0675 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		183834A3292DD318006C0675 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		183834B2292E7A4D006C0675 /* AroundSeSacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSeSacViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		18B0DA1B291A3FBF007044BA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		18B0DA1D291A3FC7007044BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		18B0DA22291A63CF007044BA /* ServiceLevelProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLevelProject.entitlements; sourceTree = "<group>"; };
+		18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProtocol.swift; sourceTree = "<group>"; };
 		18C9FAB6291CB08C00F78848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/공인인증서/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18C9FAC0291CDB7400F78848 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		18C9FAC2291CDBD000F78848 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
@@ -273,7 +277,6 @@
 				18F10CDE292BBC430038BEEE /* Network.swift */,
 				1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */,
 				18D65DF3291D585D00CBEAB4 /* APIHeader.swift */,
-				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -548,7 +551,10 @@
 			isa = PBXGroup;
 			children = (
 				18DC24B3291928FC00DD5D1C /* ViewModelType.swift */,
-				1832BABA29315AE4005D99D6 /* ButtonProtocol.swift */,
+				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
+				18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */,
+				1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */,
+				1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -969,6 +975,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1834D6FB2934BD210020B2CE /* callSearchProtocol.swift in Sources */,
 				18DEA04B2933DB410098920A /* HomeProtocol.swift in Sources */,
 				18EC2FCD2932786100071C94 /* ImageEnum.swift in Sources */,
 				18EFC71729249E5F00FB3DB2 /* SesacShopViewController.swift in Sources */,
@@ -992,6 +999,7 @@
 				18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */,
 				18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */,
 				18B0DA17291A2995007044BA /* OnBoardingViewController.swift in Sources */,
+				18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */,
 				18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */,
 				184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */,
 				18DC24B4291928FC00DD5D1C /* ViewModelType.swift in Sources */,
@@ -1005,8 +1013,8 @@
 				18F10CE5292BD49E0038BEEE /* NetWorkViewModel.swift in Sources */,
 				18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */,
 				1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */,
+				1834D6FD2934BD530020B2CE /* TransferDataProtocol.swift in Sources */,
 				18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */,
-				1832BABB29315AE4005D99D6 /* ButtonProtocol.swift in Sources */,
 				18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */,
 				18AD85832921509C004169C1 /* EmailViewController.swift in Sources */,
 				18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */,

@@ -8,7 +8,8 @@
 import SnapKit
 import UIKit
 
-class SearchView: BaseView, UICollectionViewDelegate {
+class SearchView: BaseView, UICollectionViewDelegate, viewProtocol
+{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -100,7 +101,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             if recommendList.count <= indexPath.row {
                 cell.layer.borderColor = Grayscale.gray5.cgColor
                 cell.itemButton.setTitleColor(Grayscale.gray5, for: .normal)
-          
                 cell.layer.cornerRadius = 10
                 cell.layer.borderWidth = 1
             } else {

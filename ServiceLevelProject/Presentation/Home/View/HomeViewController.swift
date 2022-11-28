@@ -11,8 +11,8 @@ import CoreLocation
 import SnapKit
 import Toast
 
-final class HomeViewController: BaseViewController ,HomeProtocol{
-    
+final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProtocol{
+
     static var lng: Double?
     static var lat: Double?
     
@@ -30,13 +30,13 @@ final class HomeViewController: BaseViewController ,HomeProtocol{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backButtonTitle = ""
-        bind()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
+        bind()
         refreshIdToken()
     }
 }
@@ -130,65 +130,23 @@ extension HomeViewController: NMFMapViewCameraDelegate {
     }
     /// 카메라가 딱 내가 지정할떄 놓을떄 호출되는 메소드 -> 네트워크 하면되지
     func mapViewCameraIdle(_ mapView: NMFMapView) {
-        callSearch()
+        callSearch(lat: marker.position.lat, long: marker.position.lng)
     }
-    
-
-    
-    
-    /// 지도위치옮기거나 서치 호출
-//    private func callSearch() {
-//        self.apiQueue.searchRequest(lat: marker.position.lat, long: marker.position.lng) { [self] statusCode, search  in
-//            transferSearchInfo = search
-//            guard search!.fromQueueDB.isEmpty else {
-//                search!.fromQueueDB.forEach {
-//                    let marker = NMFMarker(position: NMGLatLng(lat: $0.lat, lng: $0.long))
-//                    switch $0.sesac {
-//                    case ImageEnum.sesac1.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_1.png")!)
-//                    case ImageEnum.sesac2.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_2.png")!)
-//                    case ImageEnum.sesac3.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_3.png")!)
-//                    case ImageEnum.sesac4.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_4.png")!)
-//                    case ImageEnum.sesac5.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_5.png")!)
-//                    default:break
-//                    }
-//                    marker.width = 83.33
-//                    marker.height = 83.33
-//                    marker.mapView = homeView.naverMapView.mapView
-//                    markers.append(marker)
-//                }
-//                return
-//            }
-//        }
-//    }
-//    /// 검색버튼누르면
-//    private func callmyqueueStateRequest() {
-//        apiQueue.myqueueStateRequest() { [self] statusCode, data in
-//            switch statusCode {
-//            case CommonError.success.rawValue: //200
-//                chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: homeView.searchBtn)
-//                guard data?.matched == 0 else {
-//                    print("채팅화면으로 넘어가자!! 아직못함.")
-//                    return
-//                }
-//                let nextVC = SearchListViewController()
-//                transition(nextVC, transitionStyle: .push)
-//            case myQueueStateErorr.notRequest.rawValue: //201 요청x
-//                chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: homeView.searchBtn)
-//                let searchVC = SearchViewController()
-//                searchVC.searchList = transferSearchInfo
-//                transition(searchVC, transitionStyle: .push)
-//            case CommonError.tokenErorr.rawValue: //401 토큰만료
-//                refreshIdToken()
-//            case CommonError.notUserError.rawValue:
-//                view.makeToast("미가입회원")
-//            case CommonError.serverError.rawValue:
-//                view.makeToast("서버에러")
-//            case CommonError.clientError.rawValue:
-//                view.makeToast("클라이언트에러")
-//            default:
-//                print("모르는 에러")
-//            }
-//        }
-//    }
 }
 
+
+extension HomeViewController {
+    private func setpin() {
+        marker.position = homeView.naverMapView.mapView.cameraPosition.target //카메라상 중앙의 좌표
+        marker.position = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
+        marker.iconImage = NMFOverlayImage(image: UIImage(named: "map_marker.png")!)
+        marker.mapView = homeView.naverMapView.mapView
+        // 거리 원
+        circle.center = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
+        circle.radius = 700
+        circle.mapView = homeView.naverMapView.mapView
+        circle.outlineWidth = 1
+        circle.outlineColor = UIColor.systemBlue
+        circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
+    }
+}

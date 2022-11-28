@@ -39,7 +39,6 @@ extension APIHeader {
             return URL(string: baseURL+"withdraw")!
         }
     }
-    
     var method: HTTPMethod {
         switch self {
         case .signup, .queue, .search, .withdraw: return .post
@@ -47,7 +46,6 @@ extension APIHeader {
         case .searchStop: return .delete
         }
     }
-    
     var headers: HTTPHeaders {
         switch self {
         case .signup, .search, .queue:
@@ -61,7 +59,6 @@ extension APIHeader {
     
         }
     }
-
     var parameters: Parameters {
         switch self {
         case .signup(let phoneNumber, let FCMtoken, let nick, let birth,

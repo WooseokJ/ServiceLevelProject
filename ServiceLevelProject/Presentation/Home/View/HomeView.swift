@@ -8,7 +8,7 @@
 import Foundation
 import NMapsMap
 import SnapKit
-class HomeView: BaseView {
+class HomeView: BaseView, viewProtocol {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

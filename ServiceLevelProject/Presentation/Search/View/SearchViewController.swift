@@ -9,49 +9,39 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: BaseViewController {
-    
-    let searchView = SearchView()
-    override func loadView() {
-        super.view = searchView
-    }
-    
-    var searchList: Search?
-    var apiQueue = APIQueue()
+final class SearchViewController: BaseViewController, APIProtocol, SearchProtocol {
+
+    var transferSearchInfo: Search?
     
     var nomalList: [String] = []
     var recommendList: [String] = []
     var totalList: [String] = []
     var myfavoriteList: [String] = []
     
+    let searchView = SearchView()
+    override func loadView() {
+        super.view = searchView
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.backButtonTitle = ""
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionviewConfigure()
         bind()
-        searchList?.fromRecommend.forEach{ recommend in
-            recommendList.append(recommend)
-        }
-        
+        transferSearchInfo?.fromRecommend.forEach{recommendList.append($0)}
         totalList+=recommendList
-        
-        searchList?.fromQueueDB.forEach {
+        transferSearchInfo?.fromQueueDB.forEach {
             $0.studylist.forEach { studyVal in
-                print(studyVal)
                 totalList.append(studyVal)
             }
         }
-        
-        
-        self.navigationItem.titleView = searchView.searchBar
-        searchView.searchBar.delegate = self
+        searchBarConfigure()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
-        
         
     }
     @objc func keyboardShow(notification: NSNotification) {
@@ -73,53 +63,24 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    
     func bind() {
         searchView.searchButton.rx.tap
-            .bind { [weak self] (val) in
-                self?.queuePostRequest()
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.queuePostRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: vc.myfavoriteList)
             }.disposed(by: disposeBag)
+            
     }
     
-    func queuePostRequest() {
-        self.apiQueue.queueRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: self.myfavoriteList) { [self] tt  in
-            print(tt)
-            switch tt {
-            case .success(_):
-                print()
-            case .failure(.success):
-                print()
-            case .failure(.tokenErorr):
-                print()
-            case .failure(.notUserError):
-                print()
-            case .failure(.serverError):
-                print()
-            case .failure(.clientError):
-                print()
-            }
-            
-//            switch statusCode {
-//            case CommonError.success.rawValue:
-//                self.apiQueue.searchRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!) { statusCode, search in
-//                    let searchListVC = SearchListViewController()
-//                    searchListVC.searchInfo = search
-//                    self.transition(searchListVC, transitionStyle: .push)
-//                }
-//            default:
-//                self.view.makeToast("선택해라!! ")
-//                break
-//            }
-            
-        }
-    }
-    
-    
-    
-    
+
 }
 
 extension SearchViewController : UISearchBarDelegate {
+    
+    func searchBarConfigure() {
+        self.navigationItem.titleView = searchView.searchBar
+        searchView.searchBar.delegate = self
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

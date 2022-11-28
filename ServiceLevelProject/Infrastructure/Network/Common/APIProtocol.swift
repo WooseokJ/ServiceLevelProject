@@ -9,21 +9,12 @@ import UIKit
 import FirebaseAuth
 import Toast
 
- 
-
 protocol APIProtocol {
     func presentVC()
     func refreshIdToken()
 }
 
-extension APIProtocol where Self: UIViewController { // where Self로 VC받아서 VC에있는 view, 여러 버튼등등 쓸수있는데
-    // 이러면 여기서 예를들어
-    var apiQueue: APIQueue {
-        return APIQueue()
-    }
-    var homeView: HomeView {
-        return HomeView()
-    }
+extension APIProtocol where Self: UIViewController { 
     
     func refreshIdToken()  {
         let currentUser = Auth.auth().currentUser

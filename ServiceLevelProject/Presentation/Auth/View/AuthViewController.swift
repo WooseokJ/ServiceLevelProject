@@ -53,7 +53,7 @@ class AuthViewController: BaseViewController {
                 } else {
                     vc.authView.authButton.backgroundColor = Grayscale.gray6
                 }
-        
+                
             }
             .disposed(by: disposeBag)
     }
@@ -71,30 +71,31 @@ class AuthViewController: BaseViewController {
             UserInfo.shared.fcmtoken = UserDefaults.standard.string(forKey: "fcmtoken")
             UserDefaults.standard.set(idToken!, forKey: "token")
             
-            self.apiUser.login() { statusCode, val in
-                print(statusCode,val)
-                if val && statusCode == 200 {
-                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                    let sceneDelegate = windowScene?.delegate as? SceneDelegate
-                    let vc = TapViewController()
-                    sceneDelegate?.window?.rootViewController = vc
-                    sceneDelegate?.window?.makeKeyAndVisible()
-                } else {
-                    switch statusCode {
-                    case 401: self.view.makeToast("전화 번호 인증 실패")
-                    case 406:
-                        let vc = NickNameViewController()
-                        self.transition(vc, transitionStyle: .push)
-                    case 500:
-                        self.view.makeToast("전화 번호 인증 실패")
-                    case 501:
-                        self.view.makeToast("전화 번호 인증 실패")
-                    default:
-                        self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
-                    }
-                }
+            self.apiUser.login() { data in
+                print(data)
+                //                if val && statusCode == 200 {
+                //                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                //                    let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                //                    let vc = TapViewController()
+                //                    sceneDelegate?.window?.rootViewController = vc
+                //                    sceneDelegate?.window?.makeKeyAndVisible()
+                //                } else {
+                //                    switch statusCode {
+                //                    case 401: self.view.makeToast("전화 번호 인증 실패")
+                //                    case 406:
+                //                        let vc = NickNameViewController()
+                //                        self.transition(vc, transitionStyle: .push)
+                //                    case 500:
+                //                        self.view.makeToast("전화 번호 인증 실패")
+                //                    case 501:
+                //                        self.view.makeToast("전화 번호 인증 실패")
+                //                    default:
+                //                        self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
+                //                    }
+                //                }
+                //            }
             }
         })
     }
 }
-
+                                

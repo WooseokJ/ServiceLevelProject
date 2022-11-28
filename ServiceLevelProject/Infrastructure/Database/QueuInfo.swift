@@ -25,6 +25,7 @@ struct FromQueueDB: Codable {
 
 // MARK: - MyQueueState
 struct MyQueueState: Codable {
-    var dodged, matched, reviewed: Int?
+    var dodged, matched, reviewed: Int
     var matchedNick, matchedUid: String?
+    
 }

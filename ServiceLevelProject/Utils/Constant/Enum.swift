@@ -59,13 +59,3 @@ enum InfoManageMent: CaseIterable {
     
     }
 }
-
-
-
-
-struct Login: Codable {
-    
-    let idtoken: String
-}
-
-

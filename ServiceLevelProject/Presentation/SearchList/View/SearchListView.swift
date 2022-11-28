@@ -166,7 +166,6 @@ extension SearchListViewController: PageboyViewControllerDataSource, TMBarDataSo
     }
     
     func barItem(for bar: Tabman.TMBar, at index: Int) -> Tabman.TMBarItemable {
-     
         switch index {
         case 0:
             return TMBarItem(title: "주변새싹")
