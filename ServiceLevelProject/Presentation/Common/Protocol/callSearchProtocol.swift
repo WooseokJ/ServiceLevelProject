@@ -8,14 +8,11 @@
 import Foundation
 import NMapsMap
 
-protocol callSearchProtocol: TransferDataProtocol {
+protocol callSearchProtocol: TransferDataProtocol, APIProtocol {
     func callSearch(lat: Double, long: Double)
 }
 
 extension callSearchProtocol where Self: HomeViewController {
-    
-    
-    
     func callSearch(lat: Double, long: Double) {
         self.apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
             do {
@@ -45,7 +42,10 @@ extension callSearchProtocol where Self: HomeViewController {
                     self?.view.makeToast("미가입 회원")
                 case .failure(.tokenErorr):
                     self?.view.makeToast("토큰 만료")
-                    self?.callSearch(lat: lat, long: long)
+                    self?.refreshIdToken { [weak self] in
+                        self?.callSearch(lat: lat, long: long)
+                    }
+                    
                 case .failure(.serverError):
                     self?.view.makeToast("서버 에러")
                 case .failure(.clientError):
@@ -58,4 +58,32 @@ extension callSearchProtocol where Self: HomeViewController {
         }
     }
     
+}
+
+extension callSearchProtocol where Self: SearchListViewController {
+    func callSearch(lat: Double, long: Double) {
+        self.apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
+            do {
+                switch data {
+                case .success:
+                    self?.testtest = try data.get().value!
+                    print(self?.testtest)
+                    
+                case .failure(.notUserError):
+                    self?.view.makeToast("미가입 회원")
+                case .failure(.tokenErorr):
+                    self?.view.makeToast("토큰 만료")
+                    self?.refreshIdToken { [weak self] in
+                        self?.callSearch(lat: lat, long: long)
+                    }
+                case .failure(.serverError):
+                    self?.view.makeToast("서버 에러")
+                case .failure(.clientError):
+                    self?.view.makeToast("클라이언트 에러")
+                }
+            }
+            catch{print("에러야")}
+            }
+        
+        }
 }

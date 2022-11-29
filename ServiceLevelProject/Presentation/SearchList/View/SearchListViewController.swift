@@ -10,11 +10,12 @@ import Tabman
 import Pageboy
 import Toast
 
-class SearchListViewController: TabmanViewController, TransferDataProtocol, APIProtocol{
+class SearchListViewController: TabmanViewController, callSearchProtocol {
+
     var transferSearchInfo: Search?
+    var testtest: Search?
     
     let searchListView = SearchListView()
-    
     
     var VCS: Array<UIViewController> = [AroundSeSacViewController(), ResponseViewController()]
     
@@ -23,13 +24,18 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
         title = "새싹찾기"
         view.backgroundColor = .white
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         addBar(searchListView.bar, dataSource: self, at: .custom(view: searchListView.tampView , layout: nil))
-        print(transferSearchInfo)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: #selector(searchCancelClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
+        
     }
     @objc func searchCancelClicked() {
         apiQueue.searchStopRequest() { [self] data in
@@ -42,8 +48,9 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
             case .failure(.notUserError):
                 view.makeToast("미가입 회원")
             case .failure(.tokenErorr):
-                refreshIdToken()
-                searchCancelClicked()
+                refreshIdToken {
+                    searchCancelClicked()
+                }
             case .failure(.serverError):
                 view.makeToast("서버에러")
             case .failure(.clientError):
@@ -55,6 +62,9 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
     
     @objc func backBtClicked() {
         let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3 ], animated: true)
+        print(viewControllers)
+        self.navigationController?.popToViewController(viewControllers[0], animated: true)
     }
 }
+
+

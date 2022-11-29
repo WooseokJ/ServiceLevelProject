@@ -40,9 +40,9 @@ extension MyInfoViewController {
 
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 0
-        
+
         let layout = UICollectionViewCompositionalLayout(section: section)
-       return layout
+        return layout
         
 //        var config = UICollectionLayoutListConfiguration(appearance: .plain)
 //        let layout = UICollectionViewCompositionalLayout.list(using: config)
@@ -56,21 +56,18 @@ extension MyInfoViewController {
             var content = UIListContentConfiguration.valueCell()
             content.text = MyInfo.allCases[indexPath.section].list[indexPath.row]
             content.textProperties.color = .black
-   
-            
             switch indexPath.item {
                 case 0:
                     content.image = UIImage(named: "profile_img.png")
                     cell.accessories = [.disclosureIndicator()]
+                case 1: content.image  = UIImage(named: "profile_img.png")
 
-                case 1: content.image = UIImage(systemName: "star")
                 case 2: content.image = UIImage(systemName: "star")
                 case 3: content.image = UIImage(systemName: "star")
                 case 4: content.image = UIImage(systemName: "star")
                 case 5: content.image = UIImage(systemName: "star")
                 default:break
             }
-  
             
             cell.contentConfiguration = content
             var backgroundConfig = UIBackgroundConfiguration.listPlainCell()

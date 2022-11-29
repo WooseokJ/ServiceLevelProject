@@ -11,7 +11,10 @@ import CoreLocation
 import SnapKit
 import Toast
 
+enum test: Error{}
+
 final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProtocol{
+    
 
     static var lng: Double?
     static var lat: Double?
@@ -37,7 +40,6 @@ final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProt
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind()
-        refreshIdToken()
     }
 }
 

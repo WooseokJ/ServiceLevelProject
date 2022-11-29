@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class SearchViewController: BaseViewController, APIProtocol, SearchProtocol {
-
+    
     var transferSearchInfo: Search?
     
     var nomalList: [String] = []
@@ -67,12 +67,13 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
         searchView.searchButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.queuePostRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: vc.myfavoriteList)
+                guard !self.myfavoriteList.isEmpty else {
+                    self.view.makeToast("최소 하나는 선택해주세요")
+                    return
+                }
+                vc.queuePostRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: self.myfavoriteList)
             }.disposed(by: disposeBag)
-            
     }
-    
-
 }
 
 extension SearchViewController : UISearchBarDelegate {

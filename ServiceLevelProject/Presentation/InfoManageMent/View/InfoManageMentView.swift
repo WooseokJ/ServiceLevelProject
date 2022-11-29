@@ -75,6 +75,14 @@ class InfoManageMentView: BaseView {
 
 extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableViewConfigure() {
+        infoManageView.tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
+        infoManageView.tableView.delegate = self
+        infoManageView.tableView.dataSource = self
+        infoManageView.secondTableView.delegate = self
+        infoManageView.secondTableView.dataSource = self
+    }
+    
     //MARK: 색션,셀
     func numberOfSections(in tableView: UITableView) -> Int {
         switch tableView {
@@ -284,6 +292,11 @@ extension InfoManageMentViewController: InfoDelegate {
 
 extension InfoManageMentViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
+    func collectionviewConfigure() {
+        infoManageView.collectionview.delegate = self
+        infoManageView.collectionview.dataSource = self
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -298,7 +311,7 @@ extension InfoManageMentViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
-//        cell.itemButton.tag = indexPath.row
+
         switch indexPath.section {
         case 0:
             cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}

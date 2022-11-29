@@ -11,7 +11,7 @@ import NMapsMap
 protocol viewProtocol {}
 
 protocol HomeProtocol: TransferDataProtocol, APIProtocol{
-//    var homeView: HomeView {get}
+    var homeView: HomeView {get}
 //    var circle: NMFCircleOverlay {get}
     func callmyqueueStateRequest()
     func chagedPlotingButton(imageName: String, button: UIButton)
@@ -20,7 +20,8 @@ protocol HomeProtocol: TransferDataProtocol, APIProtocol{
 }
 
 
-extension HomeProtocol where Self: HomeViewController  { //where Self: HomeViewController
+extension HomeProtocol where Self: HomeViewController { //where Self: HomeViewController
+    
     
 //    var homeView: HomeView {
 //        return HomeView()
@@ -42,6 +43,7 @@ extension HomeProtocol where Self: HomeViewController  { //where Self: HomeViewC
                         print("채팅화면으로 넘어가자!! 아직못함.")
                         return
                     }
+                    
                     let nextVC = SearchListViewController()
                     self?.transition(nextVC, transitionStyle: .push)
                 case .failure(.notRequest):
@@ -50,8 +52,9 @@ extension HomeProtocol where Self: HomeViewController  { //where Self: HomeViewC
                     searchVC.transferSearchInfo = self?.transferSearchInfo
                     self?.transition(searchVC, transitionStyle: .push)
                 case .failure(.tokenErorr):
-                    self?.refreshIdToken()
-                    self?.callmyqueueStateRequest()
+                    self?.refreshIdToken {
+                        self?.callmyqueueStateRequest()
+                    }
                 case .failure(.notUserError):
                     self?.view.makeToast("미가입회원")
                 case .failure(.serverError):

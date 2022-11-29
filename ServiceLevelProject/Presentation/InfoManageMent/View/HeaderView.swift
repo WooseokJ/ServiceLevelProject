@@ -23,6 +23,17 @@ class HeaderView: UITableViewHeaderFooterView {
         return image
     }()
 
+    lazy var requestButton: UIButton = {
+        let bt = UIButton()
+        bt.backgroundColor = SystemColor.error
+        bt.setTitle("요청하기", for: .normal)
+        bt.setTitleColor(BlackWhite.white, for: .normal)
+        bt.layer.cornerRadius = 10
+        bt.layer.borderColor = SystemColor.error.cgColor
+        bt.layer.borderWidth = 1
+        bt.clipsToBounds = true
+        return bt
+    }()
 
     override init(reuseIdentifier: String?) {
             super.init(reuseIdentifier: reuseIdentifier)
@@ -35,7 +46,7 @@ class HeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupHeaderView() {
-        [image].forEach {
+        [image,requestButton].forEach {
             self.contentView.addSubview($0)
         }
     }
@@ -46,6 +57,14 @@ class HeaderView: UITableViewHeaderFooterView {
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
             make.height.equalTo(self.snp.height)
+        }
+    }
+    func requestButtonConstrains() {
+        requestButton.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).offset(10)
+            make.trailing.equalTo(-16)
+            make.height.equalTo(snp.height).multipliedBy(0.2)
+            make.width.equalTo(snp.width).multipliedBy(0.3)
         }
     }
 

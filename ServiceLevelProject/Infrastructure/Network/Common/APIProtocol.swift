@@ -9,14 +9,16 @@ import UIKit
 import FirebaseAuth
 import Toast
 
-protocol APIProtocol {
-    func presentVC()
-    func refreshIdToken()
+@objc protocol APIProtocol {
+    @objc optional func presentVC()
+    @objc optional func refreshIdToken()
 }
 
-extension APIProtocol where Self: UIViewController { 
+extension APIProtocol where Self: UIViewController {
     
-    func refreshIdToken()  {
+    typealias completion = ( () -> Void)
+    
+    func refreshIdToken(completion: @escaping completion) {
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             if let error = error {
@@ -25,6 +27,9 @@ extension APIProtocol where Self: UIViewController {
             }
             print("갱신한 idToken",idToken)
             UserDefaults.standard.set(idToken!, forKey: "token")
+            completion() 
+            
+            
         }
     }
     

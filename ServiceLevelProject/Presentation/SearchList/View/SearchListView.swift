@@ -10,9 +10,9 @@ import Tabman
 import Pageboy
 
 
-
 class SearchListView: BaseView {
-    
+    var cellDelegate: InfoDelegate?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -62,10 +62,8 @@ class SearchListView: BaseView {
         bt.clipsToBounds = true
         return bt
     }()
-
     lazy var refreshButton: UIButton = {
         let bt = UIButton()
-//        bt.setTitle("스터디 변경하기", for: .normal)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
         let image = UIImage(systemName: "arrow.clockwise", withConfiguration: imageConfig)
         bt.setImage(image, for: .normal)
@@ -76,7 +74,6 @@ class SearchListView: BaseView {
         bt.clipsToBounds = true
         return bt
     }()
-    
     lazy var logoImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "sesacLogo.png")
@@ -99,10 +96,103 @@ class SearchListView: BaseView {
         return label
     }()
     
+    lazy var tableView: UITableView = {
+        let tableview = UITableView(frame: .zero, style: .grouped)
+        tableview.backgroundColor = .clear
+        tableview.register(SearchListTableViewCell.self, forCellReuseIdentifier: SearchListTableViewCell.reuseIdentifier)
+        return tableview
+    }()
+    
+    lazy var collectionview: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let spacing : CGFloat = 1
+        let layoutwidth = UIScreen.main.bounds.width
+        let layoutheight = UIScreen.main.bounds.height
+        layout.itemSize = CGSize(width: layoutwidth / 2.5  , height: layoutheight / 29 )
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.register(InfoManageMentCollectionViewCell.self, forCellWithReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier)
+        cv.layer.cornerRadius = 10
+        cv.clipsToBounds = true
+        cv.backgroundColor = .yellow
+        cv.register(HeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier)
+        return cv
+    }()
+    
+    lazy var blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0.3
+        return view
+    }()
+    lazy var whiteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = BlackWhite.white
+        view.layer.cornerRadius = 16
+        view.layer.borderWidth = 1
+        view.layer.borderColor = BlackWhite.white.cgColor
+        return view
+    }()
+    let requestAcceptTitle: UILabel = {
+        let label = UILabel()
+        label.text = "스터디를 요청할게요!"
+        label.textAlignment = .center
+        return label
+    }()
+    let subtitle: UILabel = {
+        let label = UILabel()
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.08
+        label.attributedText = NSMutableAttributedString(string: "상대방이 요청을 수락하면\n채팅창에서 대화를 나눌 수 있어요", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = Grayscale.gray7
+        return label
+    }()
+                                                    
+    let cancelButton: UIButton = {
+        let bt = UIButton()
+        bt.setTitle("취소", for: .normal)
+        bt.backgroundColor = Grayscale.gray2
+        bt.layer.cornerRadius = 8
+        bt.layer.borderWidth = 1
+        bt.layer.borderColor = Grayscale.gray2.cgColor
+        bt.setTitleColor(BlackWhite.black, for: .normal)
+        return bt
+    }()
+    let okButton: UIButton = {
+        let bt = UIButton()
+        bt.setTitle("확인", for: .normal)
+        bt.backgroundColor = BrandColor.green
+        bt.layer.cornerRadius = 8
+        bt.layer.borderWidth = 1
+        bt.layer.borderColor = BrandColor.green.cgColor
+        return bt
+    }()
+    
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 0
+        stackView.backgroundColor = .clear
+        return stackView
+    }()
+    
     override func configure() {
-        [tampView,studyChangedButton, refreshButton,logoImage, content , subContent].forEach {
+        [tampView,studyChangedButton, refreshButton,logoImage, content , subContent, tableView,collectionview,blackView,whiteView,stackView,cancelButton,okButton].forEach {
             self.addSubview($0)
         }
+        
+        [requestAcceptTitle,subtitle].forEach {
+            self.stackView.addArrangedSubview($0)
+            $0.heightAnchor.constraint(equalTo: $0.widthAnchor, multiplier: 0.0).isActive = true
+        }
+
     }
     
     override func setConstrains() {
@@ -124,6 +214,9 @@ class SearchListView: BaseView {
             make.bottom.equalTo(refreshButton.snp.bottom)
             make.height.equalTo(refreshButton.snp.height)
         }
+    }
+    
+    func EmptySetConstrains() {
         logoImage.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.centerY.equalTo(self).multipliedBy(0.9)
@@ -141,7 +234,61 @@ class SearchListView: BaseView {
             make.trailing.equalTo(content.snp.trailing)
             make.height.equalTo(22)
         }
+        tableView.snp.remakeConstraints{$0.width.height.equalTo(0)}
     }
+    func TableViewSetConstrains() {
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(tampView.snp.bottom)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.bottom.equalTo(refreshButton.snp.top).offset(-1)
+        }
+        logoImage.snp.remakeConstraints{$0.width.height.equalTo(0)}
+        content.snp.remakeConstraints{$0.width.height.equalTo(0)}
+        subContent.snp.remakeConstraints{$0.width.height.equalTo(0)}
+    }
+    func collectionViewSetConstrains(cell: SearchListTableViewCell) {
+        self.collectionview.snp.remakeConstraints { make in
+            make.top.equalTo(cell.moreButton.snp.bottom)
+            make.bottom.equalTo(cell.snp.bottom)
+            make.leading.equalTo(30)
+            make.trailing.equalTo(-30)
+        }
+    }
+    func requestAcceptSetConstrains() {
+        
+        blackView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        whiteView.snp.remakeConstraints { make in
+            make.height.equalTo(UIScreen.main.bounds.height * 0.25)
+            make.width.equalTo(UIScreen.main.bounds.width * 0.8)
+            make.center.equalTo(self)
+        }
+        stackView.snp.remakeConstraints { make in
+            make.top.equalTo(whiteView.snp.top)
+            make.leading.equalTo(whiteView.snp.leading)
+            make.trailing.equalTo(whiteView.snp.trailing)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.15)
+        }
+        cancelButton.snp.remakeConstraints { make in
+            make.leading.equalTo(whiteView.snp.leading).offset(20)
+            make.width.equalTo(whiteView.snp.width).multipliedBy(0.4)
+            make.bottom.equalTo(whiteView.snp.bottom).offset(-20)
+            make.top.equalTo(stackView.snp.bottom).offset(20)
+        }
+        okButton.snp.remakeConstraints { make in
+            make.trailing.equalTo(whiteView.snp.trailing).offset(-20)
+            make.bottom.equalTo(cancelButton.snp.bottom)
+            make.top.equalTo(cancelButton.snp.top)
+            make.width.equalTo(whiteView.snp.width).multipliedBy(0.4)
+        }
+        
+
+    }
+    //        blackView.removeFromSuperview() //개꿀 !!!
+    
+    
     
 }
 
@@ -178,3 +325,179 @@ extension SearchListViewController: PageboyViewControllerDataSource, TMBarDataSo
     }
     
 }
+
+//MARK: 테이블뷰
+extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableviewConfigure() {
+        searchListView.tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
+        searchListView.tableView.delegate = self
+        searchListView.tableView.dataSource = self
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchListTableViewCell.reuseIdentifier, for: indexPath) as! SearchListTableViewCell
+//        if testSelect {
+//            searchListView.collectionview.snp.remakeConstraints{$0.width.height.equalTo(0)}
+//        }
+//        else {
+//            searchListView.collectionViewSetConstrains(cell: cell)
+//        }
+        cell.backgroundColor = .darkGray
+        cell.selectionStyle = .none
+        bind(cell: cell, indexPath: indexPath)
+        return cell
+    }
+    
+
+    private func bind(cell: SearchListTableViewCell, indexPath: IndexPath) {
+        cell.moreButton.rx.tap
+            .bind { val in
+                print(indexPath)
+//                self.tableView(self.searchListView.tableView, heightForRowAt: indexPath)
+                self.isSelect.toggle()
+                self.testSelect.toggle()
+                self.searchListView.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+    }
+
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
+            return UIView()
+        }
+        headerView.requestButtonConstrains()
+        
+        
+        headerView.requestButton.rx.tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                
+                vc.searchListView.requestAcceptSetConstrains()
+                // 버튼클릭시 컨스트레인트 그려줌
+            }
+            .disposed(by: disposeBag)
+        return headerView
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UIScreen.main.bounds.height * 0.25
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if isSelect {
+            return UITableView.automaticDimension
+        } else {
+            return UIScreen.main.bounds.height * 0.3
+        }
+    }
+    
+    
+}
+
+
+
+
+//MARK: 컬렉션뷰 
+//extension AroundSeSacViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+//    
+//    func collectionviewConfigure() {
+//        searchListView.collectionview.delegate = self
+//        searchListView.collectionview.dataSource = self
+//    }
+//    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 3
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        switch section {
+//        case 0 :
+//            print(InfoManageMent.title.list.count)
+//            return InfoManageMent.title.list.count
+//        case 1:
+//            print(InfoManageMent.sesacStudy.list.count)
+//            return InfoManageMent.sesacStudy.list.count
+//        default:
+//            return 1
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
+//        cell.backgroundColor = .red
+//        
+//        switch indexPath.section {
+//        case 0:
+//            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
+//            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
+//            cell.layer.cornerRadius = 10
+//            cell.clipsToBounds = true
+//            cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
+//        case 1:
+//            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
+//            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
+//            cell.layer.cornerRadius = 10
+//            cell.clipsToBounds = true
+//            cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
+//        case 2:
+////            infoManageView.collectionview.backgroundColor = .cyan
+//            cell.reviewLabel.snp.remakeConstraints { make in
+//                make.leading.equalTo(10)
+//                make.top.equalTo(0)
+//                make.trailing.equalTo(-10)
+//                make.bottom.equalTo(cell.snp.bottom)
+//            }
+//            cell.itemButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+//            cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
+//            cell.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
+//            cell.reviewLabel.textColor = Grayscale.gray6
+//            cell.reviewLabel.layer.borderWidth = 0
+//        default: break
+//        }
+//        return cell
+//    }
+//
+//    
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier, for: indexPath) as? HeaderCollectionView else {return HeaderCollectionView()}
+//        switch indexPath.section {
+//            case 0 :header.label.text = "새싹 타이틀"
+//            case 1: header.label.text = "하고 싶은 스터디"
+//            case 2: header.label.text = "새싹 리뷰"
+//            default: break
+//        }
+//        header.backgroundColor = .clear
+//        header.configure()
+//        header.layoutSubviews()
+//        return header
+//
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: 100, height: 30)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        
+//        switch indexPath.section {
+//        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+//        case 1:
+//            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+//        case 2:
+//            return CGSize(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height / 29 )
+//        default:
+//            print("오류",#function)
+//            return CGSize()
+//        }
+//    }
+//    
+//}

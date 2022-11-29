@@ -13,6 +13,7 @@ class ResponseViewController: UIViewController {
     override func loadView() {
         super.view = searchListView
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchListView.content.text = "아직 받은 요청이 없어요ㅠ"

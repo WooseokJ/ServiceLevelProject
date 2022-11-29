@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class SearchView: BaseView, UICollectionViewDelegate, viewProtocol
+class SearchView: BaseView, UICollectionViewDelegate
 {
     
     override init(frame: CGRect) {

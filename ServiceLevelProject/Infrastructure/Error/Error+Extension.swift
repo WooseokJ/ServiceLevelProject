@@ -6,6 +6,7 @@
 //
 
 import Foundation
+enum ErrorCode:LocalizedError {}
 
 //extension ErrorCode: LocalizedError { // LocalizedError 에러만났을떄 에러메세지를 결정
 //    var errorDescription: String?{

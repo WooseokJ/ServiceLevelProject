@@ -9,7 +9,10 @@ import UIKit
 
 class AroundSeSacViewController: BaseViewController {
 
-    var searchListView = SearchListView()
+    let searchListView = SearchListView()
+    var isSelect = true
+    var testSelect = true
+    
     override func loadView() {
         super.view = searchListView
     }
@@ -17,6 +20,12 @@ class AroundSeSacViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        searchListView.EmptySetConstrains()
+        searchListView.TableViewSetConstrains()
+        tableviewConfigure()
+//        collectionviewConfigure()
+        
+        
 
     }
     
