@@ -9,13 +9,18 @@ import UIKit
 import Tabman
 import Pageboy
 import Toast
+import RxSwift
+import RxCocoa
 
-class SearchListViewController: TabmanViewController, callSearchProtocol {
+class SearchListViewController: TabmanViewController, TransferDataProtocol, APIProtocol {
 
     var transferSearchInfo: Search?
+
     var testtest: Search?
     
     let searchListView = SearchListView()
+    
+    var disposeBag = DisposeBag()
     
     var VCS: Array<UIViewController> = [AroundSeSacViewController(), ResponseViewController()]
     
@@ -25,9 +30,6 @@ class SearchListViewController: TabmanViewController, callSearchProtocol {
         view.backgroundColor = .white
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,7 @@ class SearchListViewController: TabmanViewController, callSearchProtocol {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
         
     }
+
     @objc func searchCancelClicked() {
         apiQueue.searchStopRequest() { [self] data in
             switch data {
@@ -62,9 +65,7 @@ class SearchListViewController: TabmanViewController, callSearchProtocol {
     
     @objc func backBtClicked() {
         let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        print(viewControllers)
         self.navigationController?.popToViewController(viewControllers[0], animated: true)
     }
+    
 }
-
-

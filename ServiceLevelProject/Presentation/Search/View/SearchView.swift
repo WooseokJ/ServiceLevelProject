@@ -160,6 +160,11 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard myfavoriteList.count < 8  else {
+            view.makeToast("8개 이상 추가할수없습니다.")
+            return
+        }
+        
         switch indexPath.section {
         case 0:
             guard myfavoriteList.count < 8  else {return}

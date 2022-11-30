@@ -34,6 +34,7 @@
 		18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1B291A3FBF007044BA /* LoginViewController.swift */; };
 		18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1D291A3FC7007044BA /* LoginView.swift */; };
 		18B32242293621270016AE1A /* SearchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B32241293621270016AE1A /* SearchListTableViewCell.swift */; };
+		18BF5F392937678C007B20EB /* AroundProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF5F382937678C007B20EB /* AroundProtocol.swift */; };
 		18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */; };
 		18C9FAB7291CB08C00F78848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C9FAB6291CB08C00F78848 /* GoogleService-Info.plist */; };
 		18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC0291CDB7400F78848 /* Enum.swift */; };
@@ -126,6 +127,7 @@
 		18B0DA1D291A3FC7007044BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		18B0DA22291A63CF007044BA /* ServiceLevelProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLevelProject.entitlements; sourceTree = "<group>"; };
 		18B32241293621270016AE1A /* SearchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTableViewCell.swift; sourceTree = "<group>"; };
+		18BF5F382937678C007B20EB /* AroundProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundProtocol.swift; sourceTree = "<group>"; };
 		18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProtocol.swift; sourceTree = "<group>"; };
 		18C9FAB6291CB08C00F78848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/공인인증서/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18C9FAC0291CDB7400F78848 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */,
 				1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */,
 				1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */,
+				18BF5F382937678C007B20EB /* AroundProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1016,6 +1019,7 @@
 				18F10CE5292BD49E0038BEEE /* NetWorkViewModel.swift in Sources */,
 				18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */,
 				1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */,
+				18BF5F392937678C007B20EB /* AroundProtocol.swift in Sources */,
 				1834D6FD2934BD530020B2CE /* TransferDataProtocol.swift in Sources */,
 				18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */,
 				18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */,

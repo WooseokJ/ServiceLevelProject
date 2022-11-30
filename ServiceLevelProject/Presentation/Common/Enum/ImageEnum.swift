@@ -13,7 +13,10 @@ enum ImageEnum: Int, CaseIterable  {
     case sesac3 = 2
     case sesac4 = 3
     case sesac5 = 4
+    
     var list: String {
-        return "sesac_face_\(rawValue+1).png"
+        return "sesac_face_\(rawValue)+1).png"
     }
 }
+
+

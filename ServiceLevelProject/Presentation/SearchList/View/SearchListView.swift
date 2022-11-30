@@ -187,7 +187,6 @@ class SearchListView: BaseView {
         [tampView,studyChangedButton, refreshButton,logoImage, content , subContent, tableView,collectionview,blackView,whiteView,stackView,cancelButton,okButton].forEach {
             self.addSubview($0)
         }
-        
         [requestAcceptTitle,subtitle].forEach {
             self.stackView.addArrangedSubview($0)
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor, multiplier: 0.0).isActive = true
@@ -258,7 +257,7 @@ class SearchListView: BaseView {
     func requestAcceptSetConstrains() {
         
         blackView.snp.remakeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(self)
         }
         whiteView.snp.remakeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.height * 0.25)
@@ -283,11 +282,15 @@ class SearchListView: BaseView {
             make.top.equalTo(cancelButton.snp.top)
             make.width.equalTo(whiteView.snp.width).multipliedBy(0.4)
         }
-        
-
     }
     //        blackView.removeFromSuperview() //개꿀 !!!
-    
+    func cancelButtonClicked() {
+        blackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        whiteView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        stackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        cancelButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        okButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+    }
     
     
 }
@@ -300,11 +303,11 @@ extension SearchListViewController: PageboyViewControllerDataSource, TMBarDataSo
     }
     
     func viewController(for pageboyViewController: Pageboy.PageboyViewController, at index: Pageboy.PageboyViewController.PageIndex) -> UIViewController? {
-        searchListView.content.snp.remakeConstraints{$0.width.height.equalTo(0)}
-        searchListView.logoImage.snp.remakeConstraints{$0.width.height.equalTo(0)}
-        searchListView.subContent.snp.remakeConstraints{$0.width.height.equalTo(0)}
-        searchListView.refreshButton.snp.remakeConstraints{$0.width.height.equalTo(0)}
-        searchListView.studyChangedButton.snp.remakeConstraints{$0.width.height.equalTo(0)}
+        searchListView.content.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        searchListView.logoImage.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        searchListView.subContent.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        searchListView.refreshButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        searchListView.studyChangedButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
         return VCS[index]
     }
     
@@ -326,81 +329,7 @@ extension SearchListViewController: PageboyViewControllerDataSource, TMBarDataSo
     
 }
 
-//MARK: 테이블뷰
-extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableviewConfigure() {
-        searchListView.tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
-        searchListView.tableView.delegate = self
-        searchListView.tableView.dataSource = self
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchListTableViewCell.reuseIdentifier, for: indexPath) as! SearchListTableViewCell
-//        if testSelect {
-//            searchListView.collectionview.snp.remakeConstraints{$0.width.height.equalTo(0)}
-//        }
-//        else {
-//            searchListView.collectionViewSetConstrains(cell: cell)
-//        }
-        cell.backgroundColor = .darkGray
-        cell.selectionStyle = .none
-        bind(cell: cell, indexPath: indexPath)
-        return cell
-    }
-    
 
-    private func bind(cell: SearchListTableViewCell, indexPath: IndexPath) {
-        cell.moreButton.rx.tap
-            .bind { val in
-                print(indexPath)
-//                self.tableView(self.searchListView.tableView, heightForRowAt: indexPath)
-                self.isSelect.toggle()
-                self.testSelect.toggle()
-                self.searchListView.tableView.reloadData()
-            }
-            .disposed(by: disposeBag)
-    }
-
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
-            return UIView()
-        }
-        headerView.requestButtonConstrains()
-        
-        
-        headerView.requestButton.rx.tap
-            .withUnretained(self)
-            .bind { (vc,val) in
-                
-                vc.searchListView.requestAcceptSetConstrains()
-                // 버튼클릭시 컨스트레인트 그려줌
-            }
-            .disposed(by: disposeBag)
-        return headerView
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.25
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if isSelect {
-            return UITableView.automaticDimension
-        } else {
-            return UIScreen.main.bounds.height * 0.3
-        }
-    }
-    
-    
-}
 
 
 

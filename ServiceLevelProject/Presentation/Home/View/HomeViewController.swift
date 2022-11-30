@@ -11,7 +11,6 @@ import CoreLocation
 import SnapKit
 import Toast
 
-enum test: Error{}
 
 final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProtocol{
     
@@ -40,6 +39,7 @@ final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProt
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind()
+   
     }
 }
 
@@ -132,7 +132,8 @@ extension HomeViewController: NMFMapViewCameraDelegate {
     }
     /// 카메라가 딱 내가 지정할떄 놓을떄 호출되는 메소드 -> 네트워크 하면되지
     func mapViewCameraIdle(_ mapView: NMFMapView) {
-        callSearch(lat: marker.position.lat, long: marker.position.lng)
+        callSearch(lat: marker.position.lat, long: marker.position.lng) { _ in
+        }
     }
 }
 

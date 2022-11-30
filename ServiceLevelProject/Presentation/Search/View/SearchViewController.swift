@@ -35,9 +35,12 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
         totalList+=recommendList
         transferSearchInfo?.fromQueueDB.forEach {
             $0.studylist.forEach { studyVal in
-                totalList.append(studyVal)
+                if !recommendList.contains(studyVal) {
+                    totalList.append(studyVal)
+                }
             }
         }
+//        array.contains(where: { $0.caseInsensitiveCompare(word) == .orderedSame })
         searchBarConfigure()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
