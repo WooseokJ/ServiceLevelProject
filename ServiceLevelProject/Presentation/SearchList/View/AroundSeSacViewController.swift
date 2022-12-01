@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class AroundSeSacViewController: BaseViewController, callSearchProtocol {
-
+class AroundSeSacViewController: BaseViewController, callSearchProtocol, AroundProtocol {
+    
     let searchListView = SearchListView()
     var isSelect = true
     var testSelect = true
@@ -20,21 +22,22 @@ class AroundSeSacViewController: BaseViewController, callSearchProtocol {
     override func viewWillAppear(_ animated: Bool) {
         self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
             self?.transferSearchInfo = search
-            print(search)
+            dump(search?.fromQueueDB)
+            self?.searchListView.tableView.reloadData()
         })
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        searchListView.EmptySetConstrains()
+        //        searchListView.EmptySetConstrains()
         searchListView.TableViewSetConstrains()
         tableviewConfigure()
-//        collectionviewConfigure()
+        //        collectionviewConfigure()
         bind()
     }
     
-
+    
 }
 
 //MARK: 테이블뷰
@@ -45,7 +48,7 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
         searchListView.tableView.dataSource = self
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return (self.transferSearchInfo?.fromQueueDB.count) ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,31 +57,31 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchListTableViewCell.reuseIdentifier, for: indexPath) as! SearchListTableViewCell
-//        if testSelect {
-//            searchListView.collectionview.snp.remakeConstraints{$0.width.height.equalTo(0)}
-//        }
-//        else {
-//            searchListView.collectionViewSetConstrains(cell: cell)
-//        }
-        cell.backgroundColor = .darkGray
+        
+        searchListView.checkButton.tag = indexPath.section
+        cell.reviewLabel.text = self.transferSearchInfo?.fromQueueDB[indexPath.section].nick
+        cell.backgroundColor = .lightGray
         cell.selectionStyle = .none
+        cell.layer.cornerRadius = 8
+        cell.layer.borderWidth = 1
+        
         bind(cell: cell, indexPath: indexPath)
         return cell
     }
     
-
+    
     private func bind(cell: SearchListTableViewCell, indexPath: IndexPath) {
         cell.moreButton.rx.tap
             .bind { val in
                 print(indexPath)
-//                self.tableView(self.searchListView.tableView, heightForRowAt: indexPath)
+                //                self.tableView(self.searchListView.tableView, heightForRowAt: indexPath)
                 self.isSelect.toggle()
                 self.testSelect.toggle()
                 self.searchListView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
     }
-
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
@@ -90,7 +93,7 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
         headerView.requestButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.searchListView.requestAcceptSetConstrains()
+                vc.searchListView.requestSetConstrains()
                 // 버튼클릭시 컨스트레인트 그려줌
             }
             .disposed(by: disposeBag)
@@ -123,17 +126,23 @@ extension AroundSeSacViewController {
                 vc.searchListView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
-        searchListView.okButton
-            .rx
-            .tap
-            .withUnretained(self)
-            .bind { (vc,val) in
-                print("dsad")
-                
-            }
-            .disposed(by: disposeBag)
+                searchListView.checkButton
+                    .rx
+                    .tap
+                    .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
+                    .withUnretained(self)
+                    .bind { (vc,val) in
+                        print(self.searchListView.checkButton.tag)
+                        print(val!)
+                        vc.studyPostRequest(otheruid: val!)
+                        vc.searchListView.cancelButtonClicked()
+                        vc.searchListView.tableView.reloadData()
+                    }
+                    .disposed(by: disposeBag)
     }
     
     
     
+    
 }
+

@@ -14,7 +14,7 @@
 		183834A4292DD318006C0675 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834A3292DD318006C0675 /* SearchListView.swift */; };
 		183834B1292E795B006C0675 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 183834B0292E795B006C0675 /* Tabman */; };
 		183834B3292E7A4D006C0675 /* AroundSeSacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834B2292E7A4D006C0675 /* AroundSeSacViewController.swift */; };
-		183834B5292E7A67006C0675 /* ResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834B4292E7A67006C0675 /* ResponseViewController.swift */; };
+		183834B5292E7A67006C0675 /* AcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183834B4292E7A67006C0675 /* AcceptViewController.swift */; };
 		184DDD73291A899F00F12D63 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 184DDD72291A899F00F12D63 /* RxCocoa */; };
 		184DDD75291A899F00F12D63 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 184DDD74291A899F00F12D63 /* RxSwift */; };
 		184DDD78291A89D000F12D63 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 184DDD77291A89D000F12D63 /* SnapKit */; };
@@ -26,6 +26,7 @@
 		1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7D291C1C79008E0575 /* ThirdViewController.swift */; };
 		1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ACEE292FD3E400DBFEE7 /* APIQueue.swift */; };
 		1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */; };
+		1887238C2938CC3B00C74DCE /* MychatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */; };
 		18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD858029214F7D004169C1 /* BirthViewController.swift */; };
 		18AD85832921509C004169C1 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD85822921509C004169C1 /* EmailViewController.swift */; };
 		18AD8585292150E1004169C1 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8584292150E1004169C1 /* GenderViewController.swift */; };
@@ -34,7 +35,9 @@
 		18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1B291A3FBF007044BA /* LoginViewController.swift */; };
 		18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1D291A3FC7007044BA /* LoginView.swift */; };
 		18B32242293621270016AE1A /* SearchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B32241293621270016AE1A /* SearchListTableViewCell.swift */; };
+		18B6A0382938D63B00FA23D9 /* YourChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */; };
 		18BF5F392937678C007B20EB /* AroundProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF5F382937678C007B20EB /* AroundProtocol.swift */; };
+		18BF5F3B2937BE29007B20EB /* AcceptProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */; };
 		18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */; };
 		18C9FAB7291CB08C00F78848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C9FAB6291CB08C00F78848 /* GoogleService-Info.plist */; };
 		18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC0291CDB7400F78848 /* Enum.swift */; };
@@ -65,6 +68,12 @@
 		18DEA04B2933DB410098920A /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEA04A2933DB410098920A /* HomeProtocol.swift */; };
 		18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */; };
 		18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E283342929FADF00878738 /* HeaderCollectionView.swift */; };
+		18EC05A829386410007EA5CB /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05A729386410007EA5CB /* ChattingViewController.swift */; };
+		18EC05AA29386420007EA5CB /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05A929386420007EA5CB /* ChattingView.swift */; };
+		18EC05AC293875BD007EA5CB /* DodgeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */; };
+		18EC05AE29387920007EA5CB /* APIChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05AD29387920007EA5CB /* APIChat.swift */; };
+		18EC05B029387A74007EA5CB /* ChatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05AF29387A74007EA5CB /* ChatInfo.swift */; };
+		18EC05B229387E1F007EA5CB /* ChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC05B129387E1F007EA5CB /* ChatProtocol.swift */; };
 		18EC2FCD2932786100071C94 /* ImageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC2FCC2932786100071C94 /* ImageEnum.swift */; };
 		18EFC70429236AA400FB3DB2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70329236AA400FB3DB2 /* Date.swift */; };
 		18EFC706292477B900FB3DB2 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC705292477B900FB3DB2 /* TapViewController.swift */; };
@@ -110,7 +119,7 @@
 		183834A1292DD311006C0675 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		183834A3292DD318006C0675 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		183834B2292E7A4D006C0675 /* AroundSeSacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSeSacViewController.swift; sourceTree = "<group>"; };
-		183834B4292E7A67006C0675 /* ResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewController.swift; sourceTree = "<group>"; };
+		183834B4292E7A67006C0675 /* AcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptViewController.swift; sourceTree = "<group>"; };
 		184DDD9B291AB2D000F12D63 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		184DDD9D291AB2E600F12D63 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		1861EC79291C0709008E0575 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +127,7 @@
 		1861EC7D291C1C79008E0575 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		1885ACEE292FD3E400DBFEE7 /* APIQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueue.swift; sourceTree = "<group>"; };
 		1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MychatTableViewCell.swift; sourceTree = "<group>"; };
 		18AD858029214F7D004169C1 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		18AD85822921509C004169C1 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		18AD8584292150E1004169C1 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +137,9 @@
 		18B0DA1D291A3FC7007044BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		18B0DA22291A63CF007044BA /* ServiceLevelProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLevelProject.entitlements; sourceTree = "<group>"; };
 		18B32241293621270016AE1A /* SearchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTableViewCell.swift; sourceTree = "<group>"; };
+		18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatTableViewCell.swift; sourceTree = "<group>"; };
 		18BF5F382937678C007B20EB /* AroundProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundProtocol.swift; sourceTree = "<group>"; };
+		18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptProtocol.swift; sourceTree = "<group>"; };
 		18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProtocol.swift; sourceTree = "<group>"; };
 		18C9FAB6291CB08C00F78848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/공인인증서/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18C9FAC0291CDB7400F78848 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -159,6 +171,12 @@
 		18DEA04A2933DB410098920A /* HomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocol.swift; sourceTree = "<group>"; };
 		18E283322929F3D000878738 /* InfoManageMentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentCollectionViewCell.swift; sourceTree = "<group>"; };
 		18E283342929FADF00878738 /* HeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionView.swift; sourceTree = "<group>"; };
+		18EC05A729386410007EA5CB /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		18EC05A929386420007EA5CB /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
+		18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DodgeProtocol.swift; sourceTree = "<group>"; };
+		18EC05AD29387920007EA5CB /* APIChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIChat.swift; sourceTree = "<group>"; };
+		18EC05AF29387A74007EA5CB /* ChatInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInfo.swift; sourceTree = "<group>"; };
+		18EC05B129387E1F007EA5CB /* ChatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProtocol.swift; sourceTree = "<group>"; };
 		18EC2FCC2932786100071C94 /* ImageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEnum.swift; sourceTree = "<group>"; };
 		18EFC70329236AA400FB3DB2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		18EFC705292477B900FB3DB2 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
@@ -228,7 +246,7 @@
 		183834B7292E804F006C0675 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				183834B4292E7A67006C0675 /* ResponseViewController.swift */,
+				183834B4292E7A67006C0675 /* AcceptViewController.swift */,
 				183834B2292E7A4D006C0675 /* AroundSeSacViewController.swift */,
 				183834A1292DD311006C0675 /* SearchListViewController.swift */,
 				183834A3292DD318006C0675 /* SearchListView.swift */,
@@ -291,6 +309,7 @@
 			children = (
 				1885ACEE292FD3E400DBFEE7 /* APIQueue.swift */,
 				18D65DEE291D535C00CBEAB4 /* APIUser.swift */,
+				18EC05AD29387920007EA5CB /* APIChat.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -445,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				18DC24A62918A9FF00DD5D1C /* Common */,
+				18EC05A4293863F6007EA5CB /* Chatting */,
 				183834B6292E8046006C0675 /* SearchList */,
 				18F10CD2292B3DBE0038BEEE /* Search */,
 				18EFC7342926106800FB3DB2 /* InfoManageMent */,
@@ -521,6 +541,7 @@
 			children = (
 				18AD858629217131004169C1 /* UserInfo.swift */,
 				1832BAB82931265D005D99D6 /* QueuInfo.swift */,
+				18EC05AF29387A74007EA5CB /* ChatInfo.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -561,6 +582,9 @@
 				1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */,
 				1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */,
 				18BF5F382937678C007B20EB /* AroundProtocol.swift */,
+				18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */,
+				18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */,
+				18EC05B129387E1F007EA5CB /* ChatProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -606,6 +630,33 @@
 				18DC24BD291929C600DD5D1C /* BaseView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		18EC05A4293863F6007EA5CB /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				18EC05A6293863FD007EA5CB /* ViewModel */,
+				18EC05A5293863FB007EA5CB /* View */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		18EC05A5293863FB007EA5CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EC05A729386410007EA5CB /* ChattingViewController.swift */,
+				18EC05A929386420007EA5CB /* ChattingView.swift */,
+				1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */,
+				18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EC05A6293863FD007EA5CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		18EFC707292477C000FB3DB2 /* Tap */ = {
@@ -993,12 +1044,16 @@
 				18DC247029189DDD00DD5D1C /* HomeViewController.swift in Sources */,
 				1832BAB92931265D005D99D6 /* QueuInfo.swift in Sources */,
 				18D65DEF291D535C00CBEAB4 /* APIUser.swift in Sources */,
+				18EC05AE29387920007EA5CB /* APIChat.swift in Sources */,
+				18EC05B029387A74007EA5CB /* ChatInfo.swift in Sources */,
+				18EC05A829386410007EA5CB /* ChattingViewController.swift in Sources */,
 				18F10CE3292BD10F0038BEEE /* ErrorCase.swift in Sources */,
 				18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */,
 				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
 				183834A4292DD318006C0675 /* SearchListView.swift in Sources */,
 				18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */,
+				18BF5F3B2937BE29007B20EB /* AcceptProtocol.swift in Sources */,
 				18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */,
 				18DC24B02918EAA900DD5D1C /* AppFont.swift in Sources */,
 				1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */,
@@ -1010,13 +1065,17 @@
 				184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */,
 				18DC24B4291928FC00DD5D1C /* ViewModelType.swift in Sources */,
 				1861EC7A291C0709008E0575 /* FirstViewController.swift in Sources */,
+				18EC05B229387E1F007EA5CB /* ChatProtocol.swift in Sources */,
 				18DC24AC2918E23E00DD5D1C /* AppColor.swift in Sources */,
 				18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */,
 				18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */,
 				18C9FAC3291CDBD000F78848 /* OnBoardingView.swift in Sources */,
+				18EC05AC293875BD007EA5CB /* DodgeProtocol.swift in Sources */,
+				1887238C2938CC3B00C74DCE /* MychatTableViewCell.swift in Sources */,
 				18D65DF4291D585D00CBEAB4 /* APIHeader.swift in Sources */,
 				1861EC7C291C1C73008E0575 /* SecondViewController.swift in Sources */,
 				18F10CE5292BD49E0038BEEE /* NetWorkViewModel.swift in Sources */,
+				18EC05AA29386420007EA5CB /* ChattingView.swift in Sources */,
 				18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */,
 				1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */,
 				18BF5F392937678C007B20EB /* AroundProtocol.swift in Sources */,
@@ -1025,12 +1084,13 @@
 				18DC24BE291929C600DD5D1C /* BaseView.swift in Sources */,
 				18AD85832921509C004169C1 /* EmailViewController.swift in Sources */,
 				18E283352929FADF00878738 /* HeaderCollectionView.swift in Sources */,
+				18B6A0382938D63B00FA23D9 /* YourChatTableViewCell.swift in Sources */,
 				18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */,
 				18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */,
 				18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */,
 				183834A2292DD311006C0675 /* SearchListViewController.swift in Sources */,
 				18B32242293621270016AE1A /* SearchListTableViewCell.swift in Sources */,
-				183834B5292E7A67006C0675 /* ResponseViewController.swift in Sources */,
+				183834B5292E7A67006C0675 /* AcceptViewController.swift in Sources */,
 				18EFC738292610B000FB3DB2 /* InfoManageMentViewController.swift in Sources */,
 				18EFC70429236AA400FB3DB2 /* Date.swift in Sources */,
 				183834B3292E7A4D006C0675 /* AroundSeSacViewController.swift in Sources */,

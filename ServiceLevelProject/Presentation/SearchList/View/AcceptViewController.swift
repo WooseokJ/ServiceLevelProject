@@ -9,7 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ResponseViewController: BaseViewController, callSearchProtocol {
+class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtocol {
+
+    
     
     var isSelect = true
     var testSelect = true
@@ -23,7 +25,7 @@ class ResponseViewController: BaseViewController, callSearchProtocol {
     override func viewWillAppear(_ animated: Bool) {
         self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
             self?.transferSearchInfo = search
-            print(search)
+            self?.searchListView.tableView.reloadData()
         })
         
     }
@@ -44,14 +46,15 @@ class ResponseViewController: BaseViewController, callSearchProtocol {
 }
 
 //MARK: 테이블뷰
-extension ResponseViewController: UITableViewDelegate, UITableViewDataSource {
+extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
     func tableviewConfigure() {
         searchListView.tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
         searchListView.tableView.delegate = self
         searchListView.tableView.dataSource = self
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return (self.transferSearchInfo?.fromQueueDBRequested.count) ?? 0
+//        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,6 +69,8 @@ extension ResponseViewController: UITableViewDelegate, UITableViewDataSource {
 //        else {
 //            searchListView.collectionViewSetConstrains(cell: cell)
 //        }
+        cell.reviewLabel.text = self.transferSearchInfo?.fromQueueDBRequested[indexPath.section].nick
+        searchListView.checkButton.tag = indexPath.section
         cell.backgroundColor = .darkGray
         cell.selectionStyle = .none
         bind(cell: cell, indexPath: indexPath)
@@ -90,14 +95,14 @@ extension ResponseViewController: UITableViewDelegate, UITableViewDataSource {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
             return UIView()
         }
-        headerView.requestButtonConstrains()
+        headerView.acceptButtonConstrains()
+
         
-        
-        headerView.requestButton.rx.tap
+        headerView.acceptButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
                 
-                vc.searchListView.requestAcceptSetConstrains()
+                vc.searchListView.acceptSetConstrains()
             }
             .disposed(by: disposeBag)
         return headerView
@@ -114,7 +119,7 @@ extension ResponseViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
-extension ResponseViewController {
+extension AcceptViewController {
     private func bind() {
         searchListView.cancelButton
             .rx
@@ -123,6 +128,18 @@ extension ResponseViewController {
             .bind { (vc,val) in
                 vc.searchListView.cancelButtonClicked()
                 vc.searchListView.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        searchListView.checkButton.rx
+            .tap
+            .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.studyPostAccept(otheruid: val!)
+                let cattingVC = ChattingViewController()
+                
+                vc.transition(cattingVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag)
     }

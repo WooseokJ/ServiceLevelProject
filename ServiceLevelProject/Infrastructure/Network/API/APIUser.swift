@@ -46,7 +46,7 @@ final class APIUser {
             }
         }
     }
-    
+    /// 회원탈퇴
     func withdraw(completionHandler: @escaping withdrawHandler) {
         let api = APIHeader.withdraw
         AF.request(api.url,method: api.method, headers: api.headers).validate().response { response in

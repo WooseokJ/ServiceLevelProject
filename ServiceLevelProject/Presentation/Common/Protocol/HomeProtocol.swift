@@ -40,7 +40,8 @@ extension HomeProtocol where Self: HomeViewController { //where Self: HomeViewCo
                 case .success :
                     self?.chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: self!.homeView.searchBtn)
                     guard try data.get()!.matched == 0 else {
-                        print("채팅화면으로 넘어가자!! 아직못함.")
+                        let chattingVC = ChattingViewController()
+                        self?.transition(chattingVC, transitionStyle: .push)
                         return
                     }
                     

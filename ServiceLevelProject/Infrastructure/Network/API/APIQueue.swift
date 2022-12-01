@@ -14,7 +14,10 @@ final class APIQueue {
     typealias QueuStopHandler = ( (Result<Data?, queueStopError>) -> Void )
     typealias SearchInfoHandler = ( (Result<Search?, searchPostError>) -> Void )
     typealias MyQueueStateHandler = ( (Result<MyQueueState?, myQueueStateErorr>) -> Void )
-    
+    typealias StudyPostRequestHandler = ( (Result<Data?, studyRequestError>) -> Void )
+    typealias StudyPostAcceptHandler = ( (Result<Data?, studyAcceptError>) -> Void )
+    typealias StudyPostDodgeHandler = ( (Result<Data?, studyDodgeError>) -> Void )
+
     init() {}
     
     
@@ -76,5 +79,53 @@ final class APIQueue {
             }
         }
     }
+    
+    /// 스터디요청
+    func studyPostRequest(otheruid: String, completionHandler: @escaping StudyPostRequestHandler) {
+        let api = APIHeader.studyPost(otheruid: otheruid)
+        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+            switch response.result {
+                
+            case .success(let data) :
+                print(data)
+                completionHandler(.success(data))
+            case .failure:
+                guard let customError = studyRequestError(rawValue: response.response!.statusCode) else{return}
+                completionHandler(.failure(studyRequestError(rawValue: customError.rawValue)!))
+            }
+        }
+    }
+    /// 스터디 수락
+    func studyPostAccept(otheruid: String,  completionHandler: @escaping StudyPostAcceptHandler) {
+        let api = APIHeader.studyAccept(otheruid: otheruid)
+        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+            switch response.result {
+            case .success(let data) :
+                print(data)
+                completionHandler(.success(data))
+            case .failure:
+                guard let customError = studyAcceptError(rawValue: response.response!.statusCode) else{return}
+                completionHandler(.failure(studyAcceptError(rawValue: customError.rawValue)!))
+            }
+        }
+    }
+    
+    /// 스터디취소
+    func studyPostDodge(otheruid: String,  completionHandler: @escaping StudyPostDodgeHandler) {
+        let api = APIHeader.studyDodge(otheruid: otheruid)
+        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+            switch response.result {
+            case .success(let data) :
+                print(data)
+                completionHandler(.success(data))
+            case .failure:
+                guard let customError = studyDodgeError(rawValue: response.response!.statusCode) else{return}
+                completionHandler(.failure(studyDodgeError(rawValue: customError.rawValue)!))
+            }
+        }
+    }
+    
+    
+    
     
 }

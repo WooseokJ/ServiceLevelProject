@@ -26,15 +26,8 @@ extension callSearchProtocol where Self: HomeViewController {
                     guard data.fromQueueDB.isEmpty else {
                         data.fromQueueDB.forEach {
                             let marker = NMFMarker(position: NMGLatLng(lat: $0.lat, lng: $0.long))
-                            switch $0.sesac {
-                           
-                            case ImageEnum.sesac1.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_1.png")!)
-                            case ImageEnum.sesac2.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_2.png")!)
-                            case ImageEnum.sesac3.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_3.png")!)
-                            case ImageEnum.sesac4.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_4.png")!)
-                            case ImageEnum.sesac5.rawValue: marker.iconImage = NMFOverlayImage(image: UIImage(named: "sesac_face_5.png")!)
-                            default:break
-                            }
+                            let sesacpin = ImageEnum(rawValue: $0.sesac)
+                            marker.iconImage = NMFOverlayImage(image: UIImage(named: sesacpin!.list)!)
                             marker.width = 83.33
                             marker.height = 83.33
                             marker.mapView = self?.homeView.naverMapView.mapView
@@ -96,7 +89,7 @@ extension callSearchProtocol where Self: AroundSeSacViewController {
         }
 }
 
-extension callSearchProtocol where Self: ResponseViewController {
+extension callSearchProtocol where Self: AcceptViewController {
     func callSearch(lat: Double, long: Double, completionHandler: @escaping ((Search?) -> Void)) {
         self.apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
             do {

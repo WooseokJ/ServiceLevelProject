@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum ImageEnum: Int, CaseIterable  {
+enum ImageEnum: Int  {
     case sesac1 = 0
-    case sesac2 = 1
-    case sesac3 = 2
-    case sesac4 = 3
-    case sesac5 = 4
+    case sesac2
+    case sesac3
+    case sesac4
+    case sesac5
     
     var list: String {
-        return "sesac_face_\(rawValue)+1).png"
+        return "sesac_face_\(rawValue+1).png"
     }
 }
 

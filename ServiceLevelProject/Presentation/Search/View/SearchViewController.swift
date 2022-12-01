@@ -40,6 +40,7 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
                 }
             }
         }
+        
 //        array.contains(where: { $0.caseInsensitiveCompare(word) == .orderedSame })
         searchBarConfigure()
         
@@ -77,6 +78,8 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
                 vc.queuePostRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: self.myfavoriteList)
             }.disposed(by: disposeBag)
     }
+    
+    
 }
 
 extension SearchViewController : UISearchBarDelegate {

@@ -161,7 +161,7 @@ class SearchListView: BaseView {
         bt.setTitleColor(BlackWhite.black, for: .normal)
         return bt
     }()
-    let okButton: UIButton = {
+    let checkButton: UIButton = {
         let bt = UIButton()
         bt.setTitle("확인", for: .normal)
         bt.backgroundColor = BrandColor.green
@@ -170,6 +170,9 @@ class SearchListView: BaseView {
         bt.layer.borderColor = BrandColor.green.cgColor
         return bt
     }()
+    
+ 
+    
     
     
     lazy var stackView: UIStackView = {
@@ -184,7 +187,7 @@ class SearchListView: BaseView {
     }()
     
     override func configure() {
-        [tampView,studyChangedButton, refreshButton,logoImage, content , subContent, tableView,collectionview,blackView,whiteView,stackView,cancelButton,okButton].forEach {
+        [tampView,studyChangedButton, refreshButton,logoImage, content , subContent, tableView,collectionview,blackView,whiteView,stackView,cancelButton,checkButton].forEach {
             self.addSubview($0)
         }
         [requestAcceptTitle,subtitle].forEach {
@@ -254,14 +257,15 @@ class SearchListView: BaseView {
             make.trailing.equalTo(-30)
         }
     }
-    func requestAcceptSetConstrains() {
+    func requestSetConstrains() {
         
         blackView.snp.remakeConstraints { make in
             make.edges.equalTo(self)
         }
         whiteView.snp.remakeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.height * 0.25)
-            make.width.equalTo(UIScreen.main.bounds.width * 0.8)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
             make.center.equalTo(self)
         }
         stackView.snp.remakeConstraints { make in
@@ -272,24 +276,60 @@ class SearchListView: BaseView {
         }
         cancelButton.snp.remakeConstraints { make in
             make.leading.equalTo(whiteView.snp.leading).offset(20)
-            make.width.equalTo(whiteView.snp.width).multipliedBy(0.4)
+            make.width.equalTo(whiteView.snp.width).multipliedBy(0.42)
             make.bottom.equalTo(whiteView.snp.bottom).offset(-20)
             make.top.equalTo(stackView.snp.bottom).offset(20)
         }
-        okButton.snp.remakeConstraints { make in
+        checkButton.snp.remakeConstraints { make in
             make.trailing.equalTo(whiteView.snp.trailing).offset(-20)
             make.bottom.equalTo(cancelButton.snp.bottom)
             make.top.equalTo(cancelButton.snp.top)
-            make.width.equalTo(whiteView.snp.width).multipliedBy(0.4)
+            make.width.equalTo(whiteView.snp.width).multipliedBy(0.42)
         }
+        
     }
+    func acceptSetConstrains() {
+        blackView.snp.remakeConstraints { make in
+            make.edges.equalTo(self)
+        }
+        whiteView.snp.remakeConstraints { make in
+            make.height.equalTo(UIScreen.main.bounds.height * 0.22)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.center.equalTo(self)
+        }
+        stackView.snp.remakeConstraints { make in
+            make.top.equalTo(whiteView.snp.top)
+            make.leading.equalTo(whiteView.snp.leading)
+            make.trailing.equalTo(whiteView.snp.trailing)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.12)
+        }
+        cancelButton.snp.remakeConstraints { make in
+            make.leading.equalTo(whiteView.snp.leading).offset(20)
+            make.width.equalTo(whiteView.snp.width).multipliedBy(0.42)
+            make.bottom.equalTo(whiteView.snp.bottom).offset(-20)
+            make.top.equalTo(stackView.snp.bottom).offset(20)
+        }
+        checkButton.snp.remakeConstraints { make in
+            make.trailing.equalTo(whiteView.snp.trailing).offset(-20)
+            make.bottom.equalTo(cancelButton.snp.bottom)
+            make.top.equalTo(cancelButton.snp.top)
+            make.width.equalTo(whiteView.snp.width).multipliedBy(0.42)
+        }
+        requestAcceptTitle.text = "스터디를 수락할까요?"
+        subtitle.text = "요청을 수락하면 채팅창에서 대화를 나눌 수 있어요"
+    }
+    
+    
+    
+    
     //        blackView.removeFromSuperview() //개꿀 !!!
     func cancelButtonClicked() {
         blackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
         whiteView.snp.remakeConstraints {$0.width.height.equalTo(0)}
         stackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
         cancelButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
-        okButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        checkButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
     }
     
     

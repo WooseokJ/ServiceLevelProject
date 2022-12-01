@@ -99,8 +99,29 @@ enum studyAcceptError: Int, Error {
     case clientError = 501
 }
 
-enum dodgeError: Int, Error {
+enum studyDodgeError: Int, Error {
     case otherUIDError = 201
+    case tokenErorr = 401
+    case notUserError = 406
+    case serverError = 500
+    case clientError = 501
+}
+
+enum reviewError: Int,Error {
+    case tokenErorr = 401
+    case notUserError = 406
+    case serverError = 500
+    case clientError = 501
+}
+
+enum chatSendError: Int,Error {
+    case notSendState = 201
+    case tokenErorr = 401
+    case notUserError = 406
+    case serverError = 500
+    case clientError = 501
+}
+enum chatListError: Int,Error {
     case tokenErorr = 401
     case notUserError = 406
     case serverError = 500

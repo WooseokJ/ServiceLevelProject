@@ -39,6 +39,9 @@ final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProt
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind()
+        refreshIdToken {
+            print()
+        }
    
     }
 }

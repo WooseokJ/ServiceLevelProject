@@ -22,7 +22,7 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
     
     var disposeBag = DisposeBag()
     
-    var VCS: Array<UIViewController> = [AroundSeSacViewController(), ResponseViewController()]
+    var VCS: Array<UIViewController> = [AroundSeSacViewController(), AcceptViewController()]
     
     override func loadView() {
         super.view = searchListView
