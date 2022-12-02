@@ -15,8 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 //        let vc = OnBoardingViewController()
-        let vc = ChattingViewController()
-//        let vc = TapViewController()
+//        let vc = ChattingViewController()
+        let vc = TapViewController()
+//        let vc = SearchListViewController()
 //        let nav = UINavigationController(rootViewController: vc)
         window?.backgroundColor = BlackWhite.white
         window?.rootViewController = vc

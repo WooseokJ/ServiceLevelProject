@@ -28,8 +28,6 @@ extension APIProtocol where Self: UIViewController {
             print("갱신한 idToken",idToken)
             UserDefaults.standard.set(idToken!, forKey: "token")
             completion() 
-            
-            
         }
     }
     

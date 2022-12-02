@@ -60,7 +60,7 @@ extension MyInfoViewController {
                 case 0:
                     content.image = UIImage(named: "profile_img.png")
                     cell.accessories = [.disclosureIndicator()]
-                case 1: content.image  = UIImage(named: "profile_img.png")
+                case 1: content.image = UIImage(systemName: "star")
 
                 case 2: content.image = UIImage(systemName: "star")
                 case 3: content.image = UIImage(systemName: "star")

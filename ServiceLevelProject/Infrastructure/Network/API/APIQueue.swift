@@ -87,7 +87,6 @@ final class APIQueue {
             switch response.result {
                 
             case .success(let data) :
-                print(data)
                 completionHandler(.success(data))
             case .failure:
                 guard let customError = studyRequestError(rawValue: response.response!.statusCode) else{return}
@@ -101,7 +100,6 @@ final class APIQueue {
         AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
             switch response.result {
             case .success(let data) :
-                print(data)
                 completionHandler(.success(data))
             case .failure:
                 guard let customError = studyAcceptError(rawValue: response.response!.statusCode) else{return}
@@ -116,7 +114,6 @@ final class APIQueue {
         AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
             switch response.result {
             case .success(let data) :
-                print(data)
                 completionHandler(.success(data))
             case .failure:
                 guard let customError = studyDodgeError(rawValue: response.response!.statusCode) else{return}

@@ -99,6 +99,8 @@ class ChattingView: BaseView {
         let tableview = UITableView(frame: .zero, style: .grouped)
         tableview.backgroundColor = .green
         tableview.register(MychatTableViewCell.self, forCellReuseIdentifier: MychatTableViewCell.reuseIdentifier)
+        tableview.register(YourChatTableViewCell.self, forCellReuseIdentifier: YourChatTableViewCell.reuseIdentifier)
+
         return tableview
     }()
     
@@ -116,7 +118,7 @@ class ChattingView: BaseView {
             make.leading.equalTo(130)
             make.trailing.equalTo(-130)
             make.height.equalTo(UIScreen.main.bounds.height * 0.04)
-            make.centerY.equalTo(self.snp.centerY).multipliedBy(0.2)
+            make.centerY.equalTo(self.snp.centerY).multipliedBy(0.25)
         }
         
         sendTextView.snp.makeConstraints { make in
@@ -159,28 +161,3 @@ class ChattingView: BaseView {
     
 }
 
-//
-//extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
-//    
-//    func configureTableView() {
-//        chattingView.tableView.delegate = self
-//        chattingView.tableView.dataSource = self
-//        chattingView.tableView.allowsSelection = false
-//        chattingView.tableView.separatorStyle = .none
-//        chattingView.tableView.rowHeight = UITableView.automaticDimension
-//        chattingView.tableView.backgroundColor = .darkGray
-//    }
-//    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2
-//    }
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//    
-//    
-//}

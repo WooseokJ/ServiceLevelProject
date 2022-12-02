@@ -330,6 +330,7 @@ class SearchListView: BaseView {
         stackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
         cancelButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
         checkButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        self.tableView.reloadData()
     }
     
     

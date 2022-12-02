@@ -21,8 +21,10 @@ extension callSearchProtocol where Self: HomeViewController {
             do {
                 switch data {
                 case .success:
+                    print(data)
                     let data = try data.get().value!
-                    self?.transferSearchInfo = data
+//                    self?.transferSearchInfo = data
+                    
                     guard data.fromQueueDB.isEmpty else {
                         data.fromQueueDB.forEach {
                             let marker = NMFMarker(position: NMGLatLng(lat: $0.lat, lng: $0.long))
@@ -33,8 +35,11 @@ extension callSearchProtocol where Self: HomeViewController {
                             marker.mapView = self?.homeView.naverMapView.mapView
                             self?.markers.append(marker)
                         }
+                        completionHandler(data)
                         return
                     }
+            
+
                 case .failure(.notUserError):
                     self?.view.makeToast("미가입 회원")
                 case .failure(.tokenErorr):

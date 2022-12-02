@@ -11,6 +11,7 @@ import RxCocoa
 
 class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtocol {
 
+
     
     
     var isSelect = true
@@ -25,7 +26,10 @@ class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtoc
     override func viewWillAppear(_ animated: Bool) {
         self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
             self?.transferSearchInfo = search
+            dump(self?.transferSearchInfo)
+ 
             self?.searchListView.tableView.reloadData()
+      
         })
         
     }
@@ -54,7 +58,6 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return (self.transferSearchInfo?.fromQueueDBRequested.count) ?? 0
-//        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,14 +134,15 @@ extension AcceptViewController {
             }
             .disposed(by: disposeBag)
         
+        //수락하기 버튼 클릭
         searchListView.checkButton.rx
             .tap
             .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.studyPostAccept(otheruid: val!)
+                UserDefaults.standard.set(val!, forKey: "otheruid")
                 let cattingVC = ChattingViewController()
-                
                 vc.transition(cattingVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag)

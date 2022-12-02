@@ -48,19 +48,25 @@ extension ChatProtocol where Self: ChattingViewController {
         }
     }
     
-    func chatPostList(lastchatDate: String, from: String) {
+    func chatPostList(lastchatDate: String, from: String, completionHandler: @escaping ((ChatListInfo?) -> Void)) {
+        
+        
         apiChat.chatPostList(lastchatDate: lastchatDate, from: from) {[weak self] data in
             do {
                 switch data {
                 case .success:
                     print(data)
                     self?.view.makeToast("채팅목록 가져오기 성공")
+                    let transData = try data.get()
+                    completionHandler(transData)
                 case .failure(.notUserError):
                     self?.view.makeToast("미가입 회원")
                 case .failure(.tokenErorr):
                     self?.view.makeToast("토큰 만료")
                     self?.refreshIdToken { [weak self] in
-                        self?.chatPostList(lastchatDate: lastchatDate, from: from)
+                        self?.chatPostList(lastchatDate: lastchatDate, from: from) { _ in
+                            self?.view.makeToast("토큰 만료후 재시도")
+                        }
                     }
                 case .failure(.serverError):
                     self?.view.makeToast("서버 에러")

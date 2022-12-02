@@ -94,7 +94,7 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.searchListView.requestSetConstrains()
-                // 버튼클릭시 컨스트레인트 그려줌
+                
             }
             .disposed(by: disposeBag)
         return headerView
@@ -117,28 +117,31 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension AroundSeSacViewController {
     private func bind() {
+        
+        // 취소하기 버튼 확인 클릭시 
         searchListView.cancelButton
             .rx
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.searchListView.cancelButtonClicked()
-                vc.searchListView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
-                searchListView.checkButton
-                    .rx
-                    .tap
-                    .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
-                    .withUnretained(self)
-                    .bind { (vc,val) in
-                        print(self.searchListView.checkButton.tag)
-                        print(val!)
-                        vc.studyPostRequest(otheruid: val!)
-                        vc.searchListView.cancelButtonClicked()
-                        vc.searchListView.tableView.reloadData()
-                    }
-                    .disposed(by: disposeBag)
+        
+        // 요청하기 버튼 확인 클릭시
+        searchListView.checkButton
+            .rx
+            .tap
+            .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
+            .withUnretained(self)
+            .bind { (vc,val) in
+                print(self.searchListView.checkButton.tag)
+                print(val!)
+                UserDefaults.standard.set(val!, forKey: "otheruid")
+                vc.studyPostRequest(otheruid: val!)
+                vc.searchListView.cancelButtonClicked()
+            }
+            .disposed(by: disposeBag)
     }
     
     

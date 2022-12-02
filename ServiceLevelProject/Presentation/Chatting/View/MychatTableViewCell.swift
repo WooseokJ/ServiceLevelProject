@@ -21,7 +21,8 @@ class MychatTableViewCell: UITableViewCell {
     
     let myChatLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .darkGray
+        label.backgroundColor = .red
+        label.numberOfLines = 0
         return label
     }()
     
@@ -34,10 +35,11 @@ class MychatTableViewCell: UITableViewCell {
     }
     func setConstrains() {
         myChatLabel.snp.makeConstraints { make in
-            make.leading.equalTo(30)
-            make.height.equalTo(100)
-            make.width.equalTo(100)
+            make.trailing.equalTo(-10)
+            make.height.equalTo(self.snp.height)
+            make.width.equalTo(200)
             make.top.equalTo(self.snp.top)
         }
+ 
     }
 }

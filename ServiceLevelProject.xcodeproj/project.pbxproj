@@ -36,6 +36,8 @@
 		18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1D291A3FC7007044BA /* LoginView.swift */; };
 		18B32242293621270016AE1A /* SearchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B32241293621270016AE1A /* SearchListTableViewCell.swift */; };
 		18B6A0382938D63B00FA23D9 /* YourChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */; };
+		18B6A03B2938FEAC00FA23D9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 18B6A03A2938FEAC00FA23D9 /* Realm */; };
+		18B6A03D2938FEAC00FA23D9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18B6A03C2938FEAC00FA23D9 /* RealmSwift */; };
 		18BF5F392937678C007B20EB /* AroundProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF5F382937678C007B20EB /* AroundProtocol.swift */; };
 		18BF5F3B2937BE29007B20EB /* AcceptProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */; };
 		18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */; };
@@ -204,6 +206,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B6A03D2938FEAC00FA23D9 /* RealmSwift in Frameworks */,
+				18B6A03B2938FEAC00FA23D9 /* Realm in Frameworks */,
 				184DDD75291A899F00F12D63 /* RxSwift in Frameworks */,
 				18F10CDB292B5F720038BEEE /* MultiSlider in Frameworks */,
 				18CBBEB0292210F800CEC097 /* FirebaseAuth in Frameworks */,
@@ -864,6 +868,8 @@
 				18CBBEB1292210F800CEC097 /* FirebaseMessaging */,
 				18F10CDA292B5F720038BEEE /* MultiSlider */,
 				183834B0292E795B006C0675 /* Tabman */,
+				18B6A03A2938FEAC00FA23D9 /* Realm */,
+				18B6A03C2938FEAC00FA23D9 /* RealmSwift */,
 			);
 			productName = ServiceLevelProject;
 			productReference = 18DC246829189DDD00DD5D1C /* ServiceLevelProject.app */;
@@ -945,6 +951,7 @@
 				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */,
 				183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */,
+				18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -1486,6 +1493,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.30.0;
+			};
+		};
 		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1537,6 +1552,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		18B6A03A2938FEAC00FA23D9 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		18B6A03C2938FEAC00FA23D9 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		18CBBEAF292210F800CEC097 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

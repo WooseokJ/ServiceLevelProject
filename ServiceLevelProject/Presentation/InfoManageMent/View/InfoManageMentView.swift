@@ -58,8 +58,7 @@ class InfoManageMentView: BaseView {
     }
     override func setConstrains() {
         tableView.snp.makeConstraints { make in
-            make.leading.equalTo(16)
-            make.trailing.equalTo(-16)
+            make.horizontalEdges.equalToSuperview().inset(16)
             make.top.equalTo(self.safeAreaLayoutGuide)
             make.height.equalTo(UIScreen.main.bounds.height * 0.25)
         }

@@ -20,15 +20,27 @@ class YourChatTableViewCell: UITableViewCell {
     }
     
     
+    let yourChatLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .blue
+        label.numberOfLines = 0
+        return label
+    }()
+    
     
     
     func configure() {
-        [].forEach {
+        [yourChatLabel].forEach {
             self.contentView.addSubview($0)
         }
     }
     func setConstrains() {
-        
+        yourChatLabel.snp.makeConstraints { make in
+            make.leading.equalTo(10)
+            make.height.equalTo(self.snp.height)
+            make.width.equalTo(200)
+            make.top.equalTo(self.snp.top)
+        }
     }
 
 }

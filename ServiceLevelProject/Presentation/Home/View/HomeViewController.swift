@@ -39,9 +39,10 @@ final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProt
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind()
-        refreshIdToken {
-            print()
-        }
+//        refreshIdToken {
+//            print()
+//        }
+        UserDefaults.standard.set("ggkr3xEF9cZqzmk5XgbxkVrUMMK2", forKey: "otheruid")
    
     }
 }
@@ -96,11 +97,11 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.homeView.locationBtn.setTitle("complass", for: UIControl.State.selected)
-                let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: HomeViewController.lat ?? 0 , lng: HomeViewController.lng ?? 0 ))
+                let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: UserDefaults.standard.double(forKey: "lat") ?? 0 , lng: UserDefaults.standard.double(forKey: "lng") ?? 0 ))
                 cameraUpdate.animation = .easeIn
                 vc.homeView.naverMapView.mapView.moveCamera(cameraUpdate)
                 
-//                vc.callSearch()
+                self.setpin(lat: UserDefaults.standard.double(forKey: "lat"), lng: UserDefaults.standard.double(forKey: "lng"))
             }
             .disposed(by: disposeBag)
     }
@@ -120,8 +121,12 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            print("현위치:",location.coordinate.latitude, location.coordinate.longitude)
             HomeViewController.lat = location.coordinate.latitude
             HomeViewController.lng = location.coordinate.longitude
+            UserDefaults.standard.set(location.coordinate.latitude, forKey: "lat")
+            UserDefaults.standard.set(location.coordinate.longitude, forKey: "lng")
+            
             locationManager.stopUpdatingLocation()
         }
     }
@@ -131,24 +136,36 @@ extension HomeViewController: CLLocationManagerDelegate {
 extension HomeViewController: NMFMapViewCameraDelegate {
     /// 카메라가 처음 움직일떄 메소드 -> 핀을계속 갱신하고 !!
     func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
-        setpin()
+        marker.position = homeView.naverMapView.mapView.cameraPosition.target //카메라상 중앙의 좌표
+        setpin(lat: marker.position.lat, lng: marker.position.lng)
     }
     /// 카메라가 딱 내가 지정할떄 놓을떄 호출되는 메소드 -> 네트워크 하면되지
     func mapViewCameraIdle(_ mapView: NMFMapView) {
-        callSearch(lat: marker.position.lat, long: marker.position.lng) { _ in
+        HomeViewController.lat = marker.position.lat
+        HomeViewController.lng = marker.position.lng
+        
+        callSearch(lat: marker.position.lat, long: marker.position.lng) { [weak self] data in 
+            self?.transferSearchInfo = data
         }
     }
+    
+    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
+        marker.position = homeView.naverMapView.mapView.cameraPosition.target //카메라상 중앙의 좌표
+        setpin(lat: marker.position.lat, lng: marker.position.lng)
+    }
+    
+ 
 }
 
 
 extension HomeViewController {
-    private func setpin() {
-        marker.position = homeView.naverMapView.mapView.cameraPosition.target //카메라상 중앙의 좌표
-        marker.position = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
+    private func setpin(lat: Double, lng: Double) {  
+        marker.position = NMGLatLng(lat: lat , lng: lng)
         marker.iconImage = NMFOverlayImage(image: UIImage(named: "map_marker.png")!)
         marker.mapView = homeView.naverMapView.mapView
+        
         // 거리 원
-        circle.center = NMGLatLng(lat: marker.position.lat, lng: marker.position.lng)
+        circle.center = NMGLatLng(lat: lat, lng: lng)
         circle.radius = 700
         circle.mapView = homeView.naverMapView.mapView
         circle.outlineWidth = 1

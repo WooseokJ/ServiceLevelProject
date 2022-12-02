@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+
+
 final class SearchViewController: BaseViewController, APIProtocol, SearchProtocol {
     
     var transferSearchInfo: Search?
@@ -39,7 +41,9 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
                     totalList.append(studyVal)
                 }
             }
+
         }
+        print(totalList)
         
 //        array.contains(where: { $0.caseInsensitiveCompare(word) == .orderedSame })
         searchBarConfigure()
