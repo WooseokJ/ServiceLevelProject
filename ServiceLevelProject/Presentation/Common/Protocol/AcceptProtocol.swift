@@ -26,15 +26,19 @@ extension AcceptProtocol where Self: AcceptViewController {
                 case .success:
                     print(data)
                     self?.view.makeToast("스터디 수락 성공")
+                    let cattingVC = ChattingViewController()
+                    self?.transition(cattingVC, transitionStyle: .push)
+                
                 case .failure(.opponentToOtherMettingError):
                     self?.view.makeToast("상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다")
+                    
                 case .failure(.stopSesacSearchError):
                     self?.view.makeToast("상대방이 스터디찾기를 그만두었습니다.")
+                    
                 case .failure(.myToOtherMatchedError):
                     self?.view.makeToast("앗! 누군가가 나의 스터디를 수락하였어요!")
                     self?.callmyqueueStateRequest()
 
-                    
                     
                 case .failure(.notUserError):
                     self?.view.makeToast("미가입 회원")

@@ -66,12 +66,7 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchListTableViewCell.reuseIdentifier, for: indexPath) as! SearchListTableViewCell
-//        if testSelect {
-//            searchListView.collectionview.snp.remakeConstraints{$0.width.height.equalTo(0)}
-//        }
-//        else {
-//            searchListView.collectionViewSetConstrains(cell: cell)
-//        }
+
         cell.reviewLabel.text = self.transferSearchInfo?.fromQueueDBRequested[indexPath.section].nick
         searchListView.checkButton.tag = indexPath.section
         cell.backgroundColor = .darkGray
@@ -140,10 +135,26 @@ extension AcceptViewController {
             .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.studyPostAccept(otheruid: val!)
                 UserDefaults.standard.set(val!, forKey: "otheruid")
-                let cattingVC = ChattingViewController()
-                vc.transition(cattingVC, transitionStyle: .push)
+                vc.studyPostAccept(otheruid: val!)
+                vc.searchListView.cancelButtonClicked()
+
+            }
+            .disposed(by: disposeBag)
+        
+        // 새로고침 버튼 클릭
+        searchListView.refreshButton
+            .rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
+                    vc.transferSearchInfo = search
+                    dump(vc.transferSearchInfo)
+         
+                    vc.searchListView.tableView.reloadData()
+              
+                })
             }
             .disposed(by: disposeBag)
     }

@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 // MARK: User
 enum loginError: Int, Error {
     case tokenErorr = 401
@@ -20,7 +22,6 @@ enum SingupError: Int, Error {
     case regUserError = 201
     case notNickNameError = 202
     case tokenErorr = 401
-    case notUserError = 406
     case serverError = 500
     case clientError = 501
 }
@@ -37,7 +38,7 @@ enum updateFCMToken: Int, Error {
     case serverError = 500
     case clientError = 501
 }
-enum myPage: Int, Error {
+enum myPageError: Int, Error {
     case tokenErorr = 401
     case notUserError = 406
     case serverError = 500
@@ -127,3 +128,4 @@ enum chatListError: Int,Error {
     case serverError = 500
     case clientError = 501
 }
+

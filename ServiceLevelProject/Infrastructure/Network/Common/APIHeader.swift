@@ -14,6 +14,7 @@ enum APIHeader {
     case login
     case signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String,
                 email: String, gender: Int)
+    case mypage
     case queue(lat: Double, long: Double, studylist: [String])
     case search(lat: Double, long: Double)
     case myQueueState
@@ -36,6 +37,8 @@ extension APIHeader {
         switch self {
         case .signup, .login:
             return URL(string: baseURL+"user")!
+        case .mypage:
+            return URL(string: baseURL+"user/mypage")!
         case .search:
             return URL(string: baseURL+"queue/search")!
         case .myQueueState:
@@ -43,7 +46,7 @@ extension APIHeader {
         case .queue, .searchStop:
             return URL(string: baseURL+"queue")!
         case .withdraw:
-            return URL(string: baseURL+"withdraw")!
+            return URL(string: baseURL+"user/withdraw")!
         case .studyPost:
             return URL(string: baseURL+"queue/studyrequest")!
         case .studyAccept:
@@ -58,6 +61,7 @@ extension APIHeader {
     }
     var method: HTTPMethod {
         switch self {
+        case .mypage: return .put
         case .signup, .queue, .search, .withdraw, .studyPost, .studyAccept, .studyDodge, .chatPostSend : return .post
         case .login, .myQueueState, .chatGetList : return .get
         case .searchStop: return .delete
@@ -65,13 +69,14 @@ extension APIHeader {
     }
     var headers: HTTPHeaders {
         switch self {
-        case .signup, .search, .queue, .studyPost, .studyAccept, .studyDodge, .chatPostSend, .chatGetList:
+        case .mypage, .signup, .search, .queue, .studyPost, .studyAccept, .studyDodge, .chatPostSend, .chatGetList:
+            
             return ["Content-Type" : "application/x-www-form-urlencoded",
-                    "idtoken": UserDefaults.standard.string(forKey: "token")!
+                    "idtoken": UserDefaults.standard.string(forKey: "token") ?? ""
             ]
         case .login, .myQueueState, .searchStop, .withdraw:
             return [
-                "idtoken": UserDefaults.standard.string(forKey: "token")!
+                "idtoken": UserDefaults.standard.string(forKey: "token") ?? ""
             ]
     
         }

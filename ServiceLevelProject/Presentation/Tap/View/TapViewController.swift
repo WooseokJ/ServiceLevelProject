@@ -25,18 +25,12 @@ final class TapViewController: UITabBarController {
         let secondVC =  UINavigationController(rootViewController: SesacShopViewController())
         secondVC.tabBarItem.title = "새싹샵"
         secondVC.tabBarItem.image = UIImage(named: "present_black_icon.png")
-        
-        let thirdVC = UINavigationController(rootViewController: SesacFriendViewController())
-        thirdVC.tabBarItem.title = "새싹친구"
-        thirdVC.tabBarItem.image = UIImage(named: "sesac_black_icon.png")
-        
-        
-        
+    
         let fourVC = UINavigationController(rootViewController: MyInfoViewController())
         fourVC.tabBarItem.title = "내정보"
         fourVC.tabBarItem.image = UIImage(named: "person_black_icon.png")
         
-        viewControllers = [firstVC, secondVC, thirdVC, fourVC]
+        viewControllers = [firstVC, secondVC, fourVC]
         
     }
     

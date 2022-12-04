@@ -37,7 +37,6 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
         addBar(searchListView.bar, dataSource: self, at: .custom(view: searchListView.tampView , layout: nil))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: #selector(searchCancelClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
-        
     }
 
     @objc func searchCancelClicked() {

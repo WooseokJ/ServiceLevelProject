@@ -15,7 +15,7 @@ final class APIQueue {
     typealias SearchInfoHandler = ( (Result<Search?, searchPostError>) -> Void )
     typealias MyQueueStateHandler = ( (Result<MyQueueState?, myQueueStateErorr>) -> Void )
     typealias StudyPostRequestHandler = ( (Result<Data?, studyRequestError>) -> Void )
-    typealias StudyPostAcceptHandler = ( (Result<Data?, studyAcceptError>) -> Void )
+    typealias StudyPostAcceptHandler = ( (Result<Void?, studyAcceptError>) -> Void )
     typealias StudyPostDodgeHandler = ( (Result<Data?, studyDodgeError>) -> Void )
 
     init() {}
@@ -97,10 +97,10 @@ final class APIQueue {
     /// 스터디 수락
     func studyPostAccept(otheruid: String,  completionHandler: @escaping StudyPostAcceptHandler) {
         let api = APIHeader.studyAccept(otheruid: otheruid)
-        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate(statusCode: 200..<201).response { response in
             switch response.result {
             case .success(let data) :
-                completionHandler(.success(data))
+                completionHandler(.success(()))
             case .failure:
                 guard let customError = studyAcceptError(rawValue: response.response!.statusCode) else{return}
                 completionHandler(.failure(studyAcceptError(rawValue: customError.rawValue)!))

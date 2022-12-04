@@ -41,7 +41,7 @@ class NickNameViewController: BaseViewController {
         guard ((loginView.phoneNumberTextField.text?.contains("바람의나라")) != true) else {return}
         guard ((loginView.phoneNumberTextField.text?.contains("휴저씨")) != true) else {return}
         guard ((loginView.phoneNumberTextField.text?.contains("아저씨")) != true) else {return}
-        UserInfo.shared.nick = loginView.phoneNumberTextField.text
+        UserDefaults.standard.set(loginView.phoneNumberTextField.text, forKey: "nick")
         let vc = BirthViewController()
         transition(vc, transitionStyle: .push)
     }

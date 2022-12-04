@@ -37,7 +37,9 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
         totalList+=recommendList
         transferSearchInfo?.fromQueueDB.forEach {
             $0.studylist.forEach { studyVal in
-                if !recommendList.contains(studyVal) {
+                if !totalList.contains(where: { $0.caseInsensitiveCompare(studyVal) == .orderedSame }) {
+                    print(studyVal)
+                    
                     totalList.append(studyVal)
                 }
             }
@@ -51,7 +53,14 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
         
+        bind()
+        
     }
+    
+
+        
+        
+    
     @objc func keyboardShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             searchView.searchButton.snp.remakeConstraints { make in
@@ -60,8 +69,20 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
                 make.trailing.equalTo(10)
                 make.height.equalTo(UIScreen.main.bounds.height * 0.06)
             }
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(collectionViewTap(sender:)))
+//            searchView.collectionView.addGestureRecognizer(tapGesture)
         }
     }
+    
+//    @objc func collectionViewTap(sender: UITapGestureRecognizer) {
+//        searchView.searchButton.snp.remakeConstraints { make in
+//            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+//            make.height.equalTo(UIScreen.main.bounds.height * 0.06)
+//            make.leading.equalTo(16)
+//            make.trailing.equalTo(-16)
+//        }
+//    }
+    
     @objc func keyboardHide(notification: NSNotification) {
         searchView.searchButton.snp.remakeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -95,6 +116,10 @@ extension SearchViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        guard !myfavoriteList.contains(searchBar.text!) else{
+            view.makeToast("이미 추가되어있습니다.")
+            return
+        }
         guard myfavoriteList.count < 8  else {
             view.makeToast("8개 이상 추가할수없습니다.")
             return

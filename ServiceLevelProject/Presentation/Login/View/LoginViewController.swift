@@ -44,14 +44,13 @@ class LoginViewController: BaseViewController {
 
                 PhoneAuthProvider.provider().verifyPhoneNumber("+82" + (vc.loginView.phoneNumberTextField.text ?? ""), uiDelegate: nil) { (varification,error) in
                     if error == nil {
-                        vc.verifyID = varification
-                        print("verify:",vc.verifyID)
-                        UserInfo.shared.phoneNumber = vc.loginView.phoneNumberTextField.text // 폰번호입력
+                        UserDefaults.standard.set(vc.loginView.phoneNumberTextField.text, forKey: "phoneNumber")
                         let viewController = AuthViewController()
                         viewController.verifyID = varification
                         vc.transition(viewController, transitionStyle: .push)
                     } else {
-                        print("넌 오류야 ")
+                        vc.view.endEditing(true)
+                        self.view.makeToast("인증번호 과도한 요청")
                     }
                 }
             }
@@ -118,8 +117,5 @@ extension LoginViewController {
         let pred = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
         return pred.evaluate(with: phone)
     }
-    
-    
-    
     
 }

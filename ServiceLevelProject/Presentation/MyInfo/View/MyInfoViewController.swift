@@ -98,14 +98,9 @@ extension MyInfoViewController: UICollectionViewDelegate {
         case 0 :
             let vc = InfoManageMentViewController()
             transition(vc,transitionStyle: .push)
-        case 1:
-            print(1)
-//            let vc = OpenLicenseViewController()
-//            transition(vc,transitionStyle: .push)
-        case 2:
-            print(2)
             
         default:
+            self.view.makeToast("준비중입니다.")
             break
         }
     }

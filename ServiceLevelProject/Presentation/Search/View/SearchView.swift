@@ -165,9 +165,15 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             view.makeToast("8개 이상 추가할수없습니다.")
             return
         }
+
         
         switch indexPath.section {
         case 0:
+            guard !myfavoriteList.contains(totalList[indexPath.row]) else{
+                view.makeToast("이미 추가되어있습니다.")
+                return
+            }
+            
             guard myfavoriteList.count < 8  else {
                 view.makeToast("8개 이상 추가할수없습니다.")
                 return
@@ -176,6 +182,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 //            totalList.remove(at: indexPath.row)
         case 1:
 //            totalList.append(myfavoriteList[indexPath.row])
+            
             myfavoriteList.remove(at: indexPath.row)
         default: break
         }

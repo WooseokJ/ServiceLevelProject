@@ -23,7 +23,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
     
     var chat: [Payload?] = []
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.chattingView.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -41,18 +41,34 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
         var lastchatDate: String = "2000-01-01T00:00:00.000Z"
         chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
             self?.recentChattingInfo = data
-            print(self?.recentChattingInfo)
             self?.recentChattingInfo?.payload.forEach{
                 self?.chat.append($0)
             }
             self?.chattingView.tableView.reloadData()
-
         }
         
-//        bind()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blackViewTap(sender:)))
+        chattingView.blackView.addGestureRecognizer(tapGesture)
+        
+        let keyBoardGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTap(sender:)))
+        chattingView.tableView.addGestureRecognizer(keyBoardGesture)
+        bind()
         
     }
+    @objc func blackViewTap(sender: UITapGestureRecognizer) {
+        chattingView.rightBarButtonHidden()
+    }
+    @objc func tableViewTap(sender: UITapGestureRecognizer) {
+        chattingView.stackView.snp.remakeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.06)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+        }
+        view.endEditing(true)
         
+    }
+    
         
     
     @objc func keyboardShow(notification: NSNotification) {
@@ -77,8 +93,8 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
     }
     
     @objc func listClicked() {
-        self.view.makeToast("모달")
-        studyPostDodge(otheruid: UserDefaults.standard.string(forKey: "otheruid")!)
+        chattingView.rightBarButtonClicked() 
+
     }
 
     @objc func backBtClicked() {
@@ -105,55 +121,53 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
+
         let data = chat[indexPath.row]
         if data?.id == UserDefaults.standard.string(forKey: "otheruid") {
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: MychatTableViewCell.reuseIdentifier, for: indexPath) as! MychatTableViewCell
+            return cell
+        } else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: YourChatTableViewCell.reuseIdentifier, for: indexPath) as! YourChatTableViewCell
+//            cell.yourChatLabel.text = data?.chat!
+//            cell.yourChatLabel.backgroundColor = .yellow
+//            cell.backgroundColor = .cyan
+//            cell.yourChatLabel.layer.cornerRadius = 8
+//            cell.yourChatLabel.layer.borderWidth = 1
+//            cell.yourChatLabel.layer.borderColor = UIColor.red.cgColor
+//            return cell
             let cell = tableView.dequeueReusableCell(withIdentifier: MychatTableViewCell.reuseIdentifier, for: indexPath) as! MychatTableViewCell
             cell.myChatLabel.text = data?.chat!
             cell.backgroundColor = .brown
             return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: YourChatTableViewCell.reuseIdentifier, for: indexPath) as! YourChatTableViewCell
-            cell.yourChatLabel.text = data?.chat!
-            cell.yourChatLabel.backgroundColor = .yellow
-            cell.backgroundColor = .cyan
-            cell.yourChatLabel.layer.cornerRadius = 8
-            cell.yourChatLabel.layer.borderWidth = 1
-            cell.yourChatLabel.layer.borderColor = UIColor.red.cgColor
-            return cell
-
         }
-        
-        
-
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return UIScreen.main.bounds.height * 0.1
-//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return UITableView.automaticDimension
-        
     }
-    
-    
 }
 
 
-//extension ChattingViewController {
-//    func bind() {
-//        chattingView.sendButton.rx
-//            .tap
-//            .map {self.chattingView.tableView.text}
-//            .withUnretained(self)
-//
-//            .bind { (vc,val) in
-//                print(val)
-//            }
-//            .disposed(by: disposeBag)
-//
-//    }
-//}
+extension ChattingViewController {
+    func bind() {
+        chattingView.sendButton.rx
+            .tap
+            .map {self.chattingView.sendTextView.text}
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.chatPostSend(chat: val!, to: UserDefaults.standard.string(forKey: "otheruid")!)
+                vc.chattingView.sendTextView.text = " "
+                vc.chattingView.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        chattingView.studyCancel.rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.studyPostDodge(otheruid: UserDefaults.standard.string(forKey: "otheruid")!)
+                vc.backBtClicked()
+            }
+
+    }
+}
+

@@ -29,7 +29,7 @@ class InfoManageMentView: BaseView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(InfoManageMentTableViewCell.self, forCellReuseIdentifier: InfoManageMentTableViewCell.reuseIdentifier)
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
         tableView.alwaysBounceVertical = false
         tableView.isScrollEnabled = false
         return tableView
@@ -152,6 +152,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                 cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
                 cell.accessoryView = cell.slider
             case 4:
+                cell.backgroundColor = .red
                 print("회원탈퇴 클릭 ")
             default:
                 break
@@ -159,7 +160,6 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             cell.content.text = InfoManageMent.content.list[indexPath.row]
             
         case infoManageView.tableView:
-            print("테이블뷰야야야야 ")
             cell.content.font = AppFont.Title1_M16
             cell.moreButton.snp.remakeConstraints { make in
                 make.height.equalTo(cell.content.snp.height)
@@ -172,7 +172,6 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                     $0.width.height.equalTo(0)
                 }
             } else {
-//                infoManageView.collectionview.backgroundColor = .red
                 infoManageView.collectionview.snp.remakeConstraints { make in
                     make.top.equalTo(cell.moreButton.snp.bottom)
                     make.bottom.equalTo(infoManageView.tableView.snp.bottom).offset(-10)
@@ -209,7 +208,11 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 4 {print("회원탈퇴")}
+        print(#function)
+        if indexPath.row == 4 {
+            print("회원탈퇴")
+            withdraw()
+        }
     }
     
     //MARK: 해더
@@ -223,7 +226,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             headerView.image.snp.updateConstraints {$0.width.height.equalTo(0)}
         default: break
         }
-        return headerView
+        return headerView 
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch tableView {

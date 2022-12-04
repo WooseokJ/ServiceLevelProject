@@ -35,6 +35,11 @@
 		18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1B291A3FBF007044BA /* LoginViewController.swift */; };
 		18B0DA1E291A3FC7007044BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0DA1D291A3FC7007044BA /* LoginView.swift */; };
 		18B32242293621270016AE1A /* SearchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B32241293621270016AE1A /* SearchListTableViewCell.swift */; };
+		18B569C1293C433E0004314E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B569C0293C433E0004314E /* LoginProtocol.swift */; };
+		18B569C3293C4E9C0004314E /* WithdrawProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B569C2293C4E9C0004314E /* WithdrawProtocol.swift */; };
+		18B569C5293C534B0004314E /* SignupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B569C4293C534B0004314E /* SignupProtocol.swift */; };
+		18B569C7293C60F10004314E /* MypageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B569C6293C60F10004314E /* MypageProtocol.swift */; };
+		18B569C9293C7DF40004314E /* StopProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B569C8293C7DF40004314E /* StopProtocol.swift */; };
 		18B6A0382938D63B00FA23D9 /* YourChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */; };
 		18B6A03B2938FEAC00FA23D9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 18B6A03A2938FEAC00FA23D9 /* Realm */; };
 		18B6A03D2938FEAC00FA23D9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18B6A03C2938FEAC00FA23D9 /* RealmSwift */; };
@@ -80,7 +85,6 @@
 		18EFC70429236AA400FB3DB2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70329236AA400FB3DB2 /* Date.swift */; };
 		18EFC706292477B900FB3DB2 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC705292477B900FB3DB2 /* TapViewController.swift */; };
 		18EFC70F29249E3C00FB3DB2 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */; };
-		18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC71429249E5700FB3DB2 /* SesacFriendViewController.swift */; };
 		18EFC71729249E5F00FB3DB2 /* SesacShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC71629249E5F00FB3DB2 /* SesacShopViewController.swift */; };
 		18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC7322924EDC300FB3DB2 /* MyInfoView.swift */; };
 		18EFC738292610B000FB3DB2 /* InfoManageMentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC737292610B000FB3DB2 /* InfoManageMentViewController.swift */; };
@@ -139,6 +143,11 @@
 		18B0DA1D291A3FC7007044BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		18B0DA22291A63CF007044BA /* ServiceLevelProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceLevelProject.entitlements; sourceTree = "<group>"; };
 		18B32241293621270016AE1A /* SearchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTableViewCell.swift; sourceTree = "<group>"; };
+		18B569C0293C433E0004314E /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
+		18B569C2293C4E9C0004314E /* WithdrawProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawProtocol.swift; sourceTree = "<group>"; };
+		18B569C4293C534B0004314E /* SignupProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProtocol.swift; sourceTree = "<group>"; };
+		18B569C6293C60F10004314E /* MypageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageProtocol.swift; sourceTree = "<group>"; };
+		18B569C8293C7DF40004314E /* StopProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopProtocol.swift; sourceTree = "<group>"; };
 		18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatTableViewCell.swift; sourceTree = "<group>"; };
 		18BF5F382937678C007B20EB /* AroundProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundProtocol.swift; sourceTree = "<group>"; };
 		18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptProtocol.swift; sourceTree = "<group>"; };
@@ -183,7 +192,6 @@
 		18EFC70329236AA400FB3DB2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		18EFC705292477B900FB3DB2 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
 		18EFC70E29249E3C00FB3DB2 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
-		18EFC71429249E5700FB3DB2 /* SesacFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacFriendViewController.swift; sourceTree = "<group>"; };
 		18EFC71629249E5F00FB3DB2 /* SesacShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesacShopViewController.swift; sourceTree = "<group>"; };
 		18EFC7322924EDC300FB3DB2 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		18EFC737292610B000FB3DB2 /* InfoManageMentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManageMentViewController.swift; sourceTree = "<group>"; };
@@ -473,7 +481,6 @@
 				18F10CD2292B3DBE0038BEEE /* Search */,
 				18EFC7342926106800FB3DB2 /* InfoManageMent */,
 				18EFC70B29249E2800FB3DB2 /* MyInfo */,
-				18EFC70A29249E2300FB3DB2 /* SesacFriend */,
 				18EFC70929249E1C00FB3DB2 /* SesacShop */,
 				18EFC707292477C000FB3DB2 /* Tap */,
 				18C9FABD291CDB5000F78848 /* Signup */,
@@ -589,6 +596,11 @@
 				18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */,
 				18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */,
 				18EC05B129387E1F007EA5CB /* ChatProtocol.swift */,
+				18B569C0293C433E0004314E /* LoginProtocol.swift */,
+				18B569C2293C4E9C0004314E /* WithdrawProtocol.swift */,
+				18B569C4293C534B0004314E /* SignupProtocol.swift */,
+				18B569C6293C60F10004314E /* MypageProtocol.swift */,
+				18B569C8293C7DF40004314E /* StopProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -688,15 +700,6 @@
 			path = SesacShop;
 			sourceTree = "<group>";
 		};
-		18EFC70A29249E2300FB3DB2 /* SesacFriend */ = {
-			isa = PBXGroup;
-			children = (
-				18EFC71129249E4300FB3DB2 /* View */,
-				18EFC71029249E3F00FB3DB2 /* ViewModel */,
-			);
-			path = SesacFriend;
-			sourceTree = "<group>";
-		};
 		18EFC70B29249E2800FB3DB2 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,21 +723,6 @@
 			children = (
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		18EFC71029249E3F00FB3DB2 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		18EFC71129249E4300FB3DB2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18EFC71429249E5700FB3DB2 /* SesacFriendViewController.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		18EFC71229249E4500FB3DB2 /* View */ = {
@@ -1056,15 +1044,17 @@
 				18EC05A829386410007EA5CB /* ChattingViewController.swift in Sources */,
 				18F10CE3292BD10F0038BEEE /* ErrorCase.swift in Sources */,
 				18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */,
+				18B569C7293C60F10004314E /* MypageProtocol.swift in Sources */,
+				18B569C1293C433E0004314E /* LoginProtocol.swift in Sources */,
 				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
 				183834A4292DD318006C0675 /* SearchListView.swift in Sources */,
 				18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */,
 				18BF5F3B2937BE29007B20EB /* AcceptProtocol.swift in Sources */,
+				18B569C3293C4E9C0004314E /* WithdrawProtocol.swift in Sources */,
 				18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */,
 				18DC24B02918EAA900DD5D1C /* AppFont.swift in Sources */,
 				1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */,
-				18EFC71529249E5700FB3DB2 /* SesacFriendViewController.swift in Sources */,
 				18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */,
 				18B0DA17291A2995007044BA /* OnBoardingViewController.swift in Sources */,
 				18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */,
@@ -1072,6 +1062,7 @@
 				184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */,
 				18DC24B4291928FC00DD5D1C /* ViewModelType.swift in Sources */,
 				1861EC7A291C0709008E0575 /* FirstViewController.swift in Sources */,
+				18B569C9293C7DF40004314E /* StopProtocol.swift in Sources */,
 				18EC05B229387E1F007EA5CB /* ChatProtocol.swift in Sources */,
 				18DC24AC2918E23E00DD5D1C /* AppColor.swift in Sources */,
 				18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */,
@@ -1084,6 +1075,7 @@
 				18F10CE5292BD49E0038BEEE /* NetWorkViewModel.swift in Sources */,
 				18EC05AA29386420007EA5CB /* ChattingView.swift in Sources */,
 				18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */,
+				18B569C5293C534B0004314E /* SignupProtocol.swift in Sources */,
 				1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */,
 				18BF5F392937678C007B20EB /* AroundProtocol.swift in Sources */,
 				1834D6FD2934BD530020B2CE /* TransferDataProtocol.swift in Sources */,

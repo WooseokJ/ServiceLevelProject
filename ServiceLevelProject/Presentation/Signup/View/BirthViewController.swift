@@ -171,7 +171,8 @@ class BirthViewController: BaseViewController {
     }
     
     @objc func birthButtonClicked() {
-        UserInfo.shared.birth = "\(loginView.phoneNumberTextField.text!)-\(monthTextField.text!)-\(dayTextFeild.text!)T09:23:44.054Z"
+        let birthText = "\(loginView.phoneNumberTextField.text!)-\(monthTextField.text!)-\(dayTextFeild.text!)T09:23:44.054Z"
+        UserDefaults.standard.set(birthText, forKey: "birth")
         let vc = EmailViewController()
         transition(vc, transitionStyle: .push)
     }

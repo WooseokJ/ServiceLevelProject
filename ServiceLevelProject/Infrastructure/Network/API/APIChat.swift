@@ -17,7 +17,7 @@ final class APIChat {
     /// 채팅 보내기
     func chatPostSend(chat: String, to: String, completionHandler: @escaping ChatSendHandler) {
         let api = APIHeader.chatPostSend(chat: chat, to: to)
-        AF.request(api.url, method: api.method, headers: api.headers).validate().responseDecodable(of: ChatSendInfo.self) { response in
+        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().responseDecodable(of: ChatSendInfo.self) { response in
             switch response.result {
             case .success(let data) :
                 completionHandler(.success(data))

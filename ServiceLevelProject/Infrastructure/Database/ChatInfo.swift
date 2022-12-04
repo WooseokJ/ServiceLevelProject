@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - MyQueueState
 struct ChatSendInfo: Codable {
-    var dodged, matched, reviewed: Int
-    var matchedNick, matchedUid: String
+    var dodged, matched, reviewed: Int?
+    var matchedNick, matchedUid: String?
 }
 
 

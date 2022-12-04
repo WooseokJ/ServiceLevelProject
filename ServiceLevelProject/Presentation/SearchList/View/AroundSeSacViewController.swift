@@ -30,7 +30,6 @@ class AroundSeSacViewController: BaseViewController, callSearchProtocol, AroundP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        searchListView.EmptySetConstrains()
         searchListView.TableViewSetConstrains()
         tableviewConfigure()
         //        collectionviewConfigure()
@@ -135,16 +134,39 @@ extension AroundSeSacViewController {
             .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
             .withUnretained(self)
             .bind { (vc,val) in
-                print(self.searchListView.checkButton.tag)
-                print(val!)
+                print("otheruid",val!)
                 UserDefaults.standard.set(val!, forKey: "otheruid")
                 vc.studyPostRequest(otheruid: val!)
                 vc.searchListView.cancelButtonClicked()
             }
             .disposed(by: disposeBag)
+        
+        // 새로고침 버튼 클릭
+        searchListView.refreshButton
+            .rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!) { [weak self] search in
+                    self?.transferSearchInfo = search
+                    dump(self?.transferSearchInfo)
+                    self?.searchListView.tableView.reloadData()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        // 스터디 변경하기
+        searchListView.studyChangedButton
+            .rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+//                vc.stopQueue()
+                print(val)
+                vc.navigationController?.popToRootViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
-    
-    
     
     
 }

@@ -10,10 +10,12 @@ import Alamofire
 import UIKit
 
 final class APIUser {
+    
+    typealias mypageHandler = ( ((Result<MypageInfo,myPageError>) -> Void ))
     typealias signupHandler = ( (Result<String?, SingupError>) -> Void )
-    typealias loginHandler = ( (Result<Data?, loginError>) -> Void )
+    typealias loginHandler = ( (Result<LoginInfo?, loginError>) -> Void )
     typealias withdrawHandler = ( (Result<Data?, withdrawError>) -> Void )
-
+    
     init() {}
     
     /// 회원가입
@@ -36,7 +38,7 @@ final class APIUser {
     /// 로그인
     func login(completionHandler: @escaping loginHandler) {
         let api = APIHeader.login
-        AF.request(api.url,method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+        AF.request(api.url,method: api.method, parameters: api.parameters, headers: api.headers).validate().responseDecodable(of: LoginInfo.self) { response in
             switch response.result {
             case .success(let data):
                 completionHandler(.success(data))
@@ -59,4 +61,18 @@ final class APIUser {
             }
         }
     }
+    /// 마이페이지
+    func myPageUpdate(completionHandler: @escaping mypageHandler) {
+        let api = APIHeader.mypage
+        AF.request(api.url,method: api.method, headers: api.headers).validate().responseDecodable(of: MypageInfo.self)  { response in
+            switch response.result {
+            case .success(let data):
+                completionHandler(.success(data))
+            case .failure :
+                guard let customError = myPageError(rawValue: response.response!.statusCode) else{return}
+                completionHandler(.failure(myPageError(rawValue: customError.rawValue)!))
+            }
+        }
+    }
+    
 }

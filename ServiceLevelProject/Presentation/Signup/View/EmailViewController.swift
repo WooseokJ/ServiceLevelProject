@@ -37,7 +37,8 @@ class EmailViewController: BaseViewController {
     
     
     @objc func emailButtonClicked() {
-        UserInfo.shared.email = loginView.phoneNumberTextField.text
+        
+        UserDefaults.standard.set(loginView.phoneNumberTextField.text, forKey: "email")
         guard loginView.phoneNumberTextField.text?.contains("@") == true else {
             self.view.makeToast("@를 붙여주세요")
             return

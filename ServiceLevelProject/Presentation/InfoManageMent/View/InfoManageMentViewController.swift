@@ -7,14 +7,17 @@
 
 import UIKit
 
-class InfoManageMentViewController: BaseViewController {
-
+class InfoManageMentViewController: BaseViewController, WithdrawProtocol {
+    
+    
     let infoManageView = InfoManageMentView()
     var isSelect = true
     
     override func loadView() {
         super.view = infoManageView
     }
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()

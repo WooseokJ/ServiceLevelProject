@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GenderViewController: BaseViewController {
+class GenderViewController: BaseViewController, SignupProtocol {
     
     lazy var manButton: UIButton = {
         let button = UIButton()
@@ -42,12 +42,12 @@ class GenderViewController: BaseViewController {
     
     @objc func manbuttonClicked() {
         womanButton.backgroundColor = .clear
-        UserInfo.shared.gender = 1
+        UserDefaults.standard.set(1, forKey: "gender")
         manButton.backgroundColor = BrandColor.whitegreen
     }
     @objc func womanbuttonClicked() {
         manButton.backgroundColor = .clear
-        UserInfo.shared.gender = 1
+        UserDefaults.standard.set(0, forKey: "gender")
         womanButton.backgroundColor = BrandColor.whitegreen
     }
     
@@ -86,48 +86,9 @@ class GenderViewController: BaseViewController {
             make.height.equalTo(48)
         }
     }
-
-    @objc func genderButtonClicked() {
-        guard UserInfo.shared.gender != nil else {
-            self.view.makeToast("성별을 선택해 주세요")
-            return
-        }
-        guard UserInfo.shared.phoneNumber! != nil else {return}
-        guard UserInfo.shared.fcmtoken! != nil else {return}
-        guard UserInfo.shared.nick! != nil else {return}
-        guard UserInfo.shared.birth! != nil else {return}
-        guard UserInfo.shared.email! != nil else {return}
-        guard UserInfo.shared.gender! != nil else {return}
-//        signupRequest()
-       
-    }
     
-//    func signupRequest() {
-//        api.signup(phoneNumber: UserInfo.shared.phoneNumber!, FCMtoken: UserInfo.shared.fcmtoken!, nick: UserInfo.shared.nick!, birth: UserInfo.shared.birth!, email: UserInfo.shared.email!, gender: UserInfo.shared.gender!) { [self] val , statusCode in
-//            if val && statusCode == 200 {
-//                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-//                let sceneDelegate = windowScene?.delegate as? SceneDelegate
-//                let vc = TapViewController()
-//                let nav = UINavigationController(rootViewController: vc)
-//                sceneDelegate?.window?.rootViewController = nav
-//                sceneDelegate?.window?.makeKeyAndVisible()
-//            } else {
-//                switch statusCode {
-//                case 201:
-//                    view.makeToast("이미 가입한 유저")
-//                case 202:
-//                    view.makeToast("사용할수없는 이메일")
-//                case 401:
-//                    view.makeToast("토큰 만료")
-//                    signupRequest()
-//                case 500:
-//                    view.makeToast("서버 오류")
-//                case 501:
-//                    view.makeToast("클라이언트 오류")
-//                default:
-//                    view.makeToast("알수없는 오류")
-//                }
-//            }
-//        }
-//    }
+    @objc func genderButtonClicked() {
+        signup(phoneNumber: UserDefaults.standard.string(forKey: "phoneNumber")!, FCMtoken: UserDefaults.standard.string(forKey: "fcmtoken")!, nick: UserDefaults.standard.string(forKey: "nick")!, birth: UserDefaults.standard.string(forKey: "birth")!, email: UserDefaults.standard.string(forKey: "email")!, gender: UserDefaults.standard.integer(forKey: "gender"))
+        
+    }
 }
