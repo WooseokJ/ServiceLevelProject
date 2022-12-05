@@ -28,7 +28,6 @@ class ChattingView: BaseView {
         label.font = AppFont.Title5_M12
         return label
     }()
-    
     lazy var sendTextView: UITextView = {
         let textView = UITextView()
 //        textView.placeholder = "  메세지를 입력하세요."
@@ -58,7 +57,6 @@ class ChattingView: BaseView {
         stackView.layer.borderColor = Grayscale.gray1.cgColor
         return stackView
     }()
-    
     lazy var bellimageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "bell")
@@ -82,9 +80,6 @@ class ChattingView: BaseView {
 //        label.textAlignment = .natural
         return label
     }()
-    
-    
-    
     lazy var titleStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [bellimageView, matchedTitle])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,8 +96,6 @@ class ChattingView: BaseView {
         tableview.register(YourChatTableViewCell.self, forCellReuseIdentifier: YourChatTableViewCell.reuseIdentifier)
         return tableview
     }()
-    
-    
     let blackView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -114,7 +107,6 @@ class ChattingView: BaseView {
         view.backgroundColor = BlackWhite.white
         return view
     }()
-    
     let sesacReport: UIButton = {
         let bt = UIButton()
         bt.setImage(UIImage(named: "sesacReport.png"), for: .normal)
@@ -139,7 +131,6 @@ class ChattingView: BaseView {
         bt.imageEdgeInsets = UIEdgeInsets(top: -30, left: 0.0, bottom: 0.0, right: -titleSize.width - 20);
         return bt
     }()
-    
     let reviewAdd: UIButton = {
         let bt = UIButton()
         bt.setImage(UIImage(named: "reviewAdd.png"), for: .normal)
@@ -155,7 +146,6 @@ class ChattingView: BaseView {
 //        myButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         return bt
     }()
-    
     lazy var rightButtonstackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [sesacReport, studyCancel, reviewAdd])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -165,6 +155,7 @@ class ChattingView: BaseView {
         stackView.spacing = 5
         return stackView
     }()
+    
     
     
     override func configure() {
@@ -235,9 +226,22 @@ class ChattingView: BaseView {
     }
     
     func rightBarButtonHidden() {
-        blackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
-        rightButtonstackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
-        whiteView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+        rightButtonstackView.isHidden = false
+        whiteView.isHidden = true
+    }
+    
+    func studyCancelClicked() {
+        rightButtonstackView.isHidden = true
+        blackView.snp.remakeConstraints {$0.edges.equalTo(0)}
+        whiteView.snp.remakeConstraints { make in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.2)
+            make.center.equalTo(self.snp.center)
+        }
+        whiteView.layer.cornerRadius = 20
+        
+        
     }
     
     

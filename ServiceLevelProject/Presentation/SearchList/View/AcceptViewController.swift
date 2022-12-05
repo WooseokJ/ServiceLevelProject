@@ -27,20 +27,19 @@ class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtoc
         self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
             self?.transferSearchInfo = search
             dump(self?.transferSearchInfo)
- 
             self?.searchListView.tableView.reloadData()
-      
+            if self?.transferSearchInfo?.fromQueueDBRequested.count == 0 {
+                self?.searchListView.content.text = "아직 받은 요청이 없어요ㅠ"
+            }
         })
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchListView.TableViewSetConstrains()
         tableviewConfigure()
         bind()
-//        searchListView.content.text = "아직 받은 요청이 없어요ㅠ"
         
     }
     
@@ -94,12 +93,9 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
             return UIView()
         }
         headerView.acceptButtonConstrains()
-
-        
         headerView.acceptButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                
                 vc.searchListView.acceptSetConstrains()
             }
             .disposed(by: disposeBag)
@@ -151,7 +147,6 @@ extension AcceptViewController {
                 vc.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
                     vc.transferSearchInfo = search
                     dump(vc.transferSearchInfo)
-         
                     vc.searchListView.tableView.reloadData()
               
                 })

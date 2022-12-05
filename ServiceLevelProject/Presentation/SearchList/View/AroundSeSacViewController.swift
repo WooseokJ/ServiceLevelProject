@@ -24,6 +24,9 @@ class AroundSeSacViewController: BaseViewController, callSearchProtocol, AroundP
             self?.transferSearchInfo = search
             dump(search?.fromQueueDB)
             self?.searchListView.tableView.reloadData()
+            if self?.transferSearchInfo?.fromQueueDBRequested.count == 0 {
+                self?.searchListView.content.text = "아쉽게도 주변에 새삮이 없어요ㅠ"
+            }
         })
         
     }
@@ -161,9 +164,10 @@ extension AroundSeSacViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
-//                vc.stopQueue()
+                vc.stopQueue()
                 print(val)
-                vc.navigationController?.popToRootViewController(animated: true)
+                let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+                self.navigationController?.popToViewController(viewControllers[1], animated: true)
             }
             .disposed(by: disposeBag)
     }

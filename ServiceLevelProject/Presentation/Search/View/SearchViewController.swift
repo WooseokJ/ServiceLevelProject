@@ -37,23 +37,15 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
         totalList+=recommendList
         transferSearchInfo?.fromQueueDB.forEach {
             $0.studylist.forEach { studyVal in
-                if !totalList.contains(where: { $0.caseInsensitiveCompare(studyVal) == .orderedSame }) {
-                    print(studyVal)
-                    
-                    totalList.append(studyVal)
-                }
+                if (!totalList.contains(where: { $0.caseInsensitiveCompare(studyVal) == .orderedSame })) {totalList.append(studyVal)}
             }
 
         }
-        print(totalList)
-        
-//        array.contains(where: { $0.caseInsensitiveCompare(word) == .orderedSame })
-        searchBarConfigure()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
-        
-        bind()
+        searchBarConfigure()
+
         
     }
     
@@ -101,6 +93,7 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
                     return
                 }
                 vc.queuePostRequest(lat: HomeViewController.lat!, long: HomeViewController.lng!, studylist: self.myfavoriteList)
+            
             }.disposed(by: disposeBag)
     }
     

@@ -40,18 +40,17 @@ extension AcceptProtocol where Self: AcceptViewController {
                     self?.callmyqueueStateRequest()
 
                     
-                case .failure(.notUserError):
-                    self?.view.makeToast("미가입 회원")
                 case .failure(.tokenErorr):
                     self?.view.makeToast("토큰 만료")
                     self?.refreshIdToken { [weak self] in
                         self?.studyPostAccept(otheruid: otheruid)
                     }
+                case .failure(.notUserError):
+                    self?.view.makeToast("미가입 회원")
                 case .failure(.serverError):
                     self?.view.makeToast("서버 에러")
                 case .failure(.clientError):
                     self?.view.makeToast("클라이언트 에러")
-                    
                 }
             }
             catch{
@@ -72,9 +71,6 @@ extension AcceptProtocol where Self: AcceptViewController {
                         self?.transition(chattingVC, transitionStyle: .push)
                         return
                     }
-                    
-                    let nextVC = SearchListViewController()
-                    self?.transition(nextVC, transitionStyle: .push)
                 case .failure(.notRequest):
                     let searchVC = SearchViewController()
                     searchVC.transferSearchInfo = self?.transferSearchInfo

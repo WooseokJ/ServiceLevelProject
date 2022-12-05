@@ -38,14 +38,14 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
         configureTableView()
         
-        var lastchatDate: String = "2000-01-01T00:00:00.000Z"
-        chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
-            self?.recentChattingInfo = data
-            self?.recentChattingInfo?.payload.forEach{
-                self?.chat.append($0)
-            }
-            self?.chattingView.tableView.reloadData()
-        }
+//        var lastchatDate: String = "2000-01-01T00:00:00.000Z"
+//        chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
+//            self?.recentChattingInfo = data
+//            self?.recentChattingInfo?.payload.forEach{
+//                self?.chat.append($0)
+//            }
+//            self?.chattingView.tableView.reloadData()
+//        }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blackViewTap(sender:)))
         chattingView.blackView.addGestureRecognizer(tapGesture)
@@ -57,6 +57,8 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
     }
     @objc func blackViewTap(sender: UITapGestureRecognizer) {
         chattingView.rightBarButtonHidden()
+        chattingView.blackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
+
     }
     @objc func tableViewTap(sender: UITapGestureRecognizer) {
         chattingView.stackView.snp.remakeConstraints { make in
@@ -112,7 +114,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         chattingView.tableView.allowsSelection = false
         chattingView.tableView.separatorStyle = .none
         chattingView.tableView.rowHeight = UITableView.automaticDimension
-        chattingView.tableView.backgroundColor = .darkGray
+//        chattingView.tableView.backgroundColor = .darkGray
     }
     
     
@@ -164,6 +166,9 @@ extension ChattingViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
+                
+//                vc.chattingView.studyCancelClicked()
+
                 vc.studyPostDodge(otheruid: UserDefaults.standard.string(forKey: "otheruid")!)
                 vc.backBtClicked()
             }

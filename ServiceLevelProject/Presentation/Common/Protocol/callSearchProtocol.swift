@@ -69,8 +69,6 @@ extension callSearchProtocol where Self: AroundSeSacViewController {
             do {
                 switch data {
                 case .success:
-//                    let AroundVC = AroundSeSacViewController()
-//                    AroundVC.searchTest = try data.get().value!
                     completionHandler(try data.get().value!)
                 case .failure(.notUserError):
                     self?.view.makeToast("미가입 회원")
