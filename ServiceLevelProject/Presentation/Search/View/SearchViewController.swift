@@ -88,7 +88,7 @@ final class SearchViewController: BaseViewController, APIProtocol, SearchProtoco
         searchView.searchButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                guard !self.myfavoriteList.isEmpty else {
+                    guard !self.myfavoriteList.isEmpty else {
                     self.view.makeToast("최소 하나는 선택해주세요")
                     return
                 }

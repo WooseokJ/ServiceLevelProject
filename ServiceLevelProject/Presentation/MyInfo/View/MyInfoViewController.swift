@@ -57,17 +57,15 @@ extension MyInfoViewController {
             content.text = MyInfo.allCases[indexPath.section].list[indexPath.row]
             content.textProperties.color = .black
             switch indexPath.item {
-                case 0:
-                    content.image = UIImage(named: "profile_img.png")
-                    cell.accessories = [.disclosureIndicator()]
-                case 1: content.image = UIImage(systemName: "star")
-
-                case 2: content.image = UIImage(systemName: "star")
-                case 3: content.image = UIImage(systemName: "star")
-                case 4: content.image = UIImage(systemName: "star")
-                case 5: content.image = UIImage(systemName: "star")
+                case 0:content.image = UIImage(named: "profile_img.png")
+                case 1: content.image = UIImage(named: "notice.png")
+                case 2: content.image = UIImage(named: "faq.png")
+                case 3: content.image = UIImage(named: "qna.png")
+                case 4: content.image = UIImage(named: "setting_alarm.png")
+                case 5: content.image = UIImage(named: "permit.png")
                 default:break
             }
+            cell.accessories = [.disclosureIndicator()]
             
             cell.contentConfiguration = content
             var backgroundConfig = UIBackgroundConfiguration.listPlainCell()

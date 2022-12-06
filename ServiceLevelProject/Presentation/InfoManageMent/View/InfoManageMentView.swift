@@ -152,7 +152,6 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
                 cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
                 cell.accessoryView = cell.slider
             case 4:
-                cell.backgroundColor = .red
                 print("회원탈퇴 클릭 ")
             default:
                 break
