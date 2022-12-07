@@ -59,3 +59,24 @@ enum InfoManageMent: CaseIterable {
     
     }
 }
+
+
+enum SesacReport: CaseIterable {
+    case content
+    var list: [String] {
+        switch self {
+        case .content:
+            return ["붋법/사기","불편한 언행","노쇼","선정성","인신공격","기타"]
+        }
+    }
+}
+
+enum Review: CaseIterable {
+case content
+var list: [String] {
+    switch self {
+    case .content:
+        return ["좋은 매너","정확한 시간 약속","빠른 응답","친절한 성격","능숙한 실력","유익한 시간"]
+    }
+}
+}

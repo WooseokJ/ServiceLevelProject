@@ -28,6 +28,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionViewConfigure()
         title = "고래밥"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(listClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
@@ -55,11 +56,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
         bind()
         
     }
-    @objc func blackViewTap(sender: UITapGestureRecognizer) {
-        chattingView.rightBarButtonHidden()
-        chattingView.blackView.snp.remakeConstraints {$0.width.height.equalTo(0)}
 
-    }
     @objc func tableViewTap(sender: UITapGestureRecognizer) {
         chattingView.stackView.snp.remakeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -94,11 +91,15 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
 
     }
     
+    // 오른쪽 메뉴바 버튼 클릭
     @objc func listClicked() {
-        chattingView.rightBarButtonClicked() 
-
+        chattingView.listButtonClicked()
     }
-
+    // 블랙뷰 탭할떄
+    @objc func blackViewTap(sender: UITapGestureRecognizer) {
+        chattingView.blackViewClicked()
+        
+    }
     @objc func backBtClicked() {
         let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         self.navigationController?.popToViewController(viewControllers[0], animated: true)
@@ -152,6 +153,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ChattingViewController {
     func bind() {
+        // 메세지 전송
         chattingView.sendButton.rx
             .tap
             .map {self.chattingView.sendTextView.text}
@@ -162,16 +164,36 @@ extension ChattingViewController {
                 vc.chattingView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
+        
+        
+        // 스터디 취소
         chattingView.studyCancel.rx
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
-                
-//                vc.chattingView.studyCancelClicked()
-
                 vc.studyPostDodge(otheruid: UserDefaults.standard.string(forKey: "otheruid")!)
                 vc.backBtClicked()
             }
+            .disposed(by: disposeBag)
+        
+        // 리뷰등록 클릭
+        chattingView.reviewAdd.rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.chattingView.modalButtonClicked(title: "리뷰 등록", subTitle: "고래밥님과의 스터디는 어떠셨나요?", BtTitle: "리뷰 등록하기")
+            }
+            .disposed(by: disposeBag)
+        
+        //새싹신고 클릭
+        chattingView.sesacReport.rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.chattingView.modalButtonClicked(title: "세씩 신고", subTitle: "다시는 해당 새싹과매칭되지 않습니다", BtTitle: "신고하기")
+            }
+            .disposed(by: disposeBag)
+
 
     }
 }

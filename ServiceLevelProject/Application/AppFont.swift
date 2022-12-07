@@ -9,7 +9,7 @@ import UIKit.UIFont
 
 enum AppFont {
     static var Display1_R20 = UIFont.systemFont(ofSize: 20, weight: .regular)
-    
+
     static var Title1_M16 = UIFont.systemFont(ofSize: 16, weight: .medium)
     static var Title2_R16 = UIFont.systemFont(ofSize: 16, weight: .regular)
     

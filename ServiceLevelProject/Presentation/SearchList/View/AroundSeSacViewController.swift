@@ -28,7 +28,6 @@ class AroundSeSacViewController: BaseViewController, callSearchProtocol, AroundP
                 self?.searchListView.content.text = "아쉽게도 주변에 새삮이 없어요ㅠ"
             }
         })
-        
     }
     
     override func viewDidLoad() {
@@ -83,7 +82,6 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
             }
             .disposed(by: disposeBag)
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {

@@ -24,9 +24,13 @@
 		1861EC7A291C0709008E0575 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC79291C0709008E0575 /* FirstViewController.swift */; };
 		1861EC7C291C1C73008E0575 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7B291C1C73008E0575 /* SecondViewController.swift */; };
 		1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7D291C1C79008E0575 /* ThirdViewController.swift */; };
+		186D3FB5294016D900C21145 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D3FB4294016D900C21145 /* APIKey.swift */; };
+		186D3FB729401B5500C21145 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D3FB629401B5500C21145 /* SocketIOManager.swift */; };
+		186D3FBA29401B9200C21145 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 186D3FB929401B9200C21145 /* SocketIO */; };
 		1885ACEF292FD3E400DBFEE7 /* APIQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ACEE292FD3E400DBFEE7 /* APIQueue.swift */; };
 		1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */; };
 		1887238C2938CC3B00C74DCE /* MychatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */; };
+		189E7591293FC85100497096 /* ChattingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189E7590293FC85100497096 /* ChattingCollectionViewCell.swift */; };
 		18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD858029214F7D004169C1 /* BirthViewController.swift */; };
 		18AD85832921509C004169C1 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD85822921509C004169C1 /* EmailViewController.swift */; };
 		18AD8585292150E1004169C1 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8584292150E1004169C1 /* GenderViewController.swift */; };
@@ -131,9 +135,12 @@
 		1861EC79291C0709008E0575 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		1861EC7B291C1C73008E0575 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		1861EC7D291C1C79008E0575 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		186D3FB4294016D900C21145 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		186D3FB629401B5500C21145 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		1885ACEE292FD3E400DBFEE7 /* APIQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueue.swift; sourceTree = "<group>"; };
 		1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MychatTableViewCell.swift; sourceTree = "<group>"; };
+		189E7590293FC85100497096 /* ChattingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCollectionViewCell.swift; sourceTree = "<group>"; };
 		18AD858029214F7D004169C1 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		18AD85822921509C004169C1 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		18AD8584292150E1004169C1 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +224,7 @@
 				18B6A03D2938FEAC00FA23D9 /* RealmSwift in Frameworks */,
 				18B6A03B2938FEAC00FA23D9 /* Realm in Frameworks */,
 				184DDD75291A899F00F12D63 /* RxSwift in Frameworks */,
+				186D3FBA29401B9200C21145 /* SocketIO in Frameworks */,
 				18F10CDB292B5F720038BEEE /* MultiSlider in Frameworks */,
 				18CBBEB0292210F800CEC097 /* FirebaseAuth in Frameworks */,
 				18CBBEB2292210F800CEC097 /* FirebaseMessaging in Frameworks */,
@@ -312,6 +320,7 @@
 				18F10CDE292BBC430038BEEE /* Network.swift */,
 				1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */,
 				18D65DF3291D585D00CBEAB4 /* APIHeader.swift */,
+				186D3FB4294016D900C21145 /* APIKey.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -533,6 +542,7 @@
 				18F10CE7292BD5330038BEEE /* Error */,
 				18DC24A42918A9C400DD5D1C /* Database */,
 				18DC24A32918A9BA00DD5D1C /* Network */,
+				186D3FB629401B5500C21145 /* SocketIOManager.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -664,6 +674,7 @@
 				18EC05A929386420007EA5CB /* ChattingView.swift */,
 				1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */,
 				18B6A0372938D63B00FA23D9 /* YourChatTableViewCell.swift */,
+				189E7590293FC85100497096 /* ChattingCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -858,6 +869,7 @@
 				183834B0292E795B006C0675 /* Tabman */,
 				18B6A03A2938FEAC00FA23D9 /* Realm */,
 				18B6A03C2938FEAC00FA23D9 /* RealmSwift */,
+				186D3FB929401B9200C21145 /* SocketIO */,
 			);
 			productName = ServiceLevelProject;
 			productReference = 18DC246829189DDD00DD5D1C /* ServiceLevelProject.app */;
@@ -940,6 +952,7 @@
 				18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */,
 				183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */,
 				18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -1031,6 +1044,7 @@
 				18DEA04B2933DB410098920A /* HomeProtocol.swift in Sources */,
 				18EC2FCD2932786100071C94 /* ImageEnum.swift in Sources */,
 				18EFC71729249E5F00FB3DB2 /* SesacShopViewController.swift in Sources */,
+				189E7591293FC85100497096 /* ChattingCollectionViewCell.swift in Sources */,
 				184DDD9C291AB2D000F12D63 /* AuthView.swift in Sources */,
 				18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */,
 				18DC24B62919290D00DD5D1C /* Transition.swift in Sources */,
@@ -1045,6 +1059,7 @@
 				18F10CE3292BD10F0038BEEE /* ErrorCase.swift in Sources */,
 				18EFC7332924EDC300FB3DB2 /* MyInfoView.swift in Sources */,
 				18B569C7293C60F10004314E /* MypageProtocol.swift in Sources */,
+				186D3FB5294016D900C21145 /* APIKey.swift in Sources */,
 				18B569C1293C433E0004314E /* LoginProtocol.swift in Sources */,
 				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
@@ -1057,6 +1072,7 @@
 				1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */,
 				18E283332929F3D000878738 /* InfoManageMentCollectionViewCell.swift in Sources */,
 				18B0DA17291A2995007044BA /* OnBoardingViewController.swift in Sources */,
+				186D3FB729401B5500C21145 /* SocketIOManager.swift in Sources */,
 				18C4DFF0293486E8008C0A2C /* SearchProtocol.swift in Sources */,
 				18DC24C129192A2200DD5D1C /* HomeView.swift in Sources */,
 				184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */,
@@ -1485,6 +1501,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.0.1;
+			};
+		};
 		18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -1544,6 +1568,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		186D3FB929401B9200C21145 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 		18B6A03A2938FEAC00FA23D9 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;

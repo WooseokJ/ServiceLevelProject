@@ -15,11 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         if UserDefaults.standard.bool(forKey: "first") {
-              let vc = TapViewController()
-//            let vc = ChattingViewController()
-//        let nav = UINavigationController(rootViewController: vc)
+//            let vc = TapViewController()
+         let vc = ChattingViewController()
+            let nav = UINavigationController(rootViewController: vc)
             window?.backgroundColor = BlackWhite.white
-            window?.rootViewController = vc
+            window?.rootViewController = nav
             window?.makeKeyAndVisible()
         } else {
             let vc = OnBoardingViewController()

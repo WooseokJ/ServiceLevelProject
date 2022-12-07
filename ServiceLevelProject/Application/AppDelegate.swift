@@ -9,9 +9,9 @@ import UIKit
 import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
+import NMapsMap
 
-
-  @main
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           }
             Messaging.messaging().delegate = self
           application.registerForRemoteNotifications()
-        
+        NMFAuthManager.shared().clientId = APIKey.clientID
+
         return true
     }
 

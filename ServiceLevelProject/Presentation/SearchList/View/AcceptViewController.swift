@@ -40,12 +40,8 @@ class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtoc
         searchListView.TableViewSetConstrains()
         tableviewConfigure()
         bind()
-        
     }
     
-    
-
-
 }
 
 //MARK: 테이블뷰
@@ -65,7 +61,6 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchListTableViewCell.reuseIdentifier, for: indexPath) as! SearchListTableViewCell
-
         cell.reviewLabel.text = self.transferSearchInfo?.fromQueueDBRequested[indexPath.section].nick
         searchListView.checkButton.tag = indexPath.section
         cell.backgroundColor = .darkGray
@@ -115,6 +110,7 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
 }
 extension AcceptViewController {
     private func bind() {
+        // 취소하기 버튼
         searchListView.cancelButton
             .rx
             .tap
@@ -125,7 +121,7 @@ extension AcceptViewController {
             }
             .disposed(by: disposeBag)
         
-        //수락하기 버튼 클릭
+        // 수락하기 버튼 클릭
         searchListView.checkButton.rx
             .tap
             .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
@@ -134,7 +130,6 @@ extension AcceptViewController {
                 UserDefaults.standard.set(val!, forKey: "otheruid")
                 vc.studyPostAccept(otheruid: val!)
                 vc.searchListView.cancelButtonClicked()
-
             }
             .disposed(by: disposeBag)
         
@@ -148,7 +143,6 @@ extension AcceptViewController {
                     vc.transferSearchInfo = search
                     dump(vc.transferSearchInfo)
                     vc.searchListView.tableView.reloadData()
-              
                 })
             }
             .disposed(by: disposeBag)
