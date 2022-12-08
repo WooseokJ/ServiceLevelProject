@@ -17,6 +17,7 @@ final class APIQueue {
     typealias StudyPostRequestHandler = ( (Result<Data?, studyRequestError>) -> Void )
     typealias StudyPostAcceptHandler = ( (Result<Void?, studyAcceptError>) -> Void )
     typealias StudyPostDodgeHandler = ( (Result<Data?, studyDodgeError>) -> Void )
+    typealias ReviewPostRateHandler = ( (Result<Data?, reviewError>) -> Void )
 
     init() {}
     
@@ -118,6 +119,20 @@ final class APIQueue {
             case .failure:
                 guard let customError = studyDodgeError(rawValue: response.response!.statusCode) else{return}
                 completionHandler(.failure(studyDodgeError(rawValue: customError.rawValue)!))
+            }
+        }
+    }
+    
+    // 리뷰 작성
+    func reviewPostRate(otheruid: String,reputation: [Int], comment: String, completionHandler: @escaping ReviewPostRateHandler) {
+        let api = APIHeader.reviewPost(otheruid: otheruid, reputation: reputation, comment: comment)
+        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+            switch response.result {
+            case .success(let data) :
+                completionHandler(.success(data))
+            case .failure:
+                guard let customError = reviewError(rawValue: response.response!.statusCode) else{return}
+                completionHandler(.failure(reviewError(rawValue: customError.rawValue)!))
             }
         }
     }

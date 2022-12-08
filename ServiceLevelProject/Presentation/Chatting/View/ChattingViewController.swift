@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
+class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, ReviewProtocol {
 
     
     let chattingView = ChattingView()
@@ -20,6 +20,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
     
     var otherid: String?
     var recentChattingInfo: ChatListInfo?
+    var sesacList: [Int] = [0,0,0,0,0,0]
     
     var chat: [Payload?] = []
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +100,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol {
     @objc func blackViewTap(sender: UITapGestureRecognizer) {
         chattingView.blackViewClicked()
         
+        
     }
     @objc func backBtClicked() {
         let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
@@ -171,6 +173,7 @@ extension ChattingViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
+                
                 vc.studyPostDodge(otheruid: UserDefaults.standard.string(forKey: "otheruid")!)
                 vc.backBtClicked()
             }
@@ -181,6 +184,11 @@ extension ChattingViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
+                print( vc.chattingView.sesacReport.isSelected)
+                vc.chattingView.blackView.isUserInteractionEnabled = false
+                vc.chattingView.reviewAdd.isSelected.toggle()
+                vc.chattingView.collectionview.collectionViewLayout = vc.chattingView.collectionViewLayout(divideWidth: 2.5)
+                vc.chattingView.collectionview.collectionViewLayout.invalidateLayout()
                 vc.chattingView.modalButtonClicked(title: "리뷰 등록", subTitle: "고래밥님과의 스터디는 어떠셨나요?", BtTitle: "리뷰 등록하기")
             }
             .disposed(by: disposeBag)
@@ -190,10 +198,37 @@ extension ChattingViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
+                vc.chattingView.blackView.isUserInteractionEnabled = false
+                vc.chattingView.sesacReport.isSelected.toggle()
+                vc.chattingView.collectionview.collectionViewLayout = vc.chattingView.collectionViewLayout(divideWidth: 4)
+                vc.chattingView.collectionview.collectionViewLayout.invalidateLayout()
                 vc.chattingView.modalButtonClicked(title: "세씩 신고", subTitle: "다시는 해당 새싹과매칭되지 않습니다", BtTitle: "신고하기")
             }
             .disposed(by: disposeBag)
-
+        // 취소버튼 클릭
+        chattingView.cancelXMark.rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in
+                vc.chattingView.blackView.isUserInteractionEnabled = true
+                if vc.chattingView.reviewAdd.isSelected {
+                    vc.chattingView.reviewAdd.isSelected.toggle()
+                }else{
+                    vc.chattingView.sesacReport.isSelected.toggle()
+                }
+                
+                print( vc.chattingView.sesacReport.isSelected)
+                vc.chattingView.blackViewClicked()
+            }
+            .disposed(by: disposeBag)
+        // 모달버튼누를떄
+        chattingView.modalButton.rx
+            .tap
+            .withUnretained(self)
+            .bind { (vc,val) in //vc.otherid!
+                vc.reviewPostRate(otheruid: "dsds", reputation: vc.sesacList, comment: "아아아아")
+            }
+            .disposed(by: disposeBag)
 
     }
 }

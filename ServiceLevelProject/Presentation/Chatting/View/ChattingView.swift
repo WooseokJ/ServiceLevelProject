@@ -15,6 +15,7 @@ class ChattingView: BaseView {
         setConstrains()
     }
     
+    
     lazy var dateTitleLabel: UILabel = {
         let label = UILabel()
         label.layer.cornerRadius = 20
@@ -184,18 +185,11 @@ class ChattingView: BaseView {
     }()
     
     lazy var collectionview: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let spacing : CGFloat = 1
-        let layoutwidth = UIScreen.main.bounds.width
-        let layoutheight = UIScreen.main.bounds.height
-        layout.itemSize = CGSize(width: layoutwidth / 4  , height: layoutheight / 29 )
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout(divideWidth: 2.5))
         cv.register(ChattingCollectionViewCell.self, forCellWithReuseIdentifier: ChattingCollectionViewCell.reuseIdentifier)
         cv.layer.cornerRadius = 10
         cv.clipsToBounds = true
-        
+        cv.alwaysBounceVertical = true
         cv.isHidden = true
         return cv
     }()
@@ -214,6 +208,23 @@ class ChattingView: BaseView {
         bt.isHidden = true
         return bt
     }()
+    let cancelXMark: UIButton = {
+        let bt = UIButton()
+        bt.isHidden = true
+        bt.setImage(UIImage(systemName: "xmark"), for: .normal)
+        bt.setTitleColor(BlackWhite.white, for: .normal)
+        return bt
+        
+    }()
+    func collectionViewLayout(divideWidth: Double) -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        let layoutwidth = UIScreen.main.bounds.width
+        let layoutheight = UIScreen.main.bounds.height
+        layout.itemSize = CGSize(width: layoutwidth / divideWidth  , height: layoutheight / 29 )
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        return layout
+    }
     
     
     override func configure() {
@@ -221,7 +232,8 @@ class ChattingView: BaseView {
          matchedSubTitle,tableView, blackView,
          rightButtonwhiteView, rightButtonstackView,
          modalWhiteView,modalTitle,modalSubTitle,
-         collectionview, textView, modalButton].forEach {
+         collectionview, textView, modalButton,
+         cancelXMark].forEach {
             self.addSubview($0)
         }
     }
@@ -265,10 +277,7 @@ class ChattingView: BaseView {
         rightButtonstackView.snp.remakeConstraints { make in
             make.edges.equalTo(rightButtonwhiteView.snp.edges)
         }
-        blackView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
-            make.bottom.equalTo(0)
-        }
+
         rightButtonwhiteView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             make.height.equalTo(UIScreen.main.bounds.height * 0.1)
@@ -295,7 +304,7 @@ class ChattingView: BaseView {
             make.top.equalTo(modalSubTitle.snp.bottom).offset(5)
             make.leading.equalTo(32)
             make.trailing.equalTo(-32)
-            make.height.equalTo(100)
+            make.height.equalTo(120)
         }
         textView.snp.makeConstraints { make in
             make.top.equalTo(collectionview.snp.bottom).offset(5)
@@ -309,12 +318,19 @@ class ChattingView: BaseView {
             make.leading.equalTo(textView.snp.leading)
             make.height.equalTo(50)
         }
-
+        cancelXMark.snp.makeConstraints { make in
+            make.top.equalTo(modalTitle.snp.top)
+            make.trailing.equalTo(modalWhiteView.snp.trailing).offset(-5)
+            make.width.height.equalTo(60)
+        }
  
     }
     
     func listButtonClicked() {
-        
+        blackView.snp.remakeConstraints { make in
+            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+            make.bottom.equalTo(0)
+        }
         blackView.isHidden = false
         rightButtonwhiteView.isHidden = false
         rightButtonstackView.isHidden = false
@@ -323,12 +339,16 @@ class ChattingView: BaseView {
     func blackViewClicked() {
         [blackView,rightButtonstackView,rightButtonwhiteView,
         modalWhiteView,modalTitle,modalSubTitle,
-         collectionview,textView,modalButton].forEach{
+         collectionview,textView,modalButton,cancelXMark].forEach{
             $0.isHidden = true
         }
     }
     
     func modalButtonClicked(title: String, subTitle: String, BtTitle: String) {
+        blackView.snp.remakeConstraints { make in
+            make.edges.equalTo(0)
+            
+        }
         rightButtonwhiteView.isHidden = true
         rightButtonstackView.isHidden = true
         modalWhiteView.isHidden = false
@@ -341,6 +361,8 @@ class ChattingView: BaseView {
         modalButton.isHidden = false
         modalButton.setTitle(BtTitle, for: .normal)
         modalButton.setTitleColor(BlackWhite.white, for: .normal)
+        cancelXMark.isHidden = false
+        collectionview.reloadData()
     }
     
 }
@@ -350,7 +372,6 @@ class ChattingView: BaseView {
 extension ChattingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionViewConfigure() {
-
         chattingView.collectionview.dataSource = self
         chattingView.collectionview.delegate = self
         
@@ -363,17 +384,42 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCollectionViewCell.reuseIdentifier, for: indexPath) as! ChattingCollectionViewCell
-        cell.itemButton.setTitle("테스트", for: .normal)
+        sesacList[indexPath.item] = 0
+        cell.itemButton.backgroundColor = .clear
+        cell.itemButton.setTitleColor(BlackWhite.black, for: .normal)
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = Grayscale.gray4.cgColor
+
+        chattingView.sesacReport.isSelected ? cell.itemButton.setTitle(CVEnum.sesacReport.list[indexPath.item], for: .normal) : cell.itemButton.setTitle(CVEnum.review.list[indexPath.item], for: .normal)
+
         
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cellItem = collectionView.cellForItem(at: indexPath) as! ChattingCollectionViewCell
+        switch indexPath.item {
+        case 0...6:
+            cellItem.itemButton.isSelected.toggle()
+            if cellItem.itemButton.isSelected {
+                sesacList[indexPath.item] = 1
+                
+                cellItem.itemButton.backgroundColor = BrandColor.green
+                cellItem.itemButton.setTitleColor(BlackWhite.white, for: .normal)
+            } else {
+                sesacList[indexPath.item] = 0
+                cellItem.itemButton.backgroundColor = .clear
+                cellItem.itemButton.setTitleColor(BlackWhite.black, for: .normal)
+            }
+
+        default:break
+        }
+            
+        
+    }
+
     
     
 }
+
+

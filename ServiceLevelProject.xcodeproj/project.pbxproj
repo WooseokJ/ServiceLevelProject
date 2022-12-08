@@ -56,6 +56,9 @@
 		18C9FAC5291CE13B00F78848 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FAC4291CE13B00F78848 /* NickNameViewController.swift */; };
 		18CBBEB0292210F800CEC097 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 18CBBEAF292210F800CEC097 /* FirebaseAuth */; };
 		18CBBEB2292210F800CEC097 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 18CBBEB1292210F800CEC097 /* FirebaseMessaging */; };
+		18D5C5FD2941ADA100A6615A /* CVEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5C5FC2941ADA100A6615A /* CVEnum.swift */; };
+		18D5C5FF2941CCEC00A6615A /* ReviewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5C5FE2941CCEC00A6615A /* ReviewProtocol.swift */; };
+		18D5C6012941E46300A6615A /* APIQueueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5C6002941E46300A6615A /* APIQueueProtocol.swift */; };
 		18D65DEF291D535C00CBEAB4 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DEE291D535C00CBEAB4 /* APIUser.swift */; };
 		18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18D65DF1291D55CE00CBEAB4 /* Alamofire */; };
 		18D65DF4291D585D00CBEAB4 /* APIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DF3291D585D00CBEAB4 /* APIHeader.swift */; };
@@ -163,6 +166,9 @@
 		18C9FAC0291CDB7400F78848 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		18C9FAC2291CDBD000F78848 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		18C9FAC4291CE13B00F78848 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
+		18D5C5FC2941ADA100A6615A /* CVEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVEnum.swift; sourceTree = "<group>"; };
+		18D5C5FE2941CCEC00A6615A /* ReviewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewProtocol.swift; sourceTree = "<group>"; };
+		18D5C6002941E46300A6615A /* APIQueueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueueProtocol.swift; sourceTree = "<group>"; };
 		18D65DEE291D535C00CBEAB4 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		18D65DF3291D585D00CBEAB4 /* APIHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
 		18DAFFE52928C371002B6B7C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -407,6 +413,39 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18D5C6022941E4BD00A6615A /* APIUser */ = {
+			isa = PBXGroup;
+			children = (
+				18B569C2293C4E9C0004314E /* WithdrawProtocol.swift */,
+				18B569C6293C60F10004314E /* MypageProtocol.swift */,
+				18B569C4293C534B0004314E /* SignupProtocol.swift */,
+				18B569C0293C433E0004314E /* LoginProtocol.swift */,
+			);
+			path = APIUser;
+			sourceTree = "<group>";
+		};
+		18D5C6032941E4C400A6615A /* APIQueue */ = {
+			isa = PBXGroup;
+			children = (
+				18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */,
+				1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */,
+				18BF5F382937678C007B20EB /* AroundProtocol.swift */,
+				18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */,
+				18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */,
+				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
+				18D5C5FE2941CCEC00A6615A /* ReviewProtocol.swift */,
+			);
+			path = APIQueue;
+			sourceTree = "<group>";
+		};
+		18D5C6042941E4CA00A6615A /* APIChat */ = {
+			isa = PBXGroup;
+			children = (
+				18EC05B129387E1F007EA5CB /* ChatProtocol.swift */,
+			);
+			path = APIChat;
+			sourceTree = "<group>";
+		};
 		18DC245F29189DDD00DD5D1C = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +629,7 @@
 			isa = PBXGroup;
 			children = (
 				18EC2FCC2932786100071C94 /* ImageEnum.swift */,
+				18D5C5FC2941ADA100A6615A /* CVEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -597,20 +637,13 @@
 		18DC24A82918AA0A00DD5D1C /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				18D5C6042941E4CA00A6615A /* APIChat */,
+				18D5C6032941E4C400A6615A /* APIQueue */,
+				18D5C6022941E4BD00A6615A /* APIUser */,
 				18DC24B3291928FC00DD5D1C /* ViewModelType.swift */,
-				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
-				18C4DFEF293486E8008C0A2C /* SearchProtocol.swift */,
-				1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */,
 				1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */,
-				18BF5F382937678C007B20EB /* AroundProtocol.swift */,
-				18BF5F3A2937BE29007B20EB /* AcceptProtocol.swift */,
-				18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */,
-				18EC05B129387E1F007EA5CB /* ChatProtocol.swift */,
-				18B569C0293C433E0004314E /* LoginProtocol.swift */,
-				18B569C2293C4E9C0004314E /* WithdrawProtocol.swift */,
-				18B569C4293C534B0004314E /* SignupProtocol.swift */,
-				18B569C6293C60F10004314E /* MypageProtocol.swift */,
 				18B569C8293C7DF40004314E /* StopProtocol.swift */,
+				18D5C6002941E46300A6615A /* APIQueueProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1047,6 +1080,7 @@
 				189E7591293FC85100497096 /* ChattingCollectionViewCell.swift in Sources */,
 				184DDD9C291AB2D000F12D63 /* AuthView.swift in Sources */,
 				18B0DA1C291A3FBF007044BA /* LoginViewController.swift in Sources */,
+				18D5C5FD2941ADA100A6615A /* CVEnum.swift in Sources */,
 				18DC24B62919290D00DD5D1C /* Transition.swift in Sources */,
 				18AD8585292150E1004169C1 /* GenderViewController.swift in Sources */,
 				18F10CE1292BCA8C0038BEEE /* Error+Extension.swift in Sources */,
@@ -1082,6 +1116,7 @@
 				18EC05B229387E1F007EA5CB /* ChatProtocol.swift in Sources */,
 				18DC24AC2918E23E00DD5D1C /* AppColor.swift in Sources */,
 				18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */,
+				18D5C5FF2941CCEC00A6615A /* ReviewProtocol.swift in Sources */,
 				18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */,
 				18C9FAC3291CDBD000F78848 /* OnBoardingView.swift in Sources */,
 				18EC05AC293875BD007EA5CB /* DodgeProtocol.swift in Sources */,
@@ -1111,6 +1146,7 @@
 				183834B3292E7A4D006C0675 /* AroundSeSacViewController.swift in Sources */,
 				18F10CD8292B3DE00038BEEE /* SearchViewController.swift in Sources */,
 				18F10CDF292BBC430038BEEE /* Network.swift in Sources */,
+				18D5C6012941E46300A6615A /* APIQueueProtocol.swift in Sources */,
 				18DC246C29189DDD00DD5D1C /* AppDelegate.swift in Sources */,
 				18C9FAC1291CDB7400F78848 /* Enum.swift in Sources */,
 				18AD858729217131004169C1 /* UserInfo.swift in Sources */,

@@ -27,6 +27,7 @@ enum APIHeader {
     
     case chatPostSend(chat: String, to: String)
     case chatGetList(lastchatDate: String, from: String)
+    case reviewPost(otheruid: String, reputation: [Int], comment: String)
 }
 
 
@@ -57,19 +58,21 @@ extension APIHeader {
             return URL(string: baseURL+"chat/\(to)")!
         case .chatGetList(let lastchatDate, let from):
             return URL(string: baseURL+"chat/\(from)?lastchatDate=\(lastchatDate)")!
+        case .reviewPost(let otheruid,_ ,_):
+            return URL(string: baseURL+"queue/rate/\(otheruid)")!
         }
     }
     var method: HTTPMethod {
         switch self {
         case .mypage: return .put
-        case .signup, .queue, .search, .withdraw, .studyPost, .studyAccept, .studyDodge, .chatPostSend : return .post
+        case .signup, .queue, .search, .withdraw, .studyPost, .studyAccept, .studyDodge, .chatPostSend, .reviewPost : return .post
         case .login, .myQueueState, .chatGetList : return .get
         case .searchStop: return .delete
         }
     }
     var headers: HTTPHeaders {
         switch self {
-        case .mypage, .signup, .search, .queue, .studyPost, .studyAccept, .studyDodge, .chatPostSend, .chatGetList:
+        case .mypage, .signup, .search, .queue, .studyPost, .studyAccept, .studyDodge, .chatPostSend, .chatGetList, .reviewPost:
             
             return ["Content-Type" : "application/x-www-form-urlencoded",
                     "idtoken": UserDefaults.standard.string(forKey: "token") ?? ""
@@ -107,6 +110,13 @@ extension APIHeader {
         case .studyPost(let otheruid), .studyAccept(let otheruid), .studyDodge(let otheruid):
             return [
                 "otheruid": otheruid
+            ]
+            
+        case .reviewPost(let otheruid , let reputation, let comment):
+            return [
+                "otheruid": otheruid,
+                "reputation": reputation,
+                "comment": comment
             ]
         case .chatPostSend(let chat, _):
             return [
