@@ -14,19 +14,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        
+        
+        
         if UserDefaults.standard.bool(forKey: "first") {
-//            let vc = TapViewController()
-         let vc = ChattingViewController()
+            let vc = TapViewController()
+//         let vc = ChattingViewController()
             let nav = UINavigationController(rootViewController: vc)
             window?.backgroundColor = BlackWhite.white
-            window?.rootViewController = nav
+            window?.rootViewController = vc
             window?.makeKeyAndVisible()
         } else {
-            let vc = OnBoardingViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            window?.backgroundColor = BlackWhite.white
-            window?.rootViewController = nav
-            window?.makeKeyAndVisible()
+            if UserDefaults.standard.bool(forKey: "onboarding") {
+                let vc = LoginViewController()
+    //         let vc = ChattingViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                window?.backgroundColor = BlackWhite.white
+                window?.rootViewController = nav
+                window?.makeKeyAndVisible()
+            } else {
+                let vc = OnBoardingViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                window?.backgroundColor = BlackWhite.white
+                window?.rootViewController = nav
+                window?.makeKeyAndVisible()
+            }
+
         }
         
     }

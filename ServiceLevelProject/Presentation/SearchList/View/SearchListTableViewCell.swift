@@ -25,13 +25,11 @@ class SearchListTableViewCell: UITableViewCell {
     lazy var moreButton: UIButton = {
         let bt = UIButton()
         bt.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        bt.backgroundColor = .yellow
         return bt
     }()
     
     lazy var reviewLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .brown
         return label
     }()
     
@@ -53,7 +51,7 @@ class SearchListTableViewCell: UITableViewCell {
             make.trailing.equalTo(moreButton.snp.leading).offset(-10)
             make.height.equalTo(30)
         }
-        contentView.backgroundColor = .red
+        
         contentView.snp.makeConstraints { make in
             make.height.equalTo(moreButton)
             make.width.equalTo(self)

@@ -7,23 +7,29 @@
 
 import UIKit
 
-class InfoManageMentViewController: BaseViewController, WithdrawProtocol {
+class InfoManageMentViewController: BaseViewController, WithdrawProtocol, LoginProtocol {
     
     
     let infoManageView = InfoManageMentView()
-    var isSelect = true
+//    var isSelect = true
+    var userInfoData: LoginInfo?
     
     override func loadView() {
         super.view = infoManageView
     }
-    
-  
+    override func viewWillAppear(_ animated: Bool) {
+        login { data in
+            self.userInfoData = data
+            self.infoManageView.tableView.reloadData()
+
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         aboutKeyboard()
         tableViewConfigure()
-        collectionviewConfigure()
+//        collectionviewConfigure()
         
         let right = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
         navigationItem.rightBarButtonItem = right

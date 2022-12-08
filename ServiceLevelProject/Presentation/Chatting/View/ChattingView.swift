@@ -345,10 +345,7 @@ class ChattingView: BaseView {
     }
     
     func modalButtonClicked(title: String, subTitle: String, BtTitle: String) {
-        blackView.snp.remakeConstraints { make in
-            make.edges.equalTo(0)
-            
-        }
+        blackView.snp.remakeConstraints { $0.edges.equalTo(0)}
         rightButtonwhiteView.isHidden = true
         rightButtonstackView.isHidden = true
         modalWhiteView.isHidden = false
@@ -379,7 +376,7 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return CVEnum.review.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -390,7 +387,8 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = Grayscale.gray4.cgColor
 
-        chattingView.sesacReport.isSelected ? cell.itemButton.setTitle(CVEnum.sesacReport.list[indexPath.item], for: .normal) : cell.itemButton.setTitle(CVEnum.review.list[indexPath.item], for: .normal)
+        chattingView.sesacReport.isSelected ? cell.itemButton.setTitle(CVEnum.sesacReport.allCases[indexPath.item].list, for: .normal) : cell.itemButton.setTitle(CVEnum.review.allCases[indexPath.item].list, for: .normal)
+        
 
         
         return cell
@@ -398,12 +396,14 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellItem = collectionView.cellForItem(at: indexPath) as! ChattingCollectionViewCell
+
+
+        
         switch indexPath.item {
-        case 0...6:
+        case 0...CVEnum.review.allCases.count:
             cellItem.itemButton.isSelected.toggle()
             if cellItem.itemButton.isSelected {
                 sesacList[indexPath.item] = 1
-                
                 cellItem.itemButton.backgroundColor = BrandColor.green
                 cellItem.itemButton.setTitleColor(BlackWhite.white, for: .normal)
             } else {
@@ -411,15 +411,30 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
                 cellItem.itemButton.backgroundColor = .clear
                 cellItem.itemButton.setTitleColor(BlackWhite.black, for: .normal)
             }
-
         default:break
         }
-            
-        
-    }
-
-    
-    
+    }    
 }
 
 
+extension ChattingViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        guard textView.text.isEmpty else {
+            chattingView.modalButton.backgroundColor = BrandColor.green
+            return
+        }
+        chattingView.modalButton.backgroundColor = .lightGray
+        
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard textView.text.isEmpty else {
+            chattingView.modalButton.backgroundColor = BrandColor.green
+            return true
+        }
+        chattingView.modalButton.backgroundColor = .lightGray
+        return true
+    }
+  
+}

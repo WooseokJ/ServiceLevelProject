@@ -41,6 +41,7 @@ final class APIUser {
         AF.request(api.url,method: api.method, parameters: api.parameters, headers: api.headers).validate().responseDecodable(of: LoginInfo.self) { response in
             switch response.result {
             case .success(let data):
+                
                 completionHandler(.success(data))
             case .failure :
                 guard let customError = loginError(rawValue: response.response!.statusCode) else{return}

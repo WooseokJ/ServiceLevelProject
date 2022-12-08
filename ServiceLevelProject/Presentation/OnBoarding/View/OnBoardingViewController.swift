@@ -25,6 +25,7 @@ class OnBoardingViewController: BaseViewController {
     }
     
     @objc func startButtonClicked() {
+        UserDefaults.standard.set(true, forKey: "onboarding")
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         let vc = LoginViewController()

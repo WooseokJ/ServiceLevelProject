@@ -50,6 +50,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
     lazy var moreButton: UIButton = {
         let bt = UIButton()
         bt.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        bt.isHidden = true
         return bt
     }()
     lazy var womanButton: UIButton = {
@@ -59,6 +60,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
         bt.layer.cornerRadius = 10
         bt.layer.borderWidth = 1
         bt.layer.borderColor = Grayscale.gray4.cgColor
+        bt.isHidden = true
         return bt
     }()
     lazy var manButton: UIButton = {
@@ -68,26 +70,31 @@ class InfoManageMentTableViewCell: UITableViewCell {
         bt.layer.cornerRadius = 10
         bt.layer.borderWidth = 1
         bt.layer.borderColor = Grayscale.gray4.cgColor
+        bt.isHidden = true
         return bt
     }()
     lazy var studyTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "  스터디를 입력해 주세요"
+        textField.isHidden = true
         return textField
     }()
     lazy var switchView: UISwitch = {
         let switchView = UISwitch(frame: .zero)
         switchView.setOn(false, animated: true)
+        switchView.isHidden = true
         return switchView
     }()
     lazy var lineView: UIView = {
         let view = UIView()
         view.backgroundColor = Grayscale.gray3
+        view.isHidden = true
         return view
     }()
     lazy var ageRangeLabel: UILabel = {
         let label = UILabel()
         label.textColor = BrandColor.green
+        label.isHidden = true
         return label
     }()
     
@@ -99,6 +106,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
         slider.orientation = .horizontal // default is .vertical
         slider.snapStepSize = 1
         slider.outerTrackColor = .lightGray
+        slider.isHidden = true
         return slider
     }()
 
@@ -115,6 +123,43 @@ class InfoManageMentTableViewCell: UITableViewCell {
             make.leading.equalTo(16)
             make.width.equalTo(self.bounds.width * 0.4)
         }
+        womanButton.snp.remakeConstraints { make in
+            make.trailing.equalTo(-5)
+            make.height.equalTo(self.snp.height).multipliedBy(0.8)
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(self.bounds.width * 0.2)
+        }
+        manButton.snp.remakeConstraints { make in
+            make.trailing.equalTo(self.womanButton.snp.leading).offset(-10)
+            make.height.equalTo(self.snp.height).multipliedBy(0.8)
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(self.bounds.width * 0.2)
+        }
+        studyTextField.snp.remakeConstraints { make in
+            make.trailing.equalTo(-5)
+            make.width.equalTo(self.bounds.width * 0.5)
+            make.height.equalTo(self.content.snp.height)
+            make.centerY.equalTo(self.snp.centerY)
+        }
+        lineView.snp.remakeConstraints { make in
+            make.height.equalTo(1)
+            make.top.equalTo(self.studyTextField.snp.bottom)
+            make.leading.equalTo(self.studyTextField.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+        }
+        ageRangeLabel.snp.remakeConstraints { make in
+            make.height.equalTo(self.content.snp.height)
+            make.trailing.equalTo(self.snp.trailing)
+            make.top.equalTo(self.content.snp.top)
+            make.width.equalTo(self.bounds.width * 0.2)
+        }
+        moreButton.snp.remakeConstraints { make in
+            make.height.equalTo(self.content.snp.height)
+            make.trailing.equalTo(-5)
+            make.width.equalTo(self.bounds.width * 0.2)
+            make.top.equalTo(self.safeAreaInsets)
+        }
+
     }
     
     

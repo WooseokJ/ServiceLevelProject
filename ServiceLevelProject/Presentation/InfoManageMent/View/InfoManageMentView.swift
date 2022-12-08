@@ -20,7 +20,7 @@ class InfoManageMentView: BaseView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(InfoManageMentTableViewCell.self, forCellReuseIdentifier: InfoManageMentTableViewCell.reuseIdentifier)
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.alwaysBounceVertical = false
         return tableView
@@ -68,6 +68,13 @@ class InfoManageMentView: BaseView {
             make.top.equalTo(tableView.snp.bottom)
             make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
+//        collectionview.snp.remakeConstraints { make in
+////            make.top.equalTo(cell.moreButton.snp.bottom)
+////            make.bottom.equalTo(tableView.snp.bottom).offset(-10)
+////            make.leading.equalTo(30)
+////            make.trailing.equalTo(-30)
+//        }
+
     }
     
 }
@@ -81,15 +88,12 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         infoManageView.secondTableView.delegate = self
         infoManageView.secondTableView.dataSource = self
     }
-    
-    //MARK: 색션,셀
     func numberOfSections(in tableView: UITableView) -> Int {
         switch tableView {
-        case infoManageView.tableView: return 1
-        case infoManageView.secondTableView : return 1
+            case infoManageView.tableView: return 1
+            case infoManageView.secondTableView : return 1
         default: return 1
         }
-       
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
@@ -97,59 +101,41 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             case infoManageView.tableView: return 1
             default: return 1
         }
-        
     }
     
     //MARK: 셀
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoManageMentTableViewCell.reuseIdentifier, for: indexPath) as! InfoManageMentTableViewCell
-        cell.cellDelegate = self
-        cell.slider.isHidden = true
-        cell.switchView.isHidden = true
+//        cell.cellDelegate = self
         
         switch tableView {
+            
+        case infoManageView.tableView:
+            cell.moreButton.isHidden = false
+            cell.content.font = AppFont.Title1_M16
+            cell.content.text = userInfoData?.nick!
+            cell.backgroundColor = .clear
+            cell.layer.cornerRadius = 10
+            cell.layer.borderWidth = 1
+            cell.layer.borderColor = Grayscale.gray2.cgColor
             
         case infoManageView.secondTableView:
             switch indexPath.row {
             case 0:
-                cell.womanButton.snp.remakeConstraints { make in
-                    make.trailing.equalTo(-5)
-                    make.height.equalTo(cell.snp.height).multipliedBy(0.8)
-                    make.centerY.equalTo(cell.snp.centerY)
-                    make.width.equalTo(cell.bounds.width * 0.2)
-                }
-                cell.manButton.snp.remakeConstraints { make in
-                    make.trailing.equalTo(cell.womanButton.snp.leading).offset(-10)
-                    make.height.equalTo(cell.snp.height).multipliedBy(0.8)
-                    make.centerY.equalTo(cell.snp.centerY)
-                    make.width.equalTo(cell.bounds.width * 0.2)
-                }
+                cell.womanButton.isHidden = false
+                cell.manButton.isHidden = false
             case 1:
-                cell.studyTextField.snp.remakeConstraints { make in
-                    make.trailing.equalTo(-5)
-                    make.width.equalTo(cell.bounds.width * 0.5)
-                    make.height.equalTo(cell.content.snp.height)
-                    make.centerY.equalTo(cell.snp.centerY)
-                }
-                cell.lineView.snp.remakeConstraints { make in
-                    make.height.equalTo(1)
-                    make.top.equalTo(cell.studyTextField.snp.bottom)
-                    make.leading.equalTo(cell.studyTextField.snp.leading)
-                    make.trailing.equalTo(cell.snp.trailing)
-                }
+                cell.studyTextField.isHidden = false
+                cell.lineView.isHidden = false
 
             case 2:
                 cell.switchView.isHidden = false
                 cell.accessoryView = cell.switchView
             case 3:
-                cell.ageRangeLabel.snp.remakeConstraints { make in
-                    make.height.equalTo(cell.content.snp.height)
-                    make.trailing.equalTo(cell.snp.trailing)
-                    make.top.equalTo(cell.content.snp.top)
-                    make.width.equalTo(cell.bounds.width * 0.2)
-                }
+                cell.ageRangeLabel.isHidden = false
                 cell.slider.isHidden = false
-                cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
+                
+                cell.ageRangeLabel.text = "\(userInfoData?.ageMin)" + "-" + "\(userInfoData?.ageMax)"
                 cell.accessoryView = cell.slider
             case 4:
                 print("회원탈퇴 클릭 ")
@@ -158,32 +144,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             }
             cell.content.text = InfoManageMent.content.list[indexPath.row]
             
-        case infoManageView.tableView:
-            cell.content.font = AppFont.Title1_M16
-            cell.moreButton.snp.remakeConstraints { make in
-                make.height.equalTo(cell.content.snp.height)
-                make.trailing.equalTo(-5)
-                make.width.equalTo(cell.bounds.width * 0.2)
-                make.top.equalTo(cell.safeAreaInsets)
-            }
-            if isSelect {
-                infoManageView.collectionview.snp.remakeConstraints{
-                    $0.width.height.equalTo(0)
-                }
-            } else {
-                infoManageView.collectionview.snp.remakeConstraints { make in
-                    make.top.equalTo(cell.moreButton.snp.bottom)
-                    make.bottom.equalTo(infoManageView.tableView.snp.bottom).offset(-10)
-                    make.leading.equalTo(30)
-                    make.trailing.equalTo(-30)
-                }
-            }
-            self.isSelect.toggle()
-            cell.content.text = "김새싹"
-            cell.backgroundColor = .clear
-            cell.layer.cornerRadius = 10
-            cell.layer.borderWidth = 1
-            cell.layer.borderColor = Grayscale.gray2.cgColor
+       
         default:
             print("오류",#function)
             break
@@ -199,7 +160,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
     private func bind(cell: InfoManageMentTableViewCell, indexPath: IndexPath) {
         cell.moreButton.rx.tap
             .bind { val in
-                print(self.isSelect)
+                
                 self.tableView(self.infoManageView.tableView, heightForRowAt: indexPath)
                 self.infoManageView.tableView.reloadData()
             }
@@ -238,26 +199,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
         case infoManageView.tableView:
-            if isSelect {
-                tableView.snp.remakeConstraints { make in
-                    make.leading.equalTo(16)
-                    make.trailing.equalTo(-16)
-                    make.top.equalTo(self.view.safeAreaLayoutGuide)
-                    make.height.equalTo(UIScreen.main.bounds.height * 0.7) // 열려있을떄 테이블뷰 자체 높이
-                }
-                return UIScreen.main.bounds.height * 0.5 // 펼쳣을떄  셀 높이
-//                return UITableView.automaticDimension
-            } else {
-
-                tableView.snp.remakeConstraints { make in
-                    make.leading.equalTo(16)
-                    make.trailing.equalTo(-16)
-                    make.top.equalTo(self.view.safeAreaLayoutGuide)
-                    make.height.equalTo(UIScreen.main.bounds.height * 0.26) // 닫혀있을떄 테이블뷰 자체 높이
-                }
-//                return UIScreen.main.bounds.height * 0.04 // 닫힐떄 셀 높이
                 return UITableView.automaticDimension // 닫힐떄 셀 높이
-            }
         case infoManageView.secondTableView:
             if indexPath.row == 3 {return UIScreen.main.bounds.height * 0.12}
             else {return UIScreen.main.bounds.height * 0.1}
@@ -270,113 +212,113 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 
-extension InfoManageMentViewController: InfoDelegate {
-    func switchDidChange(cell: InfoManageMentTableViewCell) {
-        print(cell.switchView.isOn)
-    }
-    func womanButtonTap(cell: InfoManageMentTableViewCell) {
-        cell.womanButton.backgroundColor = BrandColor.green
-        cell.manButton.backgroundColor = .clear
-    }
-    func manButtonTap(cell: InfoManageMentTableViewCell) {
-        cell.manButton.backgroundColor = BrandColor.green
-        cell.womanButton.backgroundColor = .clear
-    }
-    func sliderValueChagend(cell: InfoManageMentTableViewCell) {
-        cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
-    }
-    func textFieldChagned(cell: InfoManageMentTableViewCell) {
-        print(cell.studyTextField.text!)
-    }
-    func moreButtonTap() {}
-}
-
-extension InfoManageMentViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
-    func collectionviewConfigure() {
-        infoManageView.collectionview.delegate = self
-        infoManageView.collectionview.dataSource = self
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0 : return InfoManageMent.title.list.count
-        case 1: return InfoManageMent.sesacStudy.list.count
-        default: return 1
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
-
-        switch indexPath.section {
-        case 0:
-            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
-            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
-            cell.layer.cornerRadius = 10
-            cell.clipsToBounds = true
-            cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
-        case 1:
-            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
-            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
-            cell.layer.cornerRadius = 10
-            cell.clipsToBounds = true
-            cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
-        case 2:
-//            infoManageView.collectionview.backgroundColor = .cyan
-            cell.reviewLabel.snp.remakeConstraints { make in
-                make.leading.equalTo(10)
-                make.top.equalTo(0)
-                make.trailing.equalTo(-10)
-                make.bottom.equalTo(cell.snp.bottom)
-            }
-            cell.itemButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
-            cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
-            cell.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
-            cell.reviewLabel.textColor = Grayscale.gray6
-            cell.reviewLabel.layer.borderWidth = 0
-        default: break
-        }
-        return cell
-    }
-
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier, for: indexPath) as? HeaderCollectionView else {return HeaderCollectionView()}
-        switch indexPath.section {
-            case 0 :header.label.text = "새싹 타이틀"
-            case 1: header.label.text = "하고 싶은 스터디"
-            case 2: header.label.text = "새싹 리뷰"
-            default: break
-        }
-        header.backgroundColor = .clear
-        header.configure()
-        header.layoutSubviews()
-        return header
-
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 100, height: 30)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        switch indexPath.section {
-        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
-        case 1:
-            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
-        case 2:
-            return CGSize(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height / 29 )
-        default:
-            print("오류",#function)
-            return CGSize()
-
-        }
-    }
-    
-}
+//extension InfoManageMentViewController: InfoDelegate {
+//    func switchDidChange(cell: InfoManageMentTableViewCell) {
+//        print(cell.switchView.isOn)
+//    }
+//    func womanButtonTap(cell: InfoManageMentTableViewCell) {
+//        cell.womanButton.backgroundColor = BrandColor.green
+//        cell.manButton.backgroundColor = .clear
+//    }
+//    func manButtonTap(cell: InfoManageMentTableViewCell) {
+//        cell.manButton.backgroundColor = BrandColor.green
+//        cell.womanButton.backgroundColor = .clear
+//    }
+//    func sliderValueChagend(cell: InfoManageMentTableViewCell) {
+//        cell.ageRangeLabel.text = "\(Int(cell.slider.value[0])) - \(Int(cell.slider.value[1]))"
+//    }
+//    func textFieldChagned(cell: InfoManageMentTableViewCell) {
+//        print(cell.studyTextField.text!)
+//    }
+//    func moreButtonTap() {}
+//}
+//
+//extension InfoManageMentViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+//
+//    func collectionviewConfigure() {
+//        infoManageView.collectionview.delegate = self
+//        infoManageView.collectionview.dataSource = self
+//    }
+//
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 3
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        switch section {
+//        case 0 : return InfoManageMent.title.list.count
+//        case 1: return InfoManageMent.sesacStudy.list.count
+//        default: return 1
+//        }
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
+//
+//        switch indexPath.section {
+//        case 0:
+//            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
+//            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
+//            cell.layer.cornerRadius = 10
+//            cell.clipsToBounds = true
+//            cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
+//        case 1:
+//            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
+//            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
+//            cell.layer.cornerRadius = 10
+//            cell.clipsToBounds = true
+//            cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
+//        case 2:
+////            infoManageView.collectionview.backgroundColor = .cyan
+//            cell.reviewLabel.snp.remakeConstraints { make in
+//                make.leading.equalTo(10)
+//                make.top.equalTo(0)
+//                make.trailing.equalTo(-10)
+//                make.bottom.equalTo(cell.snp.bottom)
+//            }
+//            cell.itemButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+//            cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
+//            cell.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
+//            cell.reviewLabel.textColor = Grayscale.gray6
+//            cell.reviewLabel.layer.borderWidth = 0
+//        default: break
+//        }
+//        return cell
+//    }
+//
+//
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier, for: indexPath) as? HeaderCollectionView else {return HeaderCollectionView()}
+//        switch indexPath.section {
+//            case 0 :header.label.text = "새싹 타이틀"
+//            case 1: header.label.text = "하고 싶은 스터디"
+//            case 2: header.label.text = "새싹 리뷰"
+//            default: break
+//        }
+//        header.backgroundColor = .clear
+//        header.configure()
+//        header.layoutSubviews()
+//        return header
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: 100, height: 30)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        switch indexPath.section {
+//        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+//        case 1:
+//            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+//        case 2:
+//            return CGSize(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height / 29 )
+//        default:
+//            print("오류",#function)
+//            return CGSize()
+//
+//        }
+//    }
+//
+//}

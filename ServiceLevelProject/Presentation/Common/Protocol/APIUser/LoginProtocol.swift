@@ -48,35 +48,37 @@ extension LoginProtocol where Self: AuthViewController {
             }
         }
     }
-    
-    
-//    func signup() {
-//        apiUser.signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String, email: String, gender: Int) { [weak self] data in
-//            do {
-//                switch data {
-//                case .success:
-//
-//                case .failure(.tokenErorr):
-//                    self?.refreshIdToken {
-//                        self?.signup()
-//                    }
-//                case .failure(.notUserError):
-//
-//                case .failure(.serverError):
-//                    self?.view.makeToast("서버 에러")
-//                case .failure(.clientError):
-//                    self?.view.makeToast("클라이언트 에러")
-//                }
-//            }
-//            catch {
-//                print("에러야")
-//                return
-//            }
-//        }
-//        
-//    }
-    
+
 
 }
-
+extension LoginProtocol where Self: InfoManageMentViewController {
+    func login(completionHandler: @escaping ((LoginInfo?) -> Void) ) {
+        apiUser.login { [weak self] data in
+            do {
+                switch data {
+                case .success:
+                    print(data)
+                    completionHandler(try data.get().value!)
+                case .failure(.tokenErorr):
+                    self?.refreshIdToken {
+                        self?.login() { _ in
+                            self?.view.makeToast("토큰 갱신후 재시도")
+                        }
+                    }
+                case .failure(.notUserError):
+                    let nickVC = NickNameViewController()
+                    self?.transition(nickVC, transitionStyle: .push)
+                case .failure(.serverError):
+                    self?.view.makeToast("서버 에러")
+                case .failure(.clientError):
+                    self?.view.makeToast("클라이언트 에러")
+                }
+            }
+            catch {
+                print("에러야")
+                return
+            }
+        }
+    }
+}
 

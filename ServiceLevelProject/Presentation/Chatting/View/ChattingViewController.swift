@@ -30,6 +30,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewConfigure()
+        chattingView.textView.delegate = self
         title = "고래밥"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(listClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
@@ -184,7 +185,6 @@ extension ChattingViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
-                print( vc.chattingView.sesacReport.isSelected)
                 vc.chattingView.blackView.isUserInteractionEnabled = false
                 vc.chattingView.reviewAdd.isSelected.toggle()
                 vc.chattingView.collectionview.collectionViewLayout = vc.chattingView.collectionViewLayout(divideWidth: 2.5)
@@ -205,6 +205,7 @@ extension ChattingViewController {
                 vc.chattingView.modalButtonClicked(title: "세씩 신고", subTitle: "다시는 해당 새싹과매칭되지 않습니다", BtTitle: "신고하기")
             }
             .disposed(by: disposeBag)
+        
         // 취소버튼 클릭
         chattingView.cancelXMark.rx
             .tap
@@ -215,18 +216,20 @@ extension ChattingViewController {
                     vc.chattingView.reviewAdd.isSelected.toggle()
                 }else{
                     vc.chattingView.sesacReport.isSelected.toggle()
-                }
-                
-                print( vc.chattingView.sesacReport.isSelected)
+                }                
                 vc.chattingView.blackViewClicked()
             }
             .disposed(by: disposeBag)
+        
         // 모달버튼누를떄
         chattingView.modalButton.rx
             .tap
+            .map {
+                self.chattingView.textView.text
+            }
             .withUnretained(self)
-            .bind { (vc,val) in //vc.otherid!
-                vc.reviewPostRate(otheruid: "dsds", reputation: vc.sesacList, comment: "아아아아")
+            .bind { (vc,val) in //
+                vc.reviewPostRate(otheruid: vc.otherid!, reputation: vc.sesacList, comment: val!)
             }
             .disposed(by: disposeBag)
 

@@ -42,12 +42,15 @@ class AuthViewController: BaseViewController, APIProtocol, LoginProtocol{
         authView.authTextField.rx.text
             .withUnretained(self)
             .bind { (vc,val) in
-                if val?.count ?? 0 >= 6 {
+                if val!.count >= 7 {
+                    vc.authView.authTextField.deleteBackward()
+                }
+                if val!.count >= 6 {
                     vc.authView.authButton.backgroundColor = BrandColor.green
-                } else {
+                }
+                else {
                     vc.authView.authButton.backgroundColor = Grayscale.gray6
                 }
-                
             }
             .disposed(by: disposeBag)
         authView.authredirectButton.rx.tap
