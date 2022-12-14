@@ -23,6 +23,7 @@ extension SignupProtocol where Self: GenderViewController {
             do {
                 switch data {
                 case .success:
+                    UserDefaults.standard.set(true,forKey: "first") 
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let sceneDelegate = windowScene?.delegate as? SceneDelegate
                     let vc = TapViewController()

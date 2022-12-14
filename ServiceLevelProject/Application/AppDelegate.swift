@@ -44,16 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: MessagingDelegate {
-    // 토큰갱신 모니터링 (선택사항) : 토큰정보가 언제바뀔까?
-    // 이걸안하면 ex) 앱은 설치되어있는데 회원탈퇴해도 알림이 계속온다
-    // 현재 등록 토큰 가져오기
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("파이어베이스 토큰: \(fcmToken!)")
         UserDefaults.standard.set(fcmToken!, forKey: "fcmtoken")
-        
     }
-    
-    
 }
 extension UIViewController {
     func hideKeyboard() {

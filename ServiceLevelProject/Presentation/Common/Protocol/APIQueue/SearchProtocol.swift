@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SearchProtocol: APIProtocol, TransferDataProtocol {
+protocol SearchProtocol: APIProtocol, TransferDataProtocol, APIQueueProtocol {
     var searchView: SearchView {get}
     func queuePostRequest(lat: Double, long: Double, studylist: [String])
 }
@@ -21,7 +21,7 @@ extension SearchProtocol where Self: SearchViewController {
     }
     
     func queuePostRequest(lat: Double, long: Double, studylist: [String]) {
-        self.apiQueue.queueRequest(lat: lat, long: long ,studylist: studylist ) { [self] data  in
+        apiQueue.queueRequest(lat: lat, long: long ,studylist: studylist ) { [self] data  in
             do {
                 switch data {
                 case .success:

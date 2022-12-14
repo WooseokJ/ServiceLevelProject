@@ -7,16 +7,11 @@
 
 import Foundation
 
-protocol AroundProtocol {
+protocol AroundProtocol: APIQueueProtocol {
     func studyPostRequest(otheruid: String)
-    var apiQueue: APIQueue {get}
 }
 
 extension AroundProtocol where Self: AroundSeSacViewController {
-
-    var apiQueue: APIQueue {
-        return APIQueue()
-    }
 
     func studyPostRequest(otheruid: String) {
         apiQueue.studyPostRequest(otheruid: otheruid) { [weak self] data in
@@ -120,10 +115,7 @@ extension AroundProtocol where Self: AroundSeSacViewController {
                     print("모르는 에러")
                 }
             }
-            catch {
-                print("알수없는오류")
-            }
-
+            catch {return}
         }
     }
 

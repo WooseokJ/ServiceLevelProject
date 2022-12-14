@@ -19,6 +19,7 @@ class InfoManageMentViewController: BaseViewController, WithdrawProtocol, LoginP
     }
     override func viewWillAppear(_ animated: Bool) {
         login { data in
+            print(data?.uid)
             self.userInfoData = data
             self.infoManageView.tableView.reloadData()
 

@@ -10,11 +10,8 @@ import Foundation
 
 protocol TransferDataProtocol {
     var transferSearchInfo: Search? {get set}
-    var apiQueue: APIQueue {get}
 }
 
 extension TransferDataProtocol {
-    var apiQueue: APIQueue {
-        return APIQueue()
-    }
+    
 }

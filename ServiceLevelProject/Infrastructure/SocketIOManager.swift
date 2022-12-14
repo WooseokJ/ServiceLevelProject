@@ -6,7 +6,7 @@
 //
 
 import Foundation
-//import SocketIO
+import SocketIO
 //
 //class SocketIOManager {
 //    static let shared = SocketIOManager()
@@ -14,8 +14,8 @@ import Foundation
 //    var socket: SocketIOClient!
 //
 //    private init(){
-//        
-//        manager = SocketManager(socketURL: URL(string: APIKey.baseURL+"chat/{to}")!, config: [
+//
+//        manager = SocketManager(socketURL: URL(string: APIKey.baseURL+"chat/\(UserDefaults.standard.string(forKey: "otheruid")!)")!, config: [
 //            .log(true),
 //            .extraHeaders(["auth": APIKey.header])])
 //

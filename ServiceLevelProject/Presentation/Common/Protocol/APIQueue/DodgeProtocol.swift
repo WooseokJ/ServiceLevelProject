@@ -7,16 +7,12 @@
 
 import Foundation
 
-protocol DodgeProtocol: APIProtocol  {
-    var apiQueue: APIQueue {get}
+protocol DodgeProtocol: APIProtocol, APIQueueProtocol  {
     func studyPostDodge(otheruid: String)
 }
 
 extension DodgeProtocol where Self: ChattingViewController {
-    
-    var apiQueue: APIQueue {
-        return APIQueue()
-    }
+
     
     func studyPostDodge(otheruid: String) {
         apiQueue.studyPostDodge(otheruid: otheruid) { [weak self] data in

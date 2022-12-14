@@ -100,7 +100,7 @@ final class APIQueue {
         let api = APIHeader.studyAccept(otheruid: otheruid)
         AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate(statusCode: 200..<201).response { response in
             switch response.result {
-            case .success(let data) :
+            case .success :
                 completionHandler(.success(()))
             case .failure:
                 guard let customError = studyAcceptError(rawValue: response.response!.statusCode) else{return}
@@ -126,7 +126,7 @@ final class APIQueue {
     // 리뷰 작성
     func reviewPostRate(otheruid: String,reputation: [Int], comment: String, completionHandler: @escaping ReviewPostRateHandler) {
         let api = APIHeader.reviewPost(otheruid: otheruid, reputation: reputation, comment: comment)
-        AF.request(api.url, method: api.method, parameters: api.parameters, headers: api.headers).validate().response { response in
+        AF.request(api.url, method: api.method, parameters: api.parameters,  encoding: URLEncoding(arrayEncoding: .noBrackets) ,headers: api.headers).validate().response { response in
             switch response.result {
             case .success(let data) :
                 completionHandler(.success(data))

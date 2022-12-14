@@ -38,7 +38,7 @@ final class APIUser {
     /// 로그인
     func login(completionHandler: @escaping loginHandler) {
         let api = APIHeader.login
-        AF.request(api.url,method: api.method, parameters: api.parameters, headers: api.headers).validate().responseDecodable(of: LoginInfo.self) { response in
+        AF.request(api.url,method: api.method, headers: api.headers).validate().responseDecodable(of: LoginInfo.self) { response in
             switch response.result {
             case .success(let data):
                 

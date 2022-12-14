@@ -34,7 +34,9 @@ class AuthViewController: BaseViewController, APIProtocol, LoginProtocol{
         authView.authButton.rx.tap
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.signIn()
+                vc.refreshIdToken {
+                    vc.signIn()
+                }
                 vc.view.endEditing(true)
             }
             .disposed(by: disposeBag)

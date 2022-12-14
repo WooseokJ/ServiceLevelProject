@@ -7,16 +7,13 @@
 
 import Foundation
 
-protocol AcceptProtocol {
+protocol AcceptProtocol: APIQueueProtocol, APIQueueProtocol {
     
-    var apiQueue: APIQueue {get}
     func studyPostAccept(otheruid: String)
 }
 
 extension AcceptProtocol where Self: AcceptViewController {
-    var apiQueue: APIQueue {
-        return APIQueue()
-    }
+
     
     
     func studyPostAccept(otheruid: String) {
@@ -62,7 +59,7 @@ extension AcceptProtocol where Self: AcceptViewController {
     
     
     func callmyqueueStateRequest() {
-        self.apiQueue.myqueueStateRequest() { [weak self] data in
+        apiQueue.myqueueStateRequest() { [weak self] data in
             do {
                 switch data {
                 case .success :

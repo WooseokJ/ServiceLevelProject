@@ -88,6 +88,7 @@ class GenderViewController: BaseViewController, SignupProtocol {
     }
     
     @objc func genderButtonClicked() {
+        
         signup(phoneNumber: UserDefaults.standard.string(forKey: "phoneNumber")!, FCMtoken: UserDefaults.standard.string(forKey: "fcmtoken")!, nick: UserDefaults.standard.string(forKey: "nick")!, birth: UserDefaults.standard.string(forKey: "birth")!, email: UserDefaults.standard.string(forKey: "email")!, gender: UserDefaults.standard.integer(forKey: "gender"))
         
     }

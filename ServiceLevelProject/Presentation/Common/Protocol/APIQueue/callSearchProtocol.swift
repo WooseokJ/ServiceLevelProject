@@ -8,7 +8,7 @@
 import Foundation
 import NMapsMap
 
-protocol callSearchProtocol: TransferDataProtocol, APIProtocol {
+protocol callSearchProtocol: TransferDataProtocol, APIProtocol, APIQueueProtocol {
     
     func callSearch(lat: Double, long: Double, completionHandler: @escaping ((Search?) -> Void))
 }
@@ -17,7 +17,7 @@ protocol callSearchProtocol: TransferDataProtocol, APIProtocol {
 
 extension callSearchProtocol where Self: HomeViewController {
     func callSearch(lat: Double, long: Double, completionHandler: @escaping ((Search?) -> Void)) {
-        self.apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
+        apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
             do {
                 switch data {
                 case .success:
@@ -93,7 +93,7 @@ extension callSearchProtocol where Self: AroundSeSacViewController {
 
 extension callSearchProtocol where Self: AcceptViewController {
     func callSearch(lat: Double, long: Double, completionHandler: @escaping ((Search?) -> Void)) {
-        self.apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
+        apiQueue.searchRequest(lat: lat, long: long) { [weak self]  data  in
             do {
                 switch data {
                 case .success:

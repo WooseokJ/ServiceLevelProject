@@ -35,7 +35,8 @@ final class HomeViewController: BaseViewController ,HomeProtocol, callSearchProt
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
+        cameraMove(lat: 37.517829 , lng: 126.886270)
         homeView.naverMapView.mapView.addCameraDelegate(delegate: self)
         locationRequest()
         bind()
@@ -95,10 +96,7 @@ extension HomeViewController {
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.homeView.locationBtn.setTitle("complass", for: UIControl.State.selected)
-                let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: UserDefaults.standard.double(forKey: "lat") ?? 0 , lng: UserDefaults.standard.double(forKey: "lng") ?? 0 ))
-                cameraUpdate.animation = .easeIn
-                vc.homeView.naverMapView.mapView.moveCamera(cameraUpdate)
-                
+                vc.cameraMove(lat: UserDefaults.standard.double(forKey: "lat"), lng: UserDefaults.standard.double(forKey: "lng"))
                 self.setpin(lat: UserDefaults.standard.double(forKey: "lat"), lng: UserDefaults.standard.double(forKey: "lng"))
             }
             .disposed(by: disposeBag)
@@ -169,5 +167,10 @@ extension HomeViewController {
         circle.outlineWidth = 1
         circle.outlineColor = UIColor.systemBlue
         circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.1)
+    }
+    private func cameraMove(lat:Double, lng: Double) {
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat , lng: lng))
+        cameraUpdate.animation = .easeIn
+        homeView.naverMapView.mapView.moveCamera(cameraUpdate)
     }
 }

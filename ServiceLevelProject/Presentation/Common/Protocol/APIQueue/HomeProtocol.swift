@@ -10,7 +10,7 @@ import NMapsMap
 
 protocol viewProtocol {}
 
-protocol HomeProtocol: TransferDataProtocol, APIProtocol{
+protocol HomeProtocol: TransferDataProtocol, APIProtocol, APIQueueProtocol{
     var homeView: HomeView {get}
 
     func callmyqueueStateRequest()
@@ -24,7 +24,7 @@ extension HomeProtocol where Self: HomeViewController { //where Self: HomeViewCo
 
     /// queueState 요청 이게 myqueustate 매소드인데 !!!
     func callmyqueueStateRequest() {
-        self.apiQueue.myqueueStateRequest() { [weak self] data in
+        apiQueue.myqueueStateRequest() { [weak self] data in
             do {
                 switch data {
                 case .success :

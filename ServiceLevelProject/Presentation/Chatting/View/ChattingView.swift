@@ -15,7 +15,6 @@ class ChattingView: BaseView {
         setConstrains()
     }
     
-    
     lazy var dateTitleLabel: UILabel = {
         let label = UILabel()
         label.layer.cornerRadius = 20

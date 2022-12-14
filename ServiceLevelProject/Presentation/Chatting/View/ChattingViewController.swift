@@ -118,7 +118,6 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         chattingView.tableView.allowsSelection = false
         chattingView.tableView.separatorStyle = .none
         chattingView.tableView.rowHeight = UITableView.automaticDimension
-//        chattingView.tableView.backgroundColor = .darkGray
     }
     
     
@@ -130,17 +129,9 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
 
         let data = chat[indexPath.row]
         if data?.id == UserDefaults.standard.string(forKey: "otheruid") {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MychatTableViewCell.reuseIdentifier, for: indexPath) as! MychatTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: YourChatTableViewCell.reuseIdentifier, for: indexPath) as! YourChatTableViewCell
             return cell
         } else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: YourChatTableViewCell.reuseIdentifier, for: indexPath) as! YourChatTableViewCell
-//            cell.yourChatLabel.text = data?.chat!
-//            cell.yourChatLabel.backgroundColor = .yellow
-//            cell.backgroundColor = .cyan
-//            cell.yourChatLabel.layer.cornerRadius = 8
-//            cell.yourChatLabel.layer.borderWidth = 1
-//            cell.yourChatLabel.layer.borderColor = UIColor.red.cgColor
-//            return cell
             let cell = tableView.dequeueReusableCell(withIdentifier: MychatTableViewCell.reuseIdentifier, for: indexPath) as! MychatTableViewCell
             cell.myChatLabel.text = data?.chat!
             cell.backgroundColor = .brown
@@ -163,7 +154,7 @@ extension ChattingViewController {
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.chatPostSend(chat: val!, to: UserDefaults.standard.string(forKey: "otheruid")!)
-                vc.chattingView.sendTextView.text = " "
+                vc.chattingView.sendTextView.text = ""
                 vc.chattingView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -211,6 +202,7 @@ extension ChattingViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
+                vc.chattingView.textView.text = ""
                 vc.chattingView.blackView.isUserInteractionEnabled = true
                 if vc.chattingView.reviewAdd.isSelected {
                     vc.chattingView.reviewAdd.isSelected.toggle()
@@ -228,9 +220,13 @@ extension ChattingViewController {
                 self.chattingView.textView.text
             }
             .withUnretained(self)
-            .bind { (vc,val) in //
-                vc.reviewPostRate(otheruid: vc.otherid!, reputation: vc.sesacList, comment: val!)
-            }
+            .bind { (vc,val) in
+                vc.reviewPostRate(otheruid: "cgP8iswqFEO4VpPxpcWKUbtr0t22", reputation: vc.sesacList, comment: val!)
+                vc.chattingView.blackViewClicked()
+                let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+                self.navigationController?.popToViewController(viewControllers[0], animated: true)
+                
+            } //vc.otherid!
             .disposed(by: disposeBag)
 
     }

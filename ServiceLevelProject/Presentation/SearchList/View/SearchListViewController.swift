@@ -12,7 +12,7 @@ import Toast
 import RxSwift
 import RxCocoa
 
-class SearchListViewController: TabmanViewController, TransferDataProtocol, APIProtocol {
+class SearchListViewController: TabmanViewController, TransferDataProtocol, APIProtocol, StopProtocol {
 
     var transferSearchInfo: Search?
 
@@ -40,26 +40,27 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
     }
 
     @objc func searchCancelClicked() {
-        apiQueue.searchStopRequest() { [self] data in
-            switch data {
-            case .success :
-                view.makeToast("찾기 중단 성공")
-                self.navigationController?.popToRootViewController(animated: true)
-            case .failure(.alreadyStopError):
-                view.makeToast("새싹 찾기는 이미 중단된 상태")
-            case .failure(.notUserError):
-                view.makeToast("미가입 회원")
-            case .failure(.tokenErorr):
-                refreshIdToken {
-                    searchCancelClicked()
-                }
-            case .failure(.serverError):
-                view.makeToast("서버에러")
-            case .failure(.clientError):
-                view.makeToast("클라이언트 에러")
-            default:break
-            }
-        }
+        stopQueue()
+//        apiQueue.searchStopRequest() { [self] data in
+//            switch data {
+//            case .success :
+//                view.makeToast("찾기 중단 성공")
+//                self.navigationController?.popToRootViewController(animated: true)
+//            case .failure(.alreadyStopError):
+//                view.makeToast("새싹 찾기는 이미 중단된 상태")
+//            case .failure(.notUserError):
+//                view.makeToast("미가입 회원")
+//            case .failure(.tokenErorr):
+//                refreshIdToken {
+//                    searchCancelClicked()
+//                }
+//            case .failure(.serverError):
+//                view.makeToast("서버에러")
+//            case .failure(.clientError):
+//                view.makeToast("클라이언트 에러")
+//            default:break
+//            }
+//        }
     }
     
     @objc func backBtClicked() {

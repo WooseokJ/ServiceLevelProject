@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18057E992943386700F975AE /* yourChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18057E982943386700F975AE /* yourChat.swift */; };
 		1832BAB92931265D005D99D6 /* QueuInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832BAB82931265D005D99D6 /* QueuInfo.swift */; };
 		1834D6FB2934BD210020B2CE /* callSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */; };
 		1834D6FD2934BD530020B2CE /* TransferDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */; };
@@ -126,6 +127,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18057E982943386700F975AE /* yourChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourChat.swift; sourceTree = "<group>"; };
 		1832BAB82931265D005D99D6 /* QueuInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuInfo.swift; sourceTree = "<group>"; };
 		1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callSearchProtocol.swift; sourceTree = "<group>"; };
 		1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataProtocol.swift; sourceTree = "<group>"; };
@@ -260,6 +262,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18057E972943384200F975AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18057E982943386700F975AE /* yourChat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		183834B6292E8046006C0675 /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +444,7 @@
 				18EC05AB293875BD007EA5CB /* DodgeProtocol.swift */,
 				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
 				18D5C5FE2941CCEC00A6615A /* ReviewProtocol.swift */,
+				18B569C8293C7DF40004314E /* StopProtocol.swift */,
 			);
 			path = APIQueue;
 			sourceTree = "<group>";
@@ -553,6 +564,7 @@
 		18DC249F2918A98200DD5D1C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				18057E972943384200F975AE /* Model */,
 				18DC24B92919292A00DD5D1C /* Extension */,
 				18DC24A12918A98E00DD5D1C /* Constant */,
 				18DC24A02918A98800DD5D1C /* Error */,
@@ -642,7 +654,6 @@
 				18D5C6022941E4BD00A6615A /* APIUser */,
 				18DC24B3291928FC00DD5D1C /* ViewModelType.swift */,
 				1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */,
-				18B569C8293C7DF40004314E /* StopProtocol.swift */,
 				18D5C6002941E46300A6615A /* APIQueueProtocol.swift */,
 			);
 			path = Protocol;
@@ -1096,6 +1107,7 @@
 				186D3FB5294016D900C21145 /* APIKey.swift in Sources */,
 				18B569C1293C433E0004314E /* LoginProtocol.swift in Sources */,
 				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
+				18057E992943386700F975AE /* yourChat.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
 				183834A4292DD318006C0675 /* SearchListView.swift in Sources */,
 				18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */,

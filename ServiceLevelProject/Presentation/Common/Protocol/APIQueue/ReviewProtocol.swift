@@ -18,8 +18,8 @@ extension ReviewProtocol where Self: ChattingViewController {
             do {
                 switch data {
                 case .success:
-                    let viewControllers : [UIViewController] = self?.navigationController!.viewControllers as [UIViewController]
-                    self?.navigationController?.popToViewController(viewControllers[0], animated: true)
+                    self?.view.makeToast("리뷰 등록 완료")
+
                 case .failure(.tokenErorr):
                     self?.refreshIdToken {
                         self?.reviewPostRate(otheruid: otheruid, reputation: reputation, comment: comment)

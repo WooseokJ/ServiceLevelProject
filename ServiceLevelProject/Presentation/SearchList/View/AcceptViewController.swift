@@ -139,7 +139,7 @@ extension AcceptViewController {
             .tap
             .withUnretained(self)
             .bind { (vc,val) in
-                vc.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
+                vc.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { search in
                     vc.transferSearchInfo = search
                     dump(vc.transferSearchInfo)
                     vc.searchListView.tableView.reloadData()

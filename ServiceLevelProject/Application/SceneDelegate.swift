@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if UserDefaults.standard.bool(forKey: "first") {
             let vc = TapViewController()
-//         let vc = ChattingViewController()
+//            let vc = ChattingViewController()
             let nav = UINavigationController(rootViewController: vc)
             window?.backgroundColor = BlackWhite.white
             window?.rootViewController = vc
