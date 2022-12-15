@@ -9,7 +9,6 @@ import Foundation
 
 enum APIKey {
    static let clientID = "sjtk98rxyn"
-   static let baseURL = "http://api.sesac.co.kr:1210/v1/"
-    
 }
+
 
