@@ -136,6 +136,7 @@
 		183834A3292DD318006C0675 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		183834B2292E7A4D006C0675 /* AroundSeSacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSeSacViewController.swift; sourceTree = "<group>"; };
 		183834B4292E7A67006C0675 /* AcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptViewController.swift; sourceTree = "<group>"; };
+		1845F0CB294B9E3F00A0A9F6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		184DDD9B291AB2D000F12D63 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		184DDD9D291AB2E600F12D63 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		1861EC79291C0709008E0575 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -463,6 +464,7 @@
 		18DC245F29189DDD00DD5D1C = {
 			isa = PBXGroup;
 			children = (
+				1845F0CB294B9E3F00A0A9F6 /* README.md */,
 				18DC24AD2918E24E00DD5D1C /* .gitignore */,
 				18DC246A29189DDD00DD5D1C /* ServiceLevelProject */,
 				18DC248129189DDE00DD5D1C /* ServiceLevelProjectTests */,
