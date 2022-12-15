@@ -28,6 +28,7 @@ enum APIHeader {
     case chatPostSend(chat: String, to: String)
     case chatGetList(lastchatDate: String, from: String)
     case reviewPost(otheruid: String, reputation: [Int], comment: String)
+    
 }
 
 
@@ -44,9 +45,10 @@ extension APIHeader {
             case .studyPost: return URL(string: APISeSac.studyPostURL)!
             case .studyAccept: return URL(string: APISeSac.studyAccept)!
             case .studyDodge: return URL(string: APISeSac.studyDodge)!
-            case .chatPostSend: return URL(string: APISeSac.chatSendURL)!
-            case .chatGetList: return URL(string: APISeSac.chatGetListURL)!
-            case .reviewPost: return URL(string: APISeSac.reviewPostURL)!
+            
+            case .chatPostSend(_,let to): return URL(string: APISeSac.chatSendURL + to)!
+            case .chatGetList(let lastchatDate, let from): return URL(string: APISeSac.chatGetListURL + from + "?lastchatDate=" + lastchatDate)!
+            case .reviewPost(let otheruid,_,_): return URL(string: APISeSac.reviewPostURL + otheruid)!
         }
     }
     var method: HTTPMethod {
@@ -76,7 +78,6 @@ extension APIHeader {
         case .signup(let phoneNumber, let FCMtoken, let nick, let birth,
                      let email, let gender):
             return [
-                
                 parameterSesac.phoneNumber: phoneNumber,
                 parameterSesac.FCMtoken : FCMtoken,
                 parameterSesac.nick : nick,

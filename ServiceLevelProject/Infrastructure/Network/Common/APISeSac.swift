@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum APISeSac: String {
+enum APISeSac {
     
-    case to,from,lastchatDate,otheruid
+
     
     static let baseURL = "http://api.sesac.co.kr:1210/v1/"
     static let userURL = baseURL+"user"
@@ -21,9 +21,9 @@ enum APISeSac: String {
     static let studyPostURL = baseURL + "queue/studyrequest"
     static let studyAccept = baseURL + "queue/studyaccept"
     static let studyDodge = baseURL + "queue/dodge"
-    static let chatSendURL = baseURL+"chat/\(to)"
-    static let chatGetListURL = baseURL+"chat/\(from)?lastchatDate=\(lastchatDate)"
-    static let reviewPostURL = baseURL+"queue/rate/\(otheruid)"
+    static let chatSendURL = baseURL+"chat/"
+    static let chatGetListURL = baseURL+"chat/"
+    static let reviewPostURL = baseURL+"queue/rate/"
 
 }
 
