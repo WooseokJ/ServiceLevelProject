@@ -12,8 +12,6 @@ import RxCocoa
 class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtocol {
 
 
-    
-    
     var isSelect = true
     var testSelect = true
     var transferSearchInfo: Search?
@@ -26,7 +24,7 @@ class AcceptViewController: BaseViewController, callSearchProtocol, AcceptProtoc
     override func viewWillAppear(_ animated: Bool) {
         self.callSearch(lat: HomeViewController.lat!, long: HomeViewController.lng!, completionHandler: { [weak self] search in
             self?.transferSearchInfo = search
-            dump(self?.transferSearchInfo)
+            dump(self?.transferSearchInfo?.fromQueueDBRequested)
             self?.searchListView.tableView.reloadData()
             if self?.transferSearchInfo?.fromQueueDBRequested.count == 0 {
                 self?.searchListView.content.text = "아직 받은 요청이 없어요ㅠ"
@@ -124,7 +122,7 @@ extension AcceptViewController {
         // 수락하기 버튼 클릭
         searchListView.checkButton.rx
             .tap
-            .map{self.transferSearchInfo?.fromQueueDB[(self.searchListView.checkButton.tag)].uid}
+            .map{self.transferSearchInfo?.fromQueueDBRequested[(self.searchListView.checkButton.tag)].uid}
             .withUnretained(self)
             .bind { (vc,val) in
                 UserDefaults.standard.set(val!, forKey: "otheruid")
