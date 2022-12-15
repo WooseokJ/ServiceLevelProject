@@ -34,32 +34,19 @@ enum APIHeader {
 extension APIHeader {
     
     var url: URL {
-        let baseURL = "http://api.sesac.co.kr:1210/v1/"
         switch self {
-        case .signup, .login:
-            return URL(string: baseURL+"user")!
-        case .mypage:
-            return URL(string: baseURL+"user/mypage")!
-        case .search:
-            return URL(string: baseURL+"queue/search")!
-        case .myQueueState:
-            return URL(string: baseURL+"queue/myQueueState")!
-        case .queue, .searchStop:
-            return URL(string: baseURL+"queue")!
-        case .withdraw:
-            return URL(string: baseURL+"user/withdraw")!
-        case .studyPost:
-            return URL(string: baseURL+"queue/studyrequest")!
-        case .studyAccept:
-            return URL(string: baseURL+"queue/studyaccept")!
-        case .studyDodge:
-            return URL(string: baseURL+"queue/dodge")!
-        case .chatPostSend(_, let to):
-            return URL(string: baseURL+"chat/\(to)")!
-        case .chatGetList(let lastchatDate, let from):
-            return URL(string: baseURL+"chat/\(from)?lastchatDate=\(lastchatDate)")!
-        case .reviewPost(let otheruid,_ ,_):
-            return URL(string: baseURL+"queue/rate/\(otheruid)")!
+            case .signup, .login: return URL(string: APISeSac.userURL)!
+            case .mypage: return URL(string: APISeSac.mypageURL)!
+            case .search: return URL(string: APISeSac.searchURL)!
+            case .myQueueState: return URL(string: APISeSac.myQueueStateURL)!
+            case .queue, .searchStop: return URL(string: APISeSac.queueURL)!
+            case .withdraw: return URL(string: APISeSac.withdrawURL)!
+            case .studyPost: return URL(string: APISeSac.studyPostURL)!
+            case .studyAccept: return URL(string: APISeSac.studyAccept)!
+            case .studyDodge: return URL(string: APISeSac.studyDodge)!
+            case .chatPostSend: return URL(string: APISeSac.chatSendURL)!
+            case .chatGetList: return URL(string: APISeSac.chatGetListURL)!
+            case .reviewPost: return URL(string: APISeSac.reviewPostURL)!
         }
     }
     var method: HTTPMethod {
@@ -74,12 +61,12 @@ extension APIHeader {
         switch self {
         case .mypage, .signup, .search, .queue, .studyPost, .studyAccept, .studyDodge, .chatPostSend, .chatGetList, .reviewPost:
             
-            return ["Content-Type" : "application/x-www-form-urlencoded",
-                    "idtoken": UserDefaults.standard.string(forKey: "token") ?? ""
+            return [ HeaderSesac.ContentType: HeaderSesac.ContentTypeValue,
+                     HeaderSesac.idtoken: UserDefaults.standard.string(forKey: "token") ?? ""
             ]
         case .login, .myQueueState, .searchStop, .withdraw:
             return [
-                "idtoken": UserDefaults.standard.string(forKey: "token") ?? ""
+                HeaderSesac.idtoken: UserDefaults.standard.string(forKey: "token") ?? ""
             ]
     
         }
@@ -89,38 +76,39 @@ extension APIHeader {
         case .signup(let phoneNumber, let FCMtoken, let nick, let birth,
                      let email, let gender):
             return [
-                "phoneNumber": phoneNumber,
-                "FCMtoken" : FCMtoken,
-                "nick" : nick,
-                "birth" : birth,
-                "email" : email,
-                "gender" : gender
+                
+                parameterSesac.phoneNumber: phoneNumber,
+                parameterSesac.FCMtoken : FCMtoken,
+                parameterSesac.nick : nick,
+                parameterSesac.birth : birth,
+                parameterSesac.email : email,
+                parameterSesac.gender : gender
             ]
         case .search(let lat, let long):
             return [
-                "lat": lat,
-                "long": long
+                parameterSesac.lat: lat,
+                parameterSesac.long: long
             ]
         case .queue(let lat, let lng, let studylist):
             return [
-                "lat": lat,
-                "long": lng,
-                "studylist": studylist
+                parameterSesac.lat: lat,
+                parameterSesac.long: lng,
+                parameterSesac.studylist: studylist
             ]
         case .studyPost(let otheruid), .studyAccept(let otheruid), .studyDodge(let otheruid):
             return [
-                "otheruid": otheruid
+                parameterSesac.otheruid: otheruid
             ]
             
         case .reviewPost(let otheruid , let reputation, let comment):
             return [
-                "otheruid": otheruid,
-                "reputation": reputation,
-                "comment": comment
+                parameterSesac.otheruid: otheruid,
+                parameterSesac.reputation: reputation,
+                parameterSesac.comment: comment
             ]
         case .chatPostSend(let chat, _):
             return [
-                "chat": chat
+                parameterSesac.chat: chat
             ]
         default: return ["":""]
         }

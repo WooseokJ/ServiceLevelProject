@@ -63,6 +63,7 @@
 		18D65DEF291D535C00CBEAB4 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DEE291D535C00CBEAB4 /* APIUser.swift */; };
 		18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 18D65DF1291D55CE00CBEAB4 /* Alamofire */; };
 		18D65DF4291D585D00CBEAB4 /* APIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D65DF3291D585D00CBEAB4 /* APIHeader.swift */; };
+		18D7419E294B87AC00F25491 /* APISeSac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D7419D294B87AC00F25491 /* APISeSac.swift */; };
 		18DAFFE62928C371002B6B7C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAFFE52928C371002B6B7C /* HeaderView.swift */; };
 		18DC246C29189DDD00DD5D1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC246B29189DDD00DD5D1C /* AppDelegate.swift */; };
 		18DC246E29189DDD00DD5D1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC246D29189DDD00DD5D1C /* SceneDelegate.swift */; };
@@ -173,6 +174,7 @@
 		18D5C6002941E46300A6615A /* APIQueueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQueueProtocol.swift; sourceTree = "<group>"; };
 		18D65DEE291D535C00CBEAB4 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		18D65DF3291D585D00CBEAB4 /* APIHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
+		18D7419D294B87AC00F25491 /* APISeSac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISeSac.swift; sourceTree = "<group>"; };
 		18DAFFE52928C371002B6B7C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		18DC246829189DDD00DD5D1C /* ServiceLevelProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServiceLevelProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DC246B29189DDD00DD5D1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */,
 				18D65DF3291D585D00CBEAB4 /* APIHeader.swift */,
 				186D3FB4294016D900C21145 /* APIKey.swift */,
+				18D7419D294B87AC00F25491 /* APISeSac.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1113,6 +1116,7 @@
 				18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */,
 				18BF5F3B2937BE29007B20EB /* AcceptProtocol.swift in Sources */,
 				18B569C3293C4E9C0004314E /* WithdrawProtocol.swift in Sources */,
+				18D7419E294B87AC00F25491 /* APISeSac.swift in Sources */,
 				18EFC73A292614CD00FB3DB2 /* InfoManageMentView.swift in Sources */,
 				18DC24B02918EAA900DD5D1C /* AppFont.swift in Sources */,
 				1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */,

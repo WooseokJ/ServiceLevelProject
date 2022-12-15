@@ -7,12 +7,9 @@
 
 import Foundation
 
-enum APISeSac {
+enum APISeSac: String {
     
-    case to
-    case from
-    case lastchatDate
-    case otheruid
+    case to,from,lastchatDate,otheruid
     
     static let baseURL = "http://api.sesac.co.kr:1210/v1/"
     static let userURL = baseURL+"user"
@@ -26,10 +23,12 @@ enum APISeSac {
     static let studyDodge = baseURL + "queue/dodge"
     static let chatSendURL = baseURL+"chat/\(to)"
     static let chatGetListURL = baseURL+"chat/\(from)?lastchatDate=\(lastchatDate)"
-    
+    static let reviewPostURL = baseURL+"queue/rate/\(otheruid)"
+
 }
 
-enum HeaderSesac {
+enum HeaderSesac{
+    
     static let idtoken = "idtoken"
     static let ContentType = "Content-Type"
     static let ContentTypeValue = "application/x-www-form-urlencoded"
@@ -37,4 +36,18 @@ enum HeaderSesac {
 
 
 
-
+enum parameterSesac {
+    static let phoneNumber = "phoneNumber"
+    static let FCMtoken = "FCMtoken"
+    static let nick = "nick"
+    static let birth = "birth"
+    static let email = "email"
+    static let gender = "gender"
+    static let lat = "lat"
+    static let long = "long"
+    static let studylist = "studylist"
+    static let otheruid = "otheruid"
+    static let reputation = "reputation"
+    static let comment = "comment"
+    static let chat = "chat"
+}
