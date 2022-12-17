@@ -107,7 +107,7 @@
 		18F10CE1292BCA8C0038BEEE /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F10CE0292BCA8C0038BEEE /* Error+Extension.swift */; };
 		18F10CE3292BD10F0038BEEE /* ErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F10CE2292BD10F0038BEEE /* ErrorCase.swift */; };
 		18F10CE5292BD49E0038BEEE /* NetWorkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F10CE4292BD49E0038BEEE /* NetWorkViewModel.swift */; };
-		44FD709E45762593CBDB16BA /* libPods-ServiceLevelProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6DA24A15F3855CBC453DAF /* libPods-ServiceLevelProject.a */; };
+		1E3CEBAC5365DE99799F5E39 /* Pods_ServiceLevelProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF5EFB55C66946D0EEEA7B3 /* Pods_ServiceLevelProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,9 +222,9 @@
 		18F10CE0292BCA8C0038BEEE /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		18F10CE2292BD10F0038BEEE /* ErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCase.swift; sourceTree = "<group>"; };
 		18F10CE4292BD49E0038BEEE /* NetWorkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkViewModel.swift; sourceTree = "<group>"; };
-		3E6DA24A15F3855CBC453DAF /* libPods-ServiceLevelProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ServiceLevelProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5799B4F3F597C3DBA2F23FF7 /* Pods-ServiceLevelProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.debug.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.debug.xcconfig"; sourceTree = "<group>"; };
-		A23601F808B22019FD1B853F /* Pods-ServiceLevelProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.release.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.release.xcconfig"; sourceTree = "<group>"; };
+		2FF5EFB55C66946D0EEEA7B3 /* Pods_ServiceLevelProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServiceLevelProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D56AD38E233751A152CB81 /* Pods-ServiceLevelProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.release.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.release.xcconfig"; sourceTree = "<group>"; };
+		A5F6019EE00E4C54E3F9A5D4 /* Pods-ServiceLevelProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceLevelProject.debug.xcconfig"; path = "Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,7 +244,7 @@
 				18D65DF2291D55CE00CBEAB4 /* Alamofire in Frameworks */,
 				184DDD73291A899F00F12D63 /* RxCocoa in Frameworks */,
 				184DDD7B291A89EF00F12D63 /* Toast in Frameworks */,
-				44FD709E45762593CBDB16BA /* libPods-ServiceLevelProject.a in Frameworks */,
+				1E3CEBAC5365DE99799F5E39 /* Pods_ServiceLevelProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +471,7 @@
 				18DC248B29189DDE00DD5D1C /* ServiceLevelProjectUITests */,
 				18DC246929189DDD00DD5D1C /* Products */,
 				F9E455B8688E51807478B65C /* Pods */,
-				6E12BD26076B70B64AA61BAB /* Frameworks */,
+				3CB4C4873063175F461C91A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -871,10 +871,10 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		6E12BD26076B70B64AA61BAB /* Frameworks */ = {
+		3CB4C4873063175F461C91A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3E6DA24A15F3855CBC453DAF /* libPods-ServiceLevelProject.a */,
+				2FF5EFB55C66946D0EEEA7B3 /* Pods_ServiceLevelProject.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -882,8 +882,8 @@
 		F9E455B8688E51807478B65C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5799B4F3F597C3DBA2F23FF7 /* Pods-ServiceLevelProject.debug.xcconfig */,
-				A23601F808B22019FD1B853F /* Pods-ServiceLevelProject.release.xcconfig */,
+				A5F6019EE00E4C54E3F9A5D4 /* Pods-ServiceLevelProject.debug.xcconfig */,
+				91D56AD38E233751A152CB81 /* Pods-ServiceLevelProject.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -895,11 +895,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18DC249229189DDE00DD5D1C /* Build configuration list for PBXNativeTarget "ServiceLevelProject" */;
 			buildPhases = (
-				A4C253010029A04D3D778485 /* [CP] Check Pods Manifest.lock */,
+				1FA5A4218054E2EEDDD51C39 /* [CP] Check Pods Manifest.lock */,
 				18DC246429189DDD00DD5D1C /* Sources */,
 				18DC246529189DDD00DD5D1C /* Frameworks */,
 				18DC246629189DDD00DD5D1C /* Resources */,
-				81B31F202F936AE9CDD6DDB2 /* [CP] Embed Pods Frameworks */,
+				55304C7F2936DD316FF82D68 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -993,15 +993,15 @@
 			);
 			mainGroup = 18DC245F29189DDD00DD5D1C;
 			packageReferences = (
-				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */,
-				183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */,
+				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
+				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
+				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider.git" */,
+				183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman.git" */,
 				18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -1043,24 +1043,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		81B31F202F936AE9CDD6DDB2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A4C253010029A04D3D778485 /* [CP] Check Pods Manifest.lock */ = {
+		1FA5A4218054E2EEDDD51C39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1080,6 +1063,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55304C7F2936DD316FF82D68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ServiceLevelProject/Pods-ServiceLevelProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1333,7 +1333,7 @@
 		};
 		18DC249329189DDE00DD5D1C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5799B4F3F597C3DBA2F23FF7 /* Pods-ServiceLevelProject.debug.xcconfig */;
+			baseConfigurationReference = A5F6019EE00E4C54E3F9A5D4 /* Pods-ServiceLevelProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1370,7 +1370,7 @@
 		};
 		18DC249429189DDE00DD5D1C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A23601F808B22019FD1B853F /* Pods-ServiceLevelProject.release.xcconfig */;
+			baseConfigurationReference = 91D56AD38E233751A152CB81 /* Pods-ServiceLevelProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1523,7 +1523,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+		183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman.git";
 			requirement = {
@@ -1531,7 +1531,7 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1539,7 +1539,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1547,7 +1547,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -1555,7 +1555,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
@@ -1571,7 +1571,7 @@
 				minimumVersion = 10.30.0;
 			};
 		};
-		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1579,7 +1579,7 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1587,7 +1587,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+		18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yonat/MultiSlider.git";
 			requirement = {
@@ -1600,32 +1600,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		183834B0292E795B006C0675 /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */;
+			package = 183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman.git" */;
 			productName = Tabman;
 		};
 		184DDD72291A899F00F12D63 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxCocoa;
 		};
 		184DDD74291A899F00F12D63 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxSwift;
 		};
 		184DDD77291A89D000F12D63 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 		184DDD7A291A89EF00F12D63 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
 			productName = Toast;
 		};
 		186D3FB929401B9200C21145 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = 186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */;
 			productName = SocketIO;
 		};
 		18B6A03A2938FEAC00FA23D9 /* Realm */ = {
@@ -1640,22 +1640,22 @@
 		};
 		18CBBEAF292210F800CEC097 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAuth;
 		};
 		18CBBEB1292210F800CEC097 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseMessaging;
 		};
 		18D65DF1291D55CE00CBEAB4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		18F10CDA292B5F720038BEEE /* MultiSlider */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			package = 18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider.git" */;
 			productName = MultiSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
