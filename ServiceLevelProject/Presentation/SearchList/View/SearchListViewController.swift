@@ -12,7 +12,7 @@ import Toast
 import RxSwift
 import RxCocoa
 
-class SearchListViewController: TabmanViewController, TransferDataProtocol, APIProtocol, StopProtocol {
+class SearchListViewController: TabmanViewController, TransferDataProtocol, APIProtocol, StopProtocol, MyQueueStateProtocol {
 
     var transferSearchInfo: Search?
 
@@ -22,6 +22,8 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
     
     var disposeBag = DisposeBag()
     
+    var timer: Timer? // 타이머
+
     var VCS: Array<UIViewController> = [AroundSeSacViewController(), AcceptViewController()]
     
     override func loadView() {
@@ -30,6 +32,14 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
         view.backgroundColor = .white
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [self] timer in
+            self.callmyqueueStateRequest()
+        }
+        
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,29 +48,12 @@ class SearchListViewController: TabmanViewController, TransferDataProtocol, APIP
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: #selector(searchCancelClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
 
     @objc func searchCancelClicked() {
         stopQueue()
-//        apiQueue.searchStopRequest() { [self] data in
-//            switch data {
-//            case .success :
-//                view.makeToast("찾기 중단 성공")
-//                self.navigationController?.popToRootViewController(animated: true)
-//            case .failure(.alreadyStopError):
-//                view.makeToast("새싹 찾기는 이미 중단된 상태")
-//            case .failure(.notUserError):
-//                view.makeToast("미가입 회원")
-//            case .failure(.tokenErorr):
-//                refreshIdToken {
-//                    searchCancelClicked()
-//                }
-//            case .failure(.serverError):
-//                view.makeToast("서버에러")
-//            case .failure(.clientError):
-//                view.makeToast("클라이언트 에러")
-//            default:break
-//            }
-//        }
     }
     
     @objc func backBtClicked() {

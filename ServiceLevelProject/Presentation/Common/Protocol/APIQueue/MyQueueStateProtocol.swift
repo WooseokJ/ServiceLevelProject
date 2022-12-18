@@ -1,42 +1,28 @@
 //
-//  HomeProtocol.swift
+//  MyQueueStateProtocol.swift
 //  ServiceLevelProject
 //
-//  Created by useok on 2022/11/28.
+//  Created by useok on 2022/12/18.
 //
 
-import UIKit
-import NMapsMap
+import Foundation
 
-protocol viewProtocol {}
-
-protocol HomeProtocol: TransferDataProtocol, APIProtocol, APIQueueProtocol{
-
+protocol MyQueueStateProtocol {
     func callmyqueueStateRequest()
-
 }
 
-
-extension HomeProtocol where Self: HomeViewController { //where Self: HomeViewController
-    
-
-    /// queueState 요청 이게 myqueustate 매소드인데 !!!
+extension MyQueueStateProtocol where Self : SearchListViewController {
     func callmyqueueStateRequest() {
         apiQueue.myqueueStateRequest() { [weak self] data in
             do {
                 switch data {
                 case .success :
-                    self?.chagedPlotingButton(imageName: "antenna.radiowaves.left.and.right.circle.fill", button: self!.homeView.searchBtn)
                     guard try data.get()!.matched == 0 else {
                         let chattingVC = ChattingViewController()
                         self?.transition(chattingVC, transitionStyle: .push)
                         return
                     }
-                    
-                    let nextVC = SearchListViewController()
-                    self?.transition(nextVC, transitionStyle: .push)
                 case .failure(.notRequest):
-                    self?.chagedPlotingButton(imageName: "magnifyingglass.circle.fill", button: self!.homeView.searchBtn)
                     let searchVC = SearchViewController()
                     searchVC.transferSearchInfo = self?.transferSearchInfo
                     self?.transition(searchVC, transitionStyle: .push)
@@ -60,14 +46,4 @@ extension HomeProtocol where Self: HomeViewController { //where Self: HomeViewCo
            
         }
     }
-    
-    
-    func chagedPlotingButton(imageName: String, button: UIButton)  {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 100, weight: .light)
-        let image = UIImage(systemName: imageName , withConfiguration: imageConfig)
-        button.setImage(image, for: .normal)
-    }
-   
-    
-    
 }

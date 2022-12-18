@@ -41,14 +41,14 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
         configureTableView()
         
-//        var lastchatDate: String = "2000-01-01T00:00:00.000Z"
-//        chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
-//            self?.recentChattingInfo = data
-//            self?.recentChattingInfo?.payload.forEach{
-//                self?.chat.append($0)
-//            }
-//            self?.chattingView.tableView.reloadData()
-//        }
+        let lastchatDate: String = "2000-01-01T00:00:00.000Z"
+        chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
+            self?.recentChattingInfo = data
+            self?.recentChattingInfo?.payload.forEach{
+                self?.chat.append($0)
+            }
+            self?.chattingView.tableView.reloadData()
+        }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blackViewTap(sender:)))
         chattingView.blackView.addGestureRecognizer(tapGesture)

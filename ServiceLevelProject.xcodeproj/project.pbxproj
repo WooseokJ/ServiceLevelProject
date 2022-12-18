@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18057E992943386700F975AE /* yourChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18057E982943386700F975AE /* yourChat.swift */; };
+		18057E992943386700F975AE /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18057E982943386700F975AE /* ChatData.swift */; };
 		1832BAB92931265D005D99D6 /* QueuInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832BAB82931265D005D99D6 /* QueuInfo.swift */; };
 		1834D6FB2934BD210020B2CE /* callSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */; };
 		1834D6FD2934BD530020B2CE /* TransferDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */; };
@@ -22,6 +22,7 @@
 		184DDD7B291A89EF00F12D63 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 184DDD7A291A89EF00F12D63 /* Toast */; };
 		184DDD9C291AB2D000F12D63 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DDD9B291AB2D000F12D63 /* AuthView.swift */; };
 		184DDD9E291AB2E600F12D63 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DDD9D291AB2E600F12D63 /* AuthViewController.swift */; };
+		185F96B6294DF5A600FFB5F5 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F96B5294DF5A600FFB5F5 /* Repository.swift */; };
 		1861EC7A291C0709008E0575 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC79291C0709008E0575 /* FirstViewController.swift */; };
 		1861EC7C291C1C73008E0575 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7B291C1C73008E0575 /* SecondViewController.swift */; };
 		1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861EC7D291C1C79008E0575 /* ThirdViewController.swift */; };
@@ -32,6 +33,7 @@
 		1885ACF1292FDD7A00DBFEE7 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */; };
 		1887238C2938CC3B00C74DCE /* MychatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */; };
 		189E7591293FC85100497096 /* ChattingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189E7590293FC85100497096 /* ChattingCollectionViewCell.swift */; };
+		18A73E60294F265A002FD1C4 /* MyQueueStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A73E5F294F265A002FD1C4 /* MyQueueStateProtocol.swift */; };
 		18AD858129214F7D004169C1 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD858029214F7D004169C1 /* BirthViewController.swift */; };
 		18AD85832921509C004169C1 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD85822921509C004169C1 /* EmailViewController.swift */; };
 		18AD8585292150E1004169C1 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8584292150E1004169C1 /* GenderViewController.swift */; };
@@ -128,7 +130,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18057E982943386700F975AE /* yourChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourChat.swift; sourceTree = "<group>"; };
+		18057E982943386700F975AE /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		1832BAB82931265D005D99D6 /* QueuInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuInfo.swift; sourceTree = "<group>"; };
 		1834D6FA2934BD210020B2CE /* callSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callSearchProtocol.swift; sourceTree = "<group>"; };
 		1834D6FC2934BD530020B2CE /* TransferDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDataProtocol.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		1845F0CB294B9E3F00A0A9F6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		184DDD9B291AB2D000F12D63 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		184DDD9D291AB2E600F12D63 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		185F96B5294DF5A600FFB5F5 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		1861EC79291C0709008E0575 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		1861EC7B291C1C73008E0575 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		1861EC7D291C1C79008E0575 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 		1885ACF0292FDD7A00DBFEE7 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		1887238B2938CC3B00C74DCE /* MychatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MychatTableViewCell.swift; sourceTree = "<group>"; };
 		189E7590293FC85100497096 /* ChattingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCollectionViewCell.swift; sourceTree = "<group>"; };
+		18A73E5F294F265A002FD1C4 /* MyQueueStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueueStateProtocol.swift; sourceTree = "<group>"; };
 		18AD858029214F7D004169C1 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		18AD85822921509C004169C1 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		18AD8584292150E1004169C1 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
@@ -268,7 +272,8 @@
 		18057E972943384200F975AE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18057E982943386700F975AE /* yourChat.swift */,
+				18057E982943386700F975AE /* ChatData.swift */,
+				185F96B5294DF5A600FFB5F5 /* Repository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +454,7 @@
 				18DEA04A2933DB410098920A /* HomeProtocol.swift */,
 				18D5C5FE2941CCEC00A6615A /* ReviewProtocol.swift */,
 				18B569C8293C7DF40004314E /* StopProtocol.swift */,
+				18A73E5F294F265A002FD1C4 /* MyQueueStateProtocol.swift */,
 			);
 			path = APIQueue;
 			sourceTree = "<group>";
@@ -993,15 +999,15 @@
 			);
 			mainGroup = 18DC245F29189DDD00DD5D1C;
 			packageReferences = (
-				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
-				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
-				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
-				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider.git" */,
-				183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman.git" */,
+				184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */,
+				183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */,
 				18B6A0392938FEAB00FA23D9 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */,
+				186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 18DC246929189DDD00DD5D1C /* Products */;
 			projectDirPath = "";
@@ -1112,7 +1118,7 @@
 				186D3FB5294016D900C21145 /* APIKey.swift in Sources */,
 				18B569C1293C433E0004314E /* LoginProtocol.swift in Sources */,
 				18EFC73E292614EE00FB3DB2 /* InfoManageMentTableViewCell.swift in Sources */,
-				18057E992943386700F975AE /* yourChat.swift in Sources */,
+				18057E992943386700F975AE /* ChatData.swift in Sources */,
 				1861EC7E291C1C79008E0575 /* ThirdViewController.swift in Sources */,
 				183834A4292DD318006C0675 /* SearchListView.swift in Sources */,
 				18F10CD6292B3DCB0038BEEE /* SearchView.swift in Sources */,
@@ -1134,6 +1140,7 @@
 				18EC05B229387E1F007EA5CB /* ChatProtocol.swift in Sources */,
 				18DC24AC2918E23E00DD5D1C /* AppColor.swift in Sources */,
 				18DC24BC291929BD00DD5D1C /* BaseViewController.swift in Sources */,
+				185F96B6294DF5A600FFB5F5 /* Repository.swift in Sources */,
 				18D5C5FF2941CCEC00A6615A /* ReviewProtocol.swift in Sources */,
 				18EFC742292618CE00FB3DB2 /* Identifier.swift in Sources */,
 				18C9FAC3291CDBD000F78848 /* OnBoardingView.swift in Sources */,
@@ -1159,6 +1166,7 @@
 				183834A2292DD311006C0675 /* SearchListViewController.swift in Sources */,
 				18B32242293621270016AE1A /* SearchListTableViewCell.swift in Sources */,
 				183834B5292E7A67006C0675 /* AcceptViewController.swift in Sources */,
+				18A73E60294F265A002FD1C4 /* MyQueueStateProtocol.swift in Sources */,
 				18EFC738292610B000FB3DB2 /* InfoManageMentViewController.swift in Sources */,
 				18EFC70429236AA400FB3DB2 /* Date.swift in Sources */,
 				183834B3292E7A4D006C0675 /* AroundSeSacViewController.swift in Sources */,
@@ -1523,7 +1531,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman.git" */ = {
+		183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman.git";
 			requirement = {
@@ -1531,7 +1539,7 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
+		184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1539,7 +1547,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1547,7 +1555,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
+		184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -1555,7 +1563,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */ = {
+		186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
@@ -1571,7 +1579,7 @@
 				minimumVersion = 10.30.0;
 			};
 		};
-		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1579,7 +1587,7 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1587,7 +1595,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider.git" */ = {
+		18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yonat/MultiSlider.git";
 			requirement = {
@@ -1600,32 +1608,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		183834B0292E795B006C0675 /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman.git" */;
+			package = 183834AF292E795B006C0675 /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
 		};
 		184DDD72291A899F00F12D63 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
 		184DDD74291A899F00F12D63 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
+			package = 184DDD71291A899F00F12D63 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
 		184DDD77291A89D000F12D63 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = 184DDD76291A89D000F12D63 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 		184DDD7A291A89EF00F12D63 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
+			package = 184DDD79291A89EF00F12D63 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
 		186D3FB929401B9200C21145 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */;
+			package = 186D3FB829401B9100C21145 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
 		};
 		18B6A03A2938FEAC00FA23D9 /* Realm */ = {
@@ -1640,22 +1648,22 @@
 		};
 		18CBBEAF292210F800CEC097 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		18CBBEB1292210F800CEC097 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 18CBBEAE292210F800CEC097 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 		18D65DF1291D55CE00CBEAB4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 18D65DF0291D55CD00CBEAB4 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		18F10CDA292B5F720038BEEE /* MultiSlider */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider.git" */;
+			package = 18F10CD9292B5F720038BEEE /* XCRemoteSwiftPackageReference "MultiSlider" */;
 			productName = MultiSlider;
 		};
 /* End XCSwiftPackageProductDependency section */

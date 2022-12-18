@@ -25,7 +25,7 @@ extension SearchProtocol where Self: SearchViewController {
             do {
                 switch data {
                 case .success:
-                    view.makeToast("새싹 찾기 성공")
+//                    view.makeToast("새싹 찾기 성공")
                     let searchListVC = SearchListViewController()
                     transition(searchListVC, transitionStyle: .push)
                 case .failure(.reportedThirdUser):

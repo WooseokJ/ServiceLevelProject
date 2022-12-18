@@ -31,7 +31,7 @@ class ChattingView: BaseView {
     lazy var sendTextView: UITextView = {
         let textView = UITextView()
 //        textView.placeholder = "  메세지를 입력하세요."
-        textView.text = "  메세지를 입력하세요."
+//        textView.text = "  메세지를 입력하세요."
         textView.backgroundColor = Grayscale.gray1
         textView.layer.cornerRadius = 8
         textView.layer.borderWidth = 1
