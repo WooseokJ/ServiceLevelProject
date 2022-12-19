@@ -90,13 +90,16 @@ extension MyInfoViewController {
 }
 
 
-extension MyInfoViewController: UICollectionViewDelegate {
+extension MyInfoViewController: UICollectionViewDelegate, LoginProtocol {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0 :
-            let vc = InfoManageMentViewController()
-            transition(vc,transitionStyle: .push)
-            
+            login { data in
+                let vc = InfoManageMentViewController()
+                vc.userInfoData = data
+                print(data)
+                self.transition(vc,transitionStyle: .push)
+            }
         default:
             self.view.makeToast("준비중입니다.")
             break

@@ -20,6 +20,7 @@ class HeaderView: UITableViewHeaderFooterView {
     let image: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "img.png")
+        image.isHidden = true
         return image
     }()
 

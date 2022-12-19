@@ -7,15 +7,14 @@
 
 import UIKit
 
-protocol LoginProtocol {
-    var apiUser: APIUser {get}
-    
+protocol LoginProtocol: APIUserProtocol, APIProtocol {
+//    func login()
 }
 
+
+
 extension LoginProtocol where Self: AuthViewController {
-    var apiUser: APIUser {
-        return APIUser()
-    }
+    
     
     func login() {
         apiUser.login { [weak self] data in
@@ -51,7 +50,7 @@ extension LoginProtocol where Self: AuthViewController {
 
 
 }
-extension LoginProtocol where Self: InfoManageMentViewController {
+extension LoginProtocol where Self: MyInfoViewController {
     func login(completionHandler: @escaping ((LoginInfo?) -> Void) ) {
         apiUser.login { [weak self] data in
             do {

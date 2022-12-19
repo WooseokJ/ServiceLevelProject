@@ -11,7 +11,7 @@ import UIKit
 
 final class APIUser {
     
-    typealias mypageHandler = ( ((Result<MypageInfo,myPageError>) -> Void ))
+    typealias mypageHandler = ( ((Result<Data?,myPageError>) -> Void ))
     typealias signupHandler = ( (Result<String?, SingupError>) -> Void )
     typealias loginHandler = ( (Result<LoginInfo?, loginError>) -> Void )
     typealias withdrawHandler = ( (Result<Data?, withdrawError>) -> Void )
@@ -63,17 +63,20 @@ final class APIUser {
         }
     }
     /// 마이페이지
-    func myPageUpdate(completionHandler: @escaping mypageHandler) {
-        let api = APIHeader.mypage
-        AF.request(api.url,method: api.method, headers: api.headers).validate().responseDecodable(of: MypageInfo.self)  { response in
+    func myPageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String,completionHandler: @escaping mypageHandler) {
+        let api = APIHeader.mypage(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study)
+        AF.request(api.url,method: api.method, parameters: api.parameters, headers: api.headers).validate().response  { response in
             switch response.result {
             case .success(let data):
                 completionHandler(.success(data))
+//                print(data)
             case .failure :
                 guard let customError = myPageError(rawValue: response.response!.statusCode) else{return}
                 completionHandler(.failure(myPageError(rawValue: customError.rawValue)!))
             }
         }
     }
-    
+        // 아놔 파라미터 빠졋네 ㅅㅂ
 }
+
+

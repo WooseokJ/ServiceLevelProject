@@ -30,8 +30,6 @@ class ChattingView: BaseView {
     }()
     lazy var sendTextView: UITextView = {
         let textView = UITextView()
-//        textView.placeholder = "  메세지를 입력하세요."
-//        textView.text = "  메세지를 입력하세요."
         textView.backgroundColor = Grayscale.gray1
         textView.layer.cornerRadius = 8
         textView.layer.borderWidth = 1
@@ -68,8 +66,6 @@ class ChattingView: BaseView {
         let label = UILabel()
         label.font = AppFont.Title3_M14
         label.textColor = Grayscale.gray7
-//        label.backgroundColor = .brown
-//        label.textAlignment = .natural
         return label
     }()
     lazy var matchedSubTitle: UILabel = {
@@ -77,7 +73,6 @@ class ChattingView: BaseView {
         label.text = "채팅을 통해 약속을 정해보세요 :)"
         label.font = AppFont.Title4_R14
         label.textColor = Grayscale.gray6
-//        label.textAlignment = .natural
         return label
     }()
     lazy var titleStackView: UIStackView = {
@@ -238,8 +233,8 @@ class ChattingView: BaseView {
     }
     override func setConstrains() {
         dateTitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(130)
-            make.trailing.equalTo(-130)
+            make.centerX.equalTo(self.snp.centerX)
+            make.width.equalTo(UIScreen.main.bounds.width * 0.4)
             make.height.equalTo(UIScreen.main.bounds.height * 0.04)
             make.centerY.equalTo(self.snp.centerY).multipliedBy(0.28)
         }
@@ -252,21 +247,23 @@ class ChattingView: BaseView {
         stackView.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
-            make.bottom.equalTo(-50)
+            make.bottom.equalTo(0)
             make.height.equalTo(UIScreen.main.bounds.height * 0.06)
         }
         titleStackView.snp.makeConstraints { make in
-            make.top.equalTo(dateTitleLabel.snp.bottom).offset(12)
+            make.top.equalTo(dateTitleLabel.snp.bottom).offset(2)
             make.centerX.equalTo(self.snp.centerX)
             make.height.equalTo(UIScreen.main.bounds.height * 0.04)
-            make.leading.equalTo(100)
-            make.trailing.equalTo(0)
+            make.centerY.equalTo(self.snp.centerY).multipliedBy(0.28)
         }
         matchedSubTitle.snp.makeConstraints { make in
             make.top.equalTo(titleStackView.snp.bottom).offset(2)
-            make.height.equalTo(titleStackView.snp.height)
-            make.width.equalTo(titleStackView.snp.width)
+//            make.height.equalTo(titleStackView.snp.height)
+            make.height.equalTo(30)
+            make.width.equalTo(UIScreen.main.bounds.width * 0.5)
             make.centerX.equalTo(titleStackView.snp.centerX)
+//            make.centerY.equalTo(self.snp.centerY).multipliedBy(0.3)
+
         }
         tableView.snp.makeConstraints { make in
             make.top.equalTo(matchedSubTitle.snp.bottom)
@@ -387,17 +384,11 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         cell.layer.borderColor = Grayscale.gray4.cgColor
 
         chattingView.sesacReport.isSelected ? cell.itemButton.setTitle(CVEnum.sesacReport.allCases[indexPath.item].list, for: .normal) : cell.itemButton.setTitle(CVEnum.review.allCases[indexPath.item].list, for: .normal)
-        
-
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellItem = collectionView.cellForItem(at: indexPath) as! ChattingCollectionViewCell
-
-
-        
         switch indexPath.item {
         case 0...CVEnum.review.allCases.count:
             cellItem.itemButton.isSelected.toggle()

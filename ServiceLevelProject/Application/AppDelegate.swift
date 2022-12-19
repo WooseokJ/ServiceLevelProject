@@ -58,5 +58,21 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func aboutKeyboard() {
+            // Register Keyboard notifications
+            // addObserver를 통해 옵저버를 설정할 대상을 뷰컨트롤러 객체(self)로 지정
+            NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillHide(_:)),name: UIResponder.keyboardWillHideNotification,object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),name: UIResponder.keyboardWillShowNotification,object: nil)
+        }
+        
+    @objc func keyboardWillShow(_ sender:Notification){
+        self.view.frame.origin.y = -150
+    }
+    
+    //키보드 내려갔다는 알림을 받으면 실행되는 메서드
+    @objc func keyboardWillHide(_ sender:Notification){
+        self.view.frame.origin.y = 0
+    }
 }
 

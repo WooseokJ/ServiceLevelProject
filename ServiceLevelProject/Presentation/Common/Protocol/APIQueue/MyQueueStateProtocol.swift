@@ -23,9 +23,7 @@ extension MyQueueStateProtocol where Self : SearchListViewController {
                         return
                     }
                 case .failure(.notRequest):
-                    let searchVC = SearchViewController()
-                    searchVC.transferSearchInfo = self?.transferSearchInfo
-                    self?.transition(searchVC, transitionStyle: .push)
+                    print("일반 상태 - 새싹 찾기를 요청하지 않는 상태")
                 case .failure(.tokenErorr):
                     self?.refreshIdToken {
                         self?.callmyqueueStateRequest()

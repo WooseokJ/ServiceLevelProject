@@ -14,6 +14,7 @@ protocol InfoDelegate {
     func sliderValueChagend(cell: InfoManageMentTableViewCell)
     func manButtonTap(cell: InfoManageMentTableViewCell)
     func womanButtonTap(cell: InfoManageMentTableViewCell)
+    func withdrawButtonTap()
     func moreButtonTap()
 }
 
@@ -28,6 +29,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
         studyTextField.addTarget(self, action: #selector(textFieldEditing(_:)), for: .editingChanged)
         switchView.addTarget(self, action: #selector(switchChagend(_:)), for: .valueChanged)
         slider.addTarget(self, action: #selector(sliderChaged(_:)), for: .touchUpInside)
+        withdrawButton.addTarget(self, action: #selector(withdrawButtonTap), for: .touchUpInside)
         configure()
         setConstrains()
     }
@@ -38,7 +40,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
     @objc func sliderChaged(_ sender: UISlider) {cellDelegate?.sliderValueChagend(cell: self)}
     @objc func textFieldEditing(_ sender: UITextField) {cellDelegate?.textFieldChagned(cell: self)}
     @objc func switchChagend(_ sender: UISwitch) {cellDelegate?.switchDidChange(cell: self)}
-    
+    @objc func withdrawButtonTap() {cellDelegate?.withdrawButtonTap()}
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,6 +99,11 @@ class InfoManageMentTableViewCell: UITableViewCell {
         label.isHidden = true
         return label
     }()
+    lazy var withdrawButton: UIButton = {
+        let button = UIButton()
+        button.isHidden = true
+        return button
+    }()
     
     lazy var slider: MultiSlider = {
         let slider = MultiSlider(frame: CGRect(x: 0, y: 140, width: self.bounds.width , height: 30))
@@ -109,10 +116,9 @@ class InfoManageMentTableViewCell: UITableViewCell {
         slider.isHidden = true
         return slider
     }()
-
     
     func configure() {
-        [content,moreButton,womanButton,manButton,studyTextField,lineView,ageRangeLabel,slider,switchView].forEach {
+        [content,moreButton,womanButton,manButton,studyTextField,lineView,ageRangeLabel,slider,switchView,withdrawButton].forEach {
             self.contentView.addSubview($0)
         }
     }
@@ -137,7 +143,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
         }
         studyTextField.snp.remakeConstraints { make in
             make.trailing.equalTo(-5)
-            make.width.equalTo(self.bounds.width * 0.5)
+            make.width.equalTo(self.bounds.width * 0.6)
             make.height.equalTo(self.content.snp.height)
             make.centerY.equalTo(self.snp.centerY)
         }
@@ -158,6 +164,9 @@ class InfoManageMentTableViewCell: UITableViewCell {
             make.trailing.equalTo(-5)
             make.width.equalTo(self.bounds.width * 0.2)
             make.top.equalTo(self.safeAreaInsets)
+        }
+        withdrawButton.snp.remakeConstraints { make in
+            make.edges.equalTo(self)
         }
 
     }

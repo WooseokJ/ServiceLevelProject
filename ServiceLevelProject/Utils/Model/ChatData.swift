@@ -9,9 +9,20 @@ import Foundation
 import RealmSwift
 
 class ChatData: Object {
+    @Persisted(primaryKey: true) var _id = ObjectId()
     @Persisted var to: String
     @Persisted var from: String
     @Persisted var chat: String
     @Persisted var createdAt: Date
+    
+    convenience init(_id: ObjectId = ObjectId(), to: String, from: String, chat: String, createdAt: Date) {
+        self.init()
+        self._id = _id
+        self.to = to
+        self.from = from
+        self.chat = chat
+        self.createdAt = createdAt
+    }
+    
     
 }

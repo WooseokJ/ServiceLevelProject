@@ -19,4 +19,6 @@ class Repository: RepositoryType {
     func fetch() -> Results<ChatData> {
         return localRealm.objects(ChatData.self)
     }
+    
+    lazy var tasks: Results<ChatData>! = self.fetch()
 }

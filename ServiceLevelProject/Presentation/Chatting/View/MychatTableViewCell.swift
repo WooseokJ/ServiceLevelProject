@@ -21,8 +21,11 @@ class MychatTableViewCell: UITableViewCell {
     
     let myChatLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
+        label.backgroundColor = BrandColor.whitegreen
         label.numberOfLines = 0
+        label.layer.cornerRadius = 8
+        label.layer.borderWidth = 1
+        label.layer.borderColor = BlackWhite.black.cgColor
         return label
     }()
     

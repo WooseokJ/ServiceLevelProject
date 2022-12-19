@@ -55,9 +55,12 @@ extension ChatProtocol where Self: ChattingViewController {
             do {
                 switch data {
                 case .success:
-                    print(data)
+                   
                     self?.view.makeToast("채팅목록 가져오기 성공")
+                    SocketIOManager.shared.establishConnetion()
+
                     let transData = try data.get()
+//                    print(transData)
                     completionHandler(transData)
                 case .failure(.notUserError):
                     self?.view.makeToast("미가입 회원")

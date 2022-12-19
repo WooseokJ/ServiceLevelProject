@@ -22,7 +22,11 @@ class YourChatTableViewCell: UITableViewCell {
     
     let yourChatLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .blue
+        label.backgroundColor = .clear
+        label.numberOfLines = 0
+        label.layer.cornerRadius = 8
+        label.layer.borderWidth = 1
+        label.layer.borderColor = BlackWhite.black.cgColor
         label.numberOfLines = 0
         return label
     }()

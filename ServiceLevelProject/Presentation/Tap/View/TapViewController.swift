@@ -31,7 +31,6 @@ final class TapViewController: UITabBarController {
         fourVC.tabBarItem.image = UIImage(named: "person_black_icon.png")
         
         viewControllers = [firstVC, secondVC, fourVC]
-        
     }
     
 

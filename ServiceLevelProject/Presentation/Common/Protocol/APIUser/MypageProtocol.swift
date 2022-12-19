@@ -7,19 +7,16 @@
 
 import Foundation
 
-protocol MypageProtocol: APIProtocol {
-    var apiUser: APIUser {get}
-
+protocol MypageProtocol: APIProtocol, APIUserProtocol {
+    func myPageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String, completionHandler: @escaping ((Data?) -> Void) )
 }
 
 extension MypageProtocol where Self: InfoManageMentViewController {
-    var apiUser: APIUser {
-        return APIUser()
-    }
 
-    func myPageUpdate(completionHandler: @escaping ((MypageInfo?) -> Void) ) {
 
-        self.apiUser.myPageUpdate{ [weak self] data in
+    func myPageUpdate(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String, completionHandler: @escaping ((Data?) -> Void) ) {
+        
+        self.apiUser.myPageUpdate(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study){ [weak self] data in
             do {
                 switch data {
                 case .success:
@@ -28,7 +25,7 @@ extension MypageProtocol where Self: InfoManageMentViewController {
 
                 case .failure(.tokenErorr):
                     self?.refreshIdToken {
-                        self?.myPageUpdate {_ in
+                        self?.myPageUpdate(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study) { _ in
                             print("토큰 갱신")
                         }
                     }

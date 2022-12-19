@@ -14,7 +14,7 @@ enum APIHeader {
     case login
     case signup(phoneNumber: String, FCMtoken: String, nick: String, birth: String,
                 email: String, gender: Int)
-    case mypage
+    case mypage(searchable: Int, ageMin: Int, ageMax:Int, gender: Int, study: String)
     case queue(lat: Double, long: Double, studylist: [String])
     case search(lat: Double, long: Double)
     case myQueueState
@@ -32,7 +32,7 @@ enum APIHeader {
 }
 
 
-extension APIHeader {
+extension APIHeader { //클라이언트 에러나는이유알아? 
     
     var url: URL {
         switch self {
@@ -110,6 +110,16 @@ extension APIHeader {
         case .chatPostSend(let chat, _):
             return [
                 parameterSesac.chat: chat
+            ]
+        case .mypage(let searchable, let ageMin, let ageMax, let gender, let study):
+            return  [
+                parameterSesac.searchable : searchable,
+                parameterSesac.ageMax : ageMax,
+                parameterSesac.ageMin : ageMin,
+                parameterSesac.gender: gender,
+                parameterSesac.study : study
+         
+            
             ]
         default: return ["":""]
         }

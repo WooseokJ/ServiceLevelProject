@@ -50,4 +50,8 @@ enum parameterSesac {
     static let reputation = "reputation"
     static let comment = "comment"
     static let chat = "chat"
+    static let searchable = "searchable"
+    static let ageMin = "ageMin"
+    static let ageMax = "ageMax"
+    static let study = "study"
 }

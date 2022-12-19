@@ -22,5 +22,5 @@ struct ChatListInfo: Codable {
 // MARK: - Payload
 struct Payload: Codable {
     var id, to, from, chat: String?
-    var createdAt: String?
+    var createdAt: Date?
 }
