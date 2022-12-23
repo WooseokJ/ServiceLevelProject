@@ -6,7 +6,7 @@
 | :----------------------------------------------------------: | ------------------------------------------------------------ |
 | <img src="https://user-images.githubusercontent.com/55547933/208854647-52f47253-a0d7-4d8e-afd2-21c378837b9a.png"> |                                                              |
 |                             개요                             | 디자이너, 서버개발자가 있는 프로젝트 로 새싹 스터디원을 찾고 채팅할수있는 앱 프로젝트 |
-|                         디자인 패턴                          | MVVM, Repository                                             |
+|                         디자인 패턴                          | MVC, MVVM, Repository, Singleton                             |
 |                             화면                             | UIKit, SnapKit, AutoLayout                                   |
 |                       의존성 관리 도구                       | CocoaPod , Swift Package Manager                             |
 |                             서버                             | Firebase Auth, Firebase Cloud Messaging                      |
@@ -27,6 +27,8 @@
 - [이슈 3. 휴대폰 번호 입력부분에서 숫자이외 한글 복사붙여넣기 허용 문제](https://github.com/WooseokJ/ServiceLevelProject/issues/4)
 
 - [이슈 4. 채팅 대화목록을 불러오는 부분에서 채팅할때 마다 계속해서 호출 되는 문제](https://github.com/WooseokJ/ServiceLevelProject/issues/5)
+
+- [이슈 5. 네트워크 요청시 배열로 요청할떄 bracket 문제](https://github.com/WooseokJ/ServiceLevelProject/issues/6)
 
     
 
