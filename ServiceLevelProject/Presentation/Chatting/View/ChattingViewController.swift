@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, ReviewProtocol {
 
@@ -22,20 +23,19 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
     var recentChattingInfo: ChatListInfo?
     var sesacList: [Int] = [0,0,0,0,0,0]
     
-    var chat: [Payload?] = []
+//    var chat: [Payload?] = []
+    var chat: Results<ChatData>?
     let repository = Repository()
 
+    var test: Int = 0
   
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        repository.tasks
-//        print(repository.localRealm.configuration.fileURL!)
 //        print(repository.tasks.value)
         
-        
-        configureTableView()
-        collectionViewConfigure()
+
         chattingView.textView.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(listClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtClicked))
@@ -60,37 +60,25 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
         chattingView.tableView.addGestureRecognizer(keyBoardGesture)
         bind()
         
-        
-        
-        
         let lastchatDate: String = "2000-01-01T00:00:00.000Z"
         chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
             self?.recentChattingInfo = data
-            
-    
-            
             do {
-                print(self?.repository.localRealm.configuration.fileURL!)
+                print(self?.repository.localRealm.configuration.fileURL! as Any)
                 try self?.repository.localRealm.write {
                     self?.repository.localRealm.deleteAll()
+                    self?.test = (data?.payload.count)!
                     data?.payload.forEach{
                         let value = ChatData(to: $0.to!, from: $0.from!, chat: $0.chat!, createdAt: $0.createdAt!)
                         self?.repository.localRealm.add(value)
                     }
-
                 }
+                self?.configureTableView()
+                self?.collectionViewConfigure()
             }catch let error {print(error)}
-            
-            
-            
-            self?.recentChattingInfo?.payload.forEach{
-                self?.chat.append($0)
-            }
-            self?.chattingView.tableView.reloadData()
         }
         
-        self.chattingView.tableView.reloadData()
-        
+
         
     
 
@@ -107,7 +95,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
 //        let value = ChatData(to: <#T##String#>, from: <#T##String#>, chat: <#T##String#>, createdAt: <#T##Date#>)
 //        self.chat.append(value)
         self.chattingView.tableView.reloadData()
-        self.chattingView.tableView.scrollToRow(at: IndexPath(row: self.chat.count - 1, section: 0), at: .bottom, animated: false)
+        self.chattingView.tableView.scrollToRow(at: IndexPath(row: self.chat!.count - 1, section: 0), at: .bottom, animated: false)
 
 
     }
@@ -130,7 +118,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
         
     
     @objc func keyboardShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             chattingView.stackView.snp.remakeConstraints { make in
                 make.bottom.equalToSuperview().inset(100) //keyboardSize.height
                 make.leading.equalTo(0)
@@ -179,21 +167,23 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.chat.count
+        print(self.chat?.count)
+        return self.chat?.count ?? test
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let data = chat[indexPath.row]
+        chat = repository.fetch()
+        
+        let data = chat?[indexPath.row]
         if data?.from == UserDefaults.standard.string(forKey: "otheruid")! {
             let cell = tableView.dequeueReusableCell(withIdentifier: YourChatTableViewCell.reuseIdentifier, for: indexPath) as! YourChatTableViewCell
-            cell.yourChatLabel.text = data?.chat!
+            cell.yourChatLabel.text = data!.chat
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MychatTableViewCell.reuseIdentifier, for: indexPath) as! MychatTableViewCell
-            cell.myChatLabel.text = data?.chat!
+            cell.myChatLabel.text = data!.chat
             return cell
         }
     }
@@ -213,8 +203,10 @@ extension ChattingViewController {
             .withUnretained(self)
             .bind { (vc,val) in
                 vc.chatPostSend(chat: val!, to: UserDefaults.standard.string(forKey: "otheruid")!)
-                
                 vc.chattingView.sendTextView.text = ""
+                let chatContent = ChatData(to:UserDefaults.standard.string(forKey: "otheruid")! , from: UserDefaults.standard.string(forKey: "Myuid")!, chat: val!, createdAt: "")
+                self.repository.addChat(item: chatContent)
+                
                 vc.chattingView.tableView.reloadData()
             }
             .disposed(by: disposeBag)

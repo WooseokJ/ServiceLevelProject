@@ -61,7 +61,7 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchListTableViewCell.reuseIdentifier, for: indexPath) as! SearchListTableViewCell
         cell.reviewLabel.text = self.transferSearchInfo?.fromQueueDBRequested[indexPath.section].nick
         searchListView.checkButton.tag = indexPath.section
-        cell.backgroundColor = .darkGray
+//        cell.backgroundColor = .darkGray
         cell.selectionStyle = .none
         bind(cell: cell, indexPath: indexPath)
         return cell
@@ -85,6 +85,8 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
             return UIView()
         }
+        
+        headerView.image.isHidden = false
         headerView.acceptButtonConstrains()
         headerView.acceptButton.rx.tap
             .withUnretained(self)
@@ -95,13 +97,10 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.25
+        return UIScreen.main.bounds.height * 0.2
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if isSelect {return UITableView.automaticDimension}
-        else {return UIScreen.main.bounds.height * 0.3}
+        return 50 
     }
     
     

@@ -23,8 +23,6 @@ class MyUpdateInfo {
 
 }
 
-
-
 class InfoManageMentViewController: BaseViewController, WithdrawProtocol, MypageProtocol {
     
     let infoManageView = InfoManageMentView()
@@ -59,15 +57,19 @@ class InfoManageMentViewController: BaseViewController, WithdrawProtocol, Mypage
 }
 
 extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSource {
+
+    
     func tableViewConfigure() {
-        infoManageView.tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
         infoManageView.tableView.delegate = self
         infoManageView.tableView.dataSource = self
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("====",section)
         return (section == 0) ? 1 : InfoManageMent.content.list.count
     }
     //MARK: 셀
@@ -84,6 +86,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             cell.layer.borderWidth = 1
             cell.layer.borderColor = Grayscale.gray2.cgColor
         case 1:
+            
             switch indexPath.row {
             case 0:
                 cell.womanButton.isHidden = false
@@ -115,6 +118,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
             cell.content.text = InfoManageMent.content.list[indexPath.row]
         default:break
         }
+//        cell.backgroundColor = .yellow
         cell.selectionStyle = .none
         return cell
     }
@@ -123,6 +127,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
             return UIView()
         }
+
         headerView.image.isHidden = (section == 0) ? false : true
         return headerView
     }
@@ -130,7 +135,7 @@ extension InfoManageMentViewController: UITableViewDelegate, UITableViewDataSour
         return section == 0 ? UIScreen.main.bounds.height * 0.2 : 0
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.section == 0 ? 100 : UIScreen.main.bounds.height * 0.1
+        indexPath.section == 0 ? 50 : UIScreen.main.bounds.height * 0.1
     }
 }
 
@@ -172,92 +177,92 @@ extension InfoManageMentViewController: InfoDelegate {
 
 }
 //
-//extension InfoManageMentViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-//
-//    func collectionviewConfigure() {
-//        infoManageView.collectionview.delegate = self
-//        infoManageView.collectionview.dataSource = self
-//    }
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 3
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        switch section {
-//        case 0 : return InfoManageMent.title.list.count
-//        case 1: return InfoManageMent.sesacStudy.list.count
-//        default: return 1
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
-//
-//        switch indexPath.section {
-//        case 0:
-//            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
-//            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
-//            cell.layer.cornerRadius = 10
-//            cell.clipsToBounds = true
-//            cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
-//        case 1:
-//            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
-//            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
-//            cell.layer.cornerRadius = 10
-//            cell.clipsToBounds = true
-//            cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
-//        case 2:
-////            infoManageView.collectionview.backgroundColor = .cyan
-//            cell.reviewLabel.snp.remakeConstraints { make in
-//                make.leading.equalTo(10)
-//                make.top.equalTo(0)
-//                make.trailing.equalTo(-10)
-//                make.bottom.equalTo(cell.snp.bottom)
-//            }
-//            cell.itemButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
-//            cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
-//            cell.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
-//            cell.reviewLabel.textColor = Grayscale.gray6
-//            cell.reviewLabel.layer.borderWidth = 0
-//        default: break
-//        }
-//        return cell
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier, for: indexPath) as? HeaderCollectionView else {return HeaderCollectionView()}
-//        switch indexPath.section {
-//            case 0 :header.label.text = "새싹 타이틀"
-//            case 1: header.label.text = "하고 싶은 스터디"
-//            case 2: header.label.text = "새싹 리뷰"
-//            default: break
-//        }
-//        header.backgroundColor = .clear
-//        header.configure()
-//        header.layoutSubviews()
-//        return header
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: 100, height: 30)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        switch indexPath.section {
-//        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
-//        case 1:
-//            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
-//        case 2:
-//            return CGSize(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height / 29 )
-//        default:
-//            print("오류",#function)
-//            return CGSize()
-//
-//        }
-//    }
-//
-//}
+extension InfoManageMentViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+
+    func collectionviewConfigure() {
+        infoManageView.collectionview.delegate = self
+        infoManageView.collectionview.dataSource = self
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0 : return InfoManageMent.title.list.count
+        case 1: return InfoManageMent.sesacStudy.list.count
+        default: return 1
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoManageMentCollectionViewCell.reuseIdentifier, for: indexPath) as? InfoManageMentCollectionViewCell else{return UICollectionViewCell()}
+
+        switch indexPath.section {
+        case 0:
+            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
+            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
+            cell.layer.cornerRadius = 10
+            cell.clipsToBounds = true
+            cell.itemButton.setTitle(InfoManageMent.title.list[indexPath.row], for: .normal)
+        case 1:
+            cell.reviewLabel.snp.remakeConstraints {$0.width.height.equalTo(0)}
+            cell.itemButton.titleLabel?.font = AppFont.Title4_R14
+            cell.layer.cornerRadius = 10
+            cell.clipsToBounds = true
+            cell.itemButton.setTitle(InfoManageMent.sesacStudy.list[indexPath.row], for: .normal)
+        case 2:
+//            infoManageView.collectionview.backgroundColor = .cyan
+            cell.reviewLabel.snp.remakeConstraints { make in
+                make.leading.equalTo(10)
+                make.top.equalTo(0)
+                make.trailing.equalTo(-10)
+                make.bottom.equalTo(cell.snp.bottom)
+            }
+            cell.itemButton.snp.remakeConstraints {$0.width.height.equalTo(0)}
+            cell.reviewLabel.frame.size = cell.reviewLabel.intrinsicContentSize
+            cell.reviewLabel.text = "첫 리뷰를 기다리는 중이에요!"
+            cell.reviewLabel.textColor = Grayscale.gray6
+            cell.reviewLabel.layer.borderWidth = 0
+        default: break
+        }
+        return cell
+    }
+
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.reuseIdentifier, for: indexPath) as? HeaderCollectionView else {return HeaderCollectionView()}
+        switch indexPath.section {
+            case 0 :header.label.text = "새싹 타이틀"
+            case 1: header.label.text = "하고 싶은 스터디"
+            case 2: header.label.text = "새싹 리뷰"
+            default: break
+        }
+        header.backgroundColor = .clear
+        header.configure()
+        header.layoutSubviews()
+        return header
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 100, height: 30)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        switch indexPath.section {
+        case 0: return CGSize(width: InfoManageMent.title.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+        case 1:
+            return CGSize(width: InfoManageMent.sesacStudy.list[indexPath.row].size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]).width + 40, height: 32)
+        case 2:
+            return CGSize(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height / 29 )
+        default:
+            print("오류",#function)
+            return CGSize()
+
+        }
+    }
+
+}

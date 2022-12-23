@@ -21,11 +21,11 @@ extension APIProtocol where Self: UIViewController {
     func refreshIdToken(completion: @escaping completion) {
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            if let error = error {
+            if error != nil {
                 self.view.makeToast("토큰 갱신 에러")
                 return;
             }
-            print("갱신한 idToken",idToken)
+            print("갱신한 idToken",idToken as Any)
             UserDefaults.standard.set(idToken!, forKey: "token")
             completion() 
         }
@@ -40,8 +40,6 @@ extension APIProtocol where Self: UIViewController {
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     
-   
-  
 }
 
 

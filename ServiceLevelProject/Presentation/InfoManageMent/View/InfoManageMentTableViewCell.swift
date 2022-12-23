@@ -34,6 +34,7 @@ class InfoManageMentTableViewCell: UITableViewCell {
         setConstrains()
     }
     
+    
     @objc func moreTap() {cellDelegate?.moreButtonTap()}
     @objc func womanTap(_ sender: UIButton) {cellDelegate?.womanButtonTap(cell: self)}
     @objc func manTap(_ sender: UIButton) {cellDelegate?.manButtonTap(cell: self)}

@@ -12,10 +12,13 @@ class SocketIOManager {
     static let shared = SocketIOManager()
     var manager: SocketManager!
     var socket: SocketIOClient!
+    
+    let repository = Repository()
 
     private init(){
 
-        manager = SocketManager(socketURL: URL(string: APISeSac.chatGetListURL + "\(UserDefaults.standard.string(forKey: "otheruid")!)")!, config: [.log(true), .compress] )
+        manager = SocketManager(socketURL: URL(string: APISeSac.baseURL)!, config: [.log(true), .forceWebsockets(true)])
+                                                        
 
         socket = manager.defaultSocket
         
@@ -23,24 +26,26 @@ class SocketIOManager {
         /// 연결
         socket.on(clientEvent: .connect) { data, ack in
             print("SOCKET IS CONNECTED", data, ack)
+//            self.socket.emit("socketID",UserDefaults.standard.string(forKey: "Myuid")!)
+
         }
         /// 연결해제
         socket.on(clientEvent: .disconnect) { data, ack in
             print("SOCKET IS DISCONNECTED", data, ack)
         }
         /// 이벤트 수신
-        socket.on("sesac") { dataArray, ack in
+        socket.on("chat") { dataArray, ack in
             print("SESAC RECEIVED", dataArray, ack)
-
             // 타입캐슽팅
             let data = dataArray[0] as! NSDictionary
-            let chat = data["text"] as! String
-            let name = data["name"] as! String
-            let userId = data["userId"] as! String
+            let chat = data["chat"] as! String
+            let to = data["to"] as! String
+            let from = data["from"] as! String
             let createdAt = data["createdAt"] as! String
-            print("@@@@check:", chat, name, createdAt)
-
-            NotificationCenter.default.post(name: Notification.Name("getMessage"), object: self, userInfo:["chat":chat, "name":name, "userId":userId, "createdAt" : createdAt])
+            print("@@@@check:", chat, createdAt)
+            UserDefaults.standard.set(createdAt, forKey: "createdAt")
+            let chatContent = ChatData(to: to, from: from, chat: chat, createdAt: createdAt)
+            self.repository.addChat(item: chatContent)
         }
     }
     func establishConnetion() {
@@ -52,4 +57,5 @@ class SocketIOManager {
     }
 
 }
+
 

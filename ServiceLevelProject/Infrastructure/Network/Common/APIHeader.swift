@@ -118,8 +118,6 @@ extension APIHeader { //클라이언트 에러나는이유알아?
                 parameterSesac.ageMin : ageMin,
                 parameterSesac.gender: gender,
                 parameterSesac.study : study
-         
-            
             ]
         default: return ["":""]
         }

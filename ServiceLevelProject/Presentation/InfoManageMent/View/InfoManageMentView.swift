@@ -19,9 +19,10 @@ class InfoManageMentView: BaseView {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(InfoManageMentTableViewCell.self, forCellReuseIdentifier: InfoManageMentTableViewCell.reuseIdentifier)
+        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderView.headerViewID)
         tableView.backgroundColor = .clear
-//        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = true
         tableView.alwaysBounceVertical = false
         return tableView
     }()

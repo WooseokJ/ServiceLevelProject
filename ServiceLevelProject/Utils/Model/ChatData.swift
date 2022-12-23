@@ -9,13 +9,13 @@ import Foundation
 import RealmSwift
 
 class ChatData: Object {
-    @Persisted(primaryKey: true) var _id = ObjectId()
+    @Persisted(primaryKey: false) var _id = ObjectId()
     @Persisted var to: String
     @Persisted var from: String
     @Persisted var chat: String
-    @Persisted var createdAt: Date
+    @Persisted var createdAt: String
     
-    convenience init(_id: ObjectId = ObjectId(), to: String, from: String, chat: String, createdAt: Date) {
+    convenience init(_id: ObjectId = ObjectId(), to: String, from: String, chat: String, createdAt: String) {
         self.init()
         self._id = _id
         self.to = to
@@ -24,5 +24,9 @@ class ChatData: Object {
         self.createdAt = createdAt
     }
     
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case to, from, chat, createdAt
+    }
     
 }

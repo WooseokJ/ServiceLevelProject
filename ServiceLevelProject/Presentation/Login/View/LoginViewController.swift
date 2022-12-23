@@ -34,11 +34,11 @@ class LoginViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc,val) in
                 guard vc.checkMaxLength(textField: vc.loginView.phoneNumberTextField, maxLength: 13) else {
-                    print("dsad")
                     return
                 }
-                // 숫자이외 복붙 방지
-                if self.isValidPhone(phone: vc.loginView.phoneNumberTextField.text!) {
+                // 숫자이외 는 불가능
+                guard self.isValidPhone(phone: vc.loginView.phoneNumberTextField.text!) else{
+                    self.view.makeToast("유효한 번호를 입력해주세요.")
                     return
                 }
 
@@ -67,35 +67,25 @@ class LoginViewController: BaseViewController {
                 
                 // 숫자이외 복붙 방지
                 if self.isValidPhone(phone: textfield) {
+                    vc.loginView.phoneButton.backgroundColor = BrandColor.green
                     return
                 }
+                vc.loginView.phoneButton.backgroundColor = Grayscale.gray6
                 
-                // 글자수에대한 처리
-                switch textfield.count {
-                    case 0: vc.loginView.textFieldLine.backgroundColor = Grayscale.gray3
-                    case 1...12:
-                        vc.loginView.phoneButton.backgroundColor = Grayscale.gray6
-                    case 13...:
-                        vc.loginView.phoneButton.backgroundColor = BrandColor.green
-                        return
-                    default:
-                        vc.loginView.textFieldLine.backgroundColor = BlackWhite.black
-                }
+                let test = vc.loginView.phoneNumberTextField
                 
-                //                var str2 = "01041510569"
-                //                str2.insert("-", at: str2.index(str2.startIndex, offsetBy: 3))
-                var test = vc.loginView.phoneNumberTextField
+                
                 switch test.text!.count {
                     case 4:
-                        if test.text!.filter{$0 == "-"}.count == 1 {
+                    if test.text!.filter({$0 == "-"}).count == 1 {
                             test.deleteBackward()
                         } else {
                             test.text!.insert("-", at: test.text!.index(test.text!.startIndex, offsetBy: 3))
                         }
                         vc.loginView.phoneNumberTextField.text! = test.text!
-                        
+
                     case 9:
-                        if test.text!.filter{$0 == "-"}.count == 2 {
+                    if test.text!.filter({$0 == "-"}).count == 2 {
                             test.deleteBackward()
                         } else {
                             test.text!.insert("-", at: test.text!.index(test.text!.startIndex, offsetBy: 8))
@@ -113,9 +103,10 @@ extension LoginViewController {
     
     func isValidPhone(phone: String?) -> Bool {
         guard phone != nil else { return false }
-        let phoneRegEx = "[0-9]{11}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
-        return pred.evaluate(with: phone)
+        let phoneRegEx = #"^\(?\d{3}\)?[ -]?\d{3,4}[ -]?\d{4}$"#
+        let valid = phone!.range(of: phoneRegEx, options: .regularExpression) != nil
+        return valid
     }
     
+
 }

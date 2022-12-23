@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol RepositoryType {
     func fetch() -> Results<ChatData>
+    func addChat(item: ChatData)
 }
 
 
@@ -20,5 +21,14 @@ class Repository: RepositoryType {
         return localRealm.objects(ChatData.self)
     }
     
-    lazy var tasks: Results<ChatData>! = self.fetch()
+    func addChat(item: ChatData) {
+        do {
+            try localRealm.write {
+                localRealm.add(item)
+            }
+        } catch let error{
+            print(error)
+        }
+    }
+    
 }

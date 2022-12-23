@@ -8,9 +8,6 @@
 import Foundation
 
 enum APISeSac {
-    
-
-    
     static let baseURL = "http://api.sesac.co.kr:1210/v1/"
     static let userURL = baseURL+"user"
     static let mypageURL = baseURL+"user/mypage"
@@ -28,7 +25,6 @@ enum APISeSac {
 }
 
 enum HeaderSesac{
-    
     static let idtoken = "idtoken"
     static let ContentType = "Content-Type"
     static let ContentTypeValue = "application/x-www-form-urlencoded"

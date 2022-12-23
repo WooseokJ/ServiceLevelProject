@@ -22,6 +22,7 @@ extension LoginProtocol where Self: AuthViewController {
                 switch data {
                 case .success:
                     print("로그인 성공")
+                    UserDefaults.standard.set(try data.get().value?.uid!, forKey: "Myuid")
                     UserDefaults.standard.set(true, forKey: "first")
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let sceneDelegate = windowScene?.delegate as? SceneDelegate
@@ -47,8 +48,6 @@ extension LoginProtocol where Self: AuthViewController {
             }
         }
     }
-
-
 }
 extension LoginProtocol where Self: MyInfoViewController {
     func login(completionHandler: @escaping ((LoginInfo?) -> Void) ) {

@@ -43,6 +43,5 @@ extension DodgeProtocol where Self: ChattingViewController {
             }
         }
     }
-    
-    
 }
+

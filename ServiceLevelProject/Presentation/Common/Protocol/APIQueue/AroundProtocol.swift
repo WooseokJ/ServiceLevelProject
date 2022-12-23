@@ -18,13 +18,10 @@ extension AroundProtocol where Self: AroundSeSacViewController {
             do {
                 switch data {
                 case .success:
-                    //                    completionHandler(try data.get().value!)
-                    print(data)
                     self?.view.makeToast("스터디 요청을 보냈습니다")
                 case .failure(.alreadyTomeRequest):
                     self?.view.makeToast("상대방이 이미 나에게 스터디 요청한 상태")
                     self?.studyPostAccept(otheruid: otheruid)
-
                 case .failure(.oppnentStopRequest):
                     self?.view.makeToast("상대방이 스터디찾기를 그만두었습니다.")
                 case .failure(.notUserError):
@@ -41,7 +38,9 @@ extension AroundProtocol where Self: AroundSeSacViewController {
 
                 }
             }
-            catch{print("에러야")}
+            catch let error{
+                print(error)
+            }
         }
     }
 

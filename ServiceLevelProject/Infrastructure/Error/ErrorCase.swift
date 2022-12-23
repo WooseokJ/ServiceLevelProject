@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 // MARK: User
 enum loginError: Int, Error {
     case tokenErorr = 401

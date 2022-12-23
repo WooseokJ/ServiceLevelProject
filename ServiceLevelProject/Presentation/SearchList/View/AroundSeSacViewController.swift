@@ -61,10 +61,10 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
         
         searchListView.checkButton.tag = indexPath.section
         cell.reviewLabel.text = self.transferSearchInfo?.fromQueueDB[indexPath.section].nick
-        cell.backgroundColor = .lightGray
+//        cell.backgroundColor = .lightGray
         cell.selectionStyle = .none
-        cell.layer.cornerRadius = 8
-        cell.layer.borderWidth = 1
+//        cell.layer.cornerRadius = 8
+//        cell.layer.borderWidth = 1
         
         bind(cell: cell, indexPath: indexPath)
         return cell
@@ -87,8 +87,8 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.headerViewID) as? HeaderView else {
             return UIView()
         }
+        headerView.image.isHidden = false
         headerView.requestButtonConstrains()
-        
         
         headerView.requestButton.rx.tap
             .withUnretained(self)
@@ -100,17 +100,12 @@ extension AroundSeSacViewController: UITableViewDelegate, UITableViewDataSource 
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.25
+        return UIScreen.main.bounds.height * 0.2
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if isSelect {
-            return UITableView.automaticDimension
-        } else {
-            return UIScreen.main.bounds.height * 0.3
-        }
-    }
     
     
 }
