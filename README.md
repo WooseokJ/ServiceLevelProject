@@ -18,7 +18,7 @@
 
 
 
-## 🔴 고민한 부분
+## 🔴 트러블 슈팅
 
 - [이슈 1.  프로토콜 채택할수있는 ViewController 들을 제약](https://github.com/WooseokJ/ServiceLevelProject/issues/1)
 
@@ -32,11 +32,14 @@
 
     
 
-## 🟢 학습한 부분
+## 🟢 기술 명세
 
 - 프로토콜 에서 **네트워크 로직**을 **where Self** 를 활용하여 **채택할 ViewController들** 제약
 - **정규표현식**으로 문자입력시 인증요청이 안되게 해결
 - **Alamofire** **URLRequestConvertible**로 네트워크 Router 모듈화
 - **await/async** 로 네트워크 비동기를 동기처리
-- **socket io**로 소켓통신 구현
-- 기본적인 **회원정보 CRUD** 구현
+- **socket io** 으로 **Realm DB** 를 써서 네트워크 호출이 과하게 되지 않게 1:1 채팅 구현, 소켓 연결 및 해제 시점에 대해 대응
+- **Firebase Auth** 로 **휴대폰 인증** 을 거쳐 **로그인 및 회원가입**
+- **Firebase Cloud Messaging** 으로  **FCM token** 발급
+- **Confluence** 기획안을 보면서 **요구사항 필수 기능 구현**
+- 온보딩화면 **PageViewController**를 활용한 **화면전환**
