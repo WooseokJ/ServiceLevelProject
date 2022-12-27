@@ -15,6 +15,7 @@
 |                         디버깅 스킬                          | LLDB                                                         |
 |                          라이브러리                          | socket.io, NMapsMap, Tabman, Rxswift, RxCocoa                |
 |                             협업                             | Confluence, Swagger, Github, Figma                           |
+|                             참고                             | [회고](https://hotsanit.tistory.com/107)                     |
 
 
 
@@ -302,5 +303,4 @@ Alamofire 공식문서를 보고 참고하여 브라켓을 제거하는 방법�
 <img width="932" alt="스크린샷 2022-12-23 오후 3 10 22" src="https://user-images.githubusercontent.com/55547933/209281719-5c242a2d-1b18-4b02-b0a7-b66678c885a3.png">
 
 </details>
-
 
