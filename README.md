@@ -27,7 +27,7 @@
 - **Alamofire** **URLRequestConvertible**로 네트워크 Router 모듈화로 매 통신에필요한 **파라미터,해더,HTTP 메서드 캡슐화**
 - **await/async** 를 활용하여 매개변수 **@escaping 구문 및 콜백함수로 부터  코드 가독성을 개선**
 - **Socket.io**로 1:1채팅 구현시 DB 에 채팅내역 저장하여 네트워크 중복 호출 방지, 소켓 연결 및 해제 시점에 대해 대응
-- **Firebase Auth** 로 **휴대폰 인증** 을 받고 **상태코드**를 통해 ****로그인 성공 화면 혹은 회원가입 **화면 분기처리**
+- **Firebase Auth** 로 **휴대폰 인증** 을 받고 **상태코드**를 통해 로그인 성공 화면 혹은 회원가입 **화면 분기처리**
 - **Firebase Cloud Messaging 에서 발급받은 FCM token** 으로 **멀티디바이스 대응**
 - **Confluence** 기획안을 보면서 **요구사항 필수 기능 구현 및 화면 로직 설계 ([화면 로직 링크](https://www.figma.com/file/qxHHEH3ETn9gviJU0gj1z0/SLP-Service-Flow?node-id=849%3A845&t=sTkjixRIIAvCy6zm-0))**
 - **Timer**를 활용하여 5초마다 매칭상태 확인하는 **API 반복호출**
