@@ -26,6 +26,9 @@ extension WithdrawProtocol where Self: InfoManageMentViewController {
                 case .success:
                     
                     for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                        if key == "fcmtoken" {
+                            continue
+                        }
                         UserDefaults.standard.removeObject(forKey: key.description)
                     }
                     
