@@ -28,8 +28,14 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
     let repository = Repository()
 
     var test: Int = 0
-  
+    var date: Date?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        date = Date()
+        chattingView.dateTitleLabel.text = "\(date!.month)월 \(date!.day)일 \(getDayOfWeek(date: date!))요일"
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 //        repository.tasks
@@ -43,7 +49,6 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage2(notification:)), name: Notification.Name("getMessage"), object: nil)
         
         title = "고래밥"
-        chattingView.dateTitleLabel.text = "1월 15일 토요일"
         chattingView.matchedTitle.text = "고래밥님과 매칭되었습니다."
         
         
@@ -60,7 +65,7 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
         chattingView.tableView.addGestureRecognizer(keyBoardGesture)
         bind()
         
-        let lastchatDate: String = "2000-01-01T00:00:00.000Z"
+        let lastchatDate: String = recentChattingInfo?.payload[0].createdAt ?? "2000-01-01T00:00:00.000Z"
         chatPostList(lastchatDate: lastchatDate, from: UserDefaults.standard.string(forKey: "otheruid")!) { [weak self] data in
             self?.recentChattingInfo = data
             do {
@@ -76,24 +81,19 @@ class ChattingViewController: BaseViewController, DodgeProtocol, ChatProtocol, R
                 self?.configureTableView()
                 self?.collectionViewConfigure()
             }catch let error {print(error)}
-        }
-        
-
-        
-    
-
-        
+        }        
     }
     
+    func getDayOfWeek(date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEEEE"
+            formatter.locale = Locale(identifier:"ko_KR")
+            let convertStr = formatter.string(from: date)
+            return convertStr
+    }
+    
+    
     @objc func getMessage2(notification: NSNotification) {
-        
-//        let chat = notification.userInfo!["chat"] as! String
-//        let name = notification.userInfo!["name"] as! String
-//        let createdAt = notification.userInfo!["createdAt"] as! String
-//        let userID = notification.userInfo!["userId"] as! String
-////
-//        let value = ChatData(to: <#T##String#>, from: <#T##String#>, chat: <#T##String#>, createdAt: <#T##Date#>)
-//        self.chat.append(value)
         self.chattingView.tableView.reloadData()
         self.chattingView.tableView.scrollToRow(at: IndexPath(row: self.chat!.count - 1, section: 0), at: .bottom, animated: false)
 
@@ -167,7 +167,6 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.chat?.count)
         return self.chat?.count ?? test
     }
     
@@ -204,8 +203,8 @@ extension ChattingViewController {
             .bind { (vc,val) in
                 vc.chatPostSend(chat: val!, to: UserDefaults.standard.string(forKey: "otheruid")!)
                 vc.chattingView.sendTextView.text = ""
-                let chatContent = ChatData(to:UserDefaults.standard.string(forKey: "otheruid")! , from: UserDefaults.standard.string(forKey: "Myuid")!, chat: val!, createdAt: "")
-                self.repository.addChat(item: chatContent)
+//                let chatContent = ChatData(to:UserDefaults.standard.string(forKey: "otheruid")! , from: UserDefaults.standard.string(forKey: "Myuid")!, chat: val!, createdAt: "")
+//                self.repository.addChat(item: chatContent)
                 
                 vc.chattingView.tableView.reloadData()
             }
