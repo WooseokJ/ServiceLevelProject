@@ -76,10 +76,6 @@ extension OnBoardingViewController: UIPageViewControllerDataSource, UIPageViewCo
         }
     }
     
-    
-    
-    
-    
 }
 
 

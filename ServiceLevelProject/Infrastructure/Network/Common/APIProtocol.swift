@@ -30,16 +30,27 @@ extension APIProtocol where Self: UIViewController {
             completion() 
         }
     }
-    
     func presentVC() {
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        let vc = NickNameViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        sceneDelegate?.window?.rootViewController = nav
-        sceneDelegate?.window?.makeKeyAndVisible()
-    }
+         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+         let sceneDelegate = windowScene?.delegate as? SceneDelegate
+         let vc = NickNameViewController()
+         let nav = UINavigationController(rootViewController: vc)
+         sceneDelegate?.window?.rootViewController = nav
+         sceneDelegate?.window?.makeKeyAndVisible()
+     }
+
     
 }
 
 
+
+//extension BaseViewController: APIProtocol {
+//    func presentVC() {
+//         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+//         let sceneDelegate = windowScene?.delegate as? SceneDelegate
+//         let vc = NickNameViewController()
+//         let nav = UINavigationController(rootViewController: vc)
+//         sceneDelegate?.window?.rootViewController = nav
+//         sceneDelegate?.window?.makeKeyAndVisible()
+//     }
+//}

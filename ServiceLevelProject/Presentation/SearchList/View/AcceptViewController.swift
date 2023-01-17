@@ -103,7 +103,6 @@ extension AcceptViewController: UITableViewDelegate, UITableViewDataSource {
         return 50 
     }
     
-    
 }
 extension AcceptViewController {
     private func bind() {

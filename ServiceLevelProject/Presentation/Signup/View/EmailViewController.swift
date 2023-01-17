@@ -55,6 +55,12 @@ class EmailViewController: BaseViewController {
 extension EmailViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         loginView.phoneNumberTextField.resignFirstResponder()
+        guard loginView.phoneNumberTextField.text!.isEmpty else {
+            loginView.phoneButton.backgroundColor = BrandColor.green
+            return true
+        }
+        loginView.phoneButton.backgroundColor = .lightGray
         return true
     }
+
 }
